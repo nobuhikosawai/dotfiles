@@ -20,6 +20,8 @@ if dein#load_state('~/.cache/dein')
   call dein#add('altercation/vim-colors-solarized')
   call dein#add('vim-airline/vim-airline')
   call dein#add('vim-airline/vim-airline-themes')
+  " markdown
+  call dein#add('joker1007/vim-markdown-quote-syntax')
   " tree
   call dein#add('scrooloose/nerdtree')
   call dein#add('Xuyuanp/nerdtree-git-plugin')
@@ -78,3 +80,10 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 " let g:airline_theme = 'simple'
 let g:airline_theme = 'minimalist'
+
+" Markdown Syntax
+let g:markdown_quote_syntax_filetypes = {
+      \ "typescript": {
+      \   "start": "\\%(typescript\\|ts\\)",
+      \   },
+      \ }
