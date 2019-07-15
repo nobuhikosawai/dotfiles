@@ -31,6 +31,9 @@ if dein#load_state('~/.cache/dein')
   endif
   " comment
   call dein#add('scrooloose/nerdcommenter')
+  " git, github
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('airblade/vim-gitgutter')
 
   call dein#end()
   call dein#save_state()
@@ -99,6 +102,15 @@ augroup markdown
   autocmd Filetype markdown highlight markdownCodeDelimiter ctermfg=none
   autocmd Filetype markdown highlight markdownCode ctermfg=208
 augroup END
+
+" GitGutter
+let g:gitgutter_override_sign_column_highlight = 0
+highlight SignColumn guibg=bg
+highlight SignColumn ctermbg=bg
+hi GitGutterAdd ctermfg=154 ctermbg=none
+hi GitGutterChange ctermfg=222 ctermbg=none
+hi GitGutterDelete ctermfg=197 ctermbg=none
+set updatetime=100
 
 " # Scripts
 " ## SyntaxInfo
