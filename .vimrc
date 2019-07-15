@@ -100,7 +100,8 @@ augroup markdown
   autocmd Filetype markdown highlight markdownCode ctermfg=208
 augroup END
 
-" Scripts
+" # Scripts
+" ## SyntaxInfo
 function! s:get_syn_id(transparent)
   let synid = synID(line("."), col("."), 1)
   if a:transparent
@@ -138,3 +139,15 @@ function! s:get_syn_info()
         \ " guibg: " . linkedSyn.guibg
 endfunction
 command! SyntaxInfo call s:get_syn_info()
+
+" ## auto-mkdir
+augroup vimrc-auto-mkdir  " {{{
+  autocmd!
+  autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)
+  function! s:auto_mkdir(dir, force)  " {{{
+    if !isdirectory(a:dir) && (a:force ||
+    \    input(printf('"%s" does not exist. Create? [y/N]', a:dir)) =~? '^y\%[es]$')
+      call mkdir(iconv(a:dir, &encoding, &termencoding), 'p')
+    endif
+  endfunction  " }}}
+augroup END  " }}}
