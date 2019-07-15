@@ -29,6 +29,8 @@ if dein#load_state('~/.cache/dein')
     call dein#add('roxma/nvim-yarp')
     call dein#add('roxma/vim-hug-neovim-rpc')
   endif
+  " comment
+  call dein#add('scrooloose/nerdcommenter')
 
   call dein#end()
   call dein#save_state()
