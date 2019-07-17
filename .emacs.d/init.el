@@ -23,3 +23,40 @@
  ;; If there is more than one, they won't work right.
  )
 (load-theme 'molokai t)
+
+;; key-bind
+(global-set-key "\C-h" 'delete-backward-char)
+
+;; clipboard integration
+(setq x-select-enable-clipboard t)
+(global-set-key "\M-w" 'clipboard-kill-ring-save)
+(global-set-key "\C-w" 'clipboard-kill-region)
+
+;;-------------;;
+;; org-mode    ;;
+;;-------------;;
+
+;; 画像をインラインで表示
+(setq org-startup-with-inline-images t)
+
+;; 見出しの余分な*を消す
+(setq org-hide-leading-stars t)
+
+;; LOGBOOK drawerに時間を格納する
+(setq org-clock-into-drawer t)
+
+;; .orgファイルは自動的にorg-mode
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+
+;; org-directory内のファイルすべてからagendaを作成する
+(setq my-org-agenda-dir "~/Dropbox/org-mode-me/work/finc")
+(setq org-agenda-files (list my-org-agenda-dir))
+
+;; DONEの時刻を記録
+(setq org-log-done 'time)
+
+;; ショートカットキー
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-cc" 'org-capture)
+(global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
