@@ -15,6 +15,8 @@ if dein#load_state('~/.cache/dein')
   " typescript
   call dein#add('leafgarland/typescript-vim')
   call dein#add('Quramy/tsuquyomi')
+  " golang
+  call dein#add('fatih/vim-go')
   " color schema
   call dein#add('tomasr/molokai')
   call dein#add('altercation/vim-colors-solarized')
@@ -81,6 +83,13 @@ augroup fileTypeIndent
   autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
   autocmd BufNewFile,BufRead *.js setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
+
+" vim-go
+let g:go_fmt_command = "goimports"
+let g:go_metalinter_autosave = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
 
 " NERDTree
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
