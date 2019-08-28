@@ -54,6 +54,8 @@
 
 ;; DONEの時刻を記録
 (setq org-log-done 'time)
+(setq org-todo-keywords
+  '((sequence "TODO(t)" "DOING(d)" "|" "DONE(x)")))
 
 ;; ショートカットキー
 (global-set-key "\C-cl" 'org-store-link)
