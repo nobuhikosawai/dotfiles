@@ -108,3 +108,7 @@ function peco-src () {
 # tabtab source for slss package
 # uninstall by removing these lines or running `tabtab uninstall slss`
 [[ -f /Users/nobuhikosawai/.ghq/github.com/strobo-inc/leafee-watching/packages/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/nobuhikosawai/.ghq/github.com/strobo-inc/leafee-watching/packages/serverless/node_modules/tabtab/.completions/slss.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
