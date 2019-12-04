@@ -1,0 +1,11 @@
+[[snippets]]
+  description = "Check nginx syntax"
+  command = """
+  SCRIPT_DIR=$(cd $(dirname $0);pwd)
+  UPSTREAM=`basename $SCRIPT_DIR`
+  docker run -it --rm \
+  --volume ${SCRIPT_DIR}/dockerfiles/ci/nginx/nginx.conf:/etc/nginx/nginx.conf \
+  --volume ${SCRIPT_DIR}/dockerfiles/ci/nginx/conf.d/app.conf:/etc/nginx/conf.d/app.conf \
+  --volume ${SCRIPT_DIR}/dockerfiles/ci/nginx/conf.d/htpasswd:/etc/nginx/conf.d/htpasswd \
+  nginx bash -c "echo 127.0.0.1 $UPSTREAM >> /etc/hosts && nginx -t"""
+  output = ""
