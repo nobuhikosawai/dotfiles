@@ -73,7 +73,10 @@ eval "$(rbenv init -)"
 [[ -f /Users/nobuhikosawai/.nodebrew/node/v6.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/nobuhikosawai/.nodebrew/node/v6.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
 
 # zplug
-source ~/.zplug/init.zsh
+if [[ -s "${HOME}/.zplug/init.zsh" ]]; then
+  source "${HOME}/.zplug/init.zsh"
+  zplug "agkozak/zsh-z"
+fi
 
 # hub
 function git(){hub "$@"}
