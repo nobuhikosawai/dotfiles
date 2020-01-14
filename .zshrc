@@ -76,6 +76,7 @@ eval "$(rbenv init -)"
 if [[ -s "${HOME}/.zplug/init.zsh" ]]; then
   source "${HOME}/.zplug/init.zsh"
   zplug "agkozak/zsh-z"
+  zplug load
 fi
 
 # hub
