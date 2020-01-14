@@ -9,14 +9,10 @@ if dein#load_state('~/.cache/dein')
 
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
   call dein#add('Shougo/deoplete.nvim')
-  " javascript
-  call dein#add('pangloss/vim-javascript')
-  call dein#add('mxw/vim-jsx')
+  " language pack
+  call dein#add('sheerun/vim-polyglot')
   " typescript
-  call dein#add('leafgarland/typescript-vim')
   call dein#add('Quramy/tsuquyomi')
-  " golang
-  call dein#add('fatih/vim-go')
   " color schema
   call dein#add('tomasr/molokai')
   call dein#add('altercation/vim-colors-solarized')
