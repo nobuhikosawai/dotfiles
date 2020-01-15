@@ -56,9 +56,9 @@ export MECAB_PATH="/usr/local/Cellar/mecab/0.996/lib/libmecab.dylib"
 export PATH="/Users/nobuhikosawai/development/flutter/bin:$PATH"
 
 # go
-export PATH="/Users/nobuhikosawai/go/bin:$PATH"
+export PATH="$HOME/go/bin:$PATH"
 export PATH="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/platform/google_appengine:$PATH"
-export GOPATH="/Users/nobuhikosawai/go"
+export GOPATH="$HOME/go"
 
 # rbenv
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
