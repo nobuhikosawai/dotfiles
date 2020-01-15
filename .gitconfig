@@ -22,7 +22,7 @@
 	clean-merged = branch --merged | grep -v '*' | xargs -I % git branch -d %
 [core]
 	editor = vim
-	excludesfile = $HOME/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
