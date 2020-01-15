@@ -1,6 +1,6 @@
 [General]
   snippetfile = "/Users/nobuhiko.sawai/.config/pet/snippet.toml"
-  editor = "nano"
+  editor = "vim"
   column = 40
   selectcmd = "fzf"
   backend = "gist"
