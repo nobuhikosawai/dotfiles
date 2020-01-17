@@ -31,10 +31,6 @@ alias intellij='open -a /Applications/IntelliJ\ IDEA\ CE.app'
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias doco="docker-compose"
 #
-#nodebrew
-#
-export PATH=$HOME/.nodebrew/current/bin:$PATH
-#
 #yarn
 #
 export PATH="$PATH:$HOME/.yarn/bin"
