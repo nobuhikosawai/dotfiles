@@ -13,6 +13,12 @@ call plug#begin('~/.vim/plugged')
 Plug 'sheerun/vim-polyglot'
 " language service (lsp)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" ruby
+Plug 'todesking/ruby_hl_lvar.vim'
+" rails
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rbenv'
+Plug 'tpope/vim-bundler'
 " color schema
 Plug 'tomasr/molokai'
 Plug 'altercation/vim-colors-solarized'
@@ -76,6 +82,9 @@ augroup fileTypeIndent
   autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
   autocmd BufNewFile,BufRead *.js setlocal tabstop=2 softtabstop=2 shiftwidth=2
 augroup END
+
+" ruby
+autocmd FileType ruby setl iskeyword+=?
 
 " # Plugin settings
 " ## vim-go
