@@ -46,6 +46,10 @@ syntax enable
 let g:molokai_original = 1
 let g:rehash256 = 1
 if &term == "xterm-256color"
+  " enable 24bit true color
+  if (has("termguicolors"))
+   set termguicolors
+  endif
   colorscheme molokai
   hi Comment ctermfg=102
   hi Visual  ctermbg=236
@@ -131,9 +135,6 @@ set hidden
 " Some servers have issues with backup files, see #649
 set nobackup
 set nowritebackup
-
-" Better display for messages
-set cmdheight=2
 
 " don't give |ins-completion-menu| messages.
 set shortmess+=c
