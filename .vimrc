@@ -21,9 +21,14 @@ Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-bundler'
 " color schema
 Plug 'tomasr/molokai'
+Plug 'connorholyday/vim-snazzy'
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" indent
+Plug 'Yggdroot/indentLine'
+" parenthis
+Plug 'luochen1990/rainbow'
 " markdown
 Plug 'joker1007/vim-markdown-quote-syntax'
 " tree
@@ -51,6 +56,7 @@ if &term == "xterm-256color"
    set termguicolors
   endif
   colorscheme molokai
+  "colorscheme snazzy
   hi Comment ctermfg=102
   hi Visual  ctermbg=236
   hi Delimiter ctermfg=none
@@ -131,6 +137,9 @@ hi GitGutterAdd ctermfg=154 ctermbg=none
 hi GitGutterChange ctermfg=222 ctermbg=none
 hi GitGutterDelete ctermfg=197 ctermbg=none
 set updatetime=300
+
+" ## rainbow
+let g:rainbow_active = 1
 
 " ## coc.nvim 
 " if hidden is not set, TextEdit might fail.
