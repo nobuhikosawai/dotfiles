@@ -81,6 +81,10 @@ set expandtab
 set autoindent
 set smartindent
 
+" use mouse
+set mouse=a
+set ttymouse=xterm2
+
 augroup fileTypeIndent
   autocmd!
   autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
