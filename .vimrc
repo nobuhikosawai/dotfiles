@@ -29,6 +29,9 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
 " parenthis
 Plug 'luochen1990/rainbow'
+" fzf
+Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf.vim'
 " markdown
 Plug 'joker1007/vim-markdown-quote-syntax'
 " tree
