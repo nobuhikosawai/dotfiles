@@ -20,8 +20,7 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-bundler'
 " color schema
-Plug 'tomasr/molokai'
-Plug 'connorholyday/vim-snazzy'
+Plug 'phanviet/vim-monokai-pro'
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -58,8 +57,7 @@ if &term == "xterm-256color"
   if (has("termguicolors"))
    set termguicolors
   endif
-  colorscheme molokai
-  "colorscheme snazzy
+  colorscheme monokai_pro
   hi Comment ctermfg=102
   hi Visual  ctermbg=236
   hi Delimiter ctermfg=none
