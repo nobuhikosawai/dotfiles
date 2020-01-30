@@ -22,6 +22,8 @@ Plug 'tpope/vim-bundler'
 " color schema
 Plug 'phanviet/vim-monokai-pro'
 Plug 'altercation/vim-colors-solarized'
+Plug 'flazz/vim-colorschemes'
+Plug 'wadackel/vim-dogrun'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " indent
