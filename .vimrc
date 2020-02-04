@@ -21,8 +21,9 @@ Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-bundler'
 " color schema
 Plug 'phanviet/vim-monokai-pro'
-Plug 'altercation/vim-colors-solarized'
+Plug 'patstockwell/vim-monokai-tasty'
 Plug 'flazz/vim-colorschemes'
+Plug 'sickill/vim-monokai'
 Plug 'wadackel/vim-dogrun'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -53,7 +54,7 @@ call plug#end()
 filetype plugin indent on
 syntax enable
 
-let g:molokai_original = 1
+"let g:molokai_original = 1
 let g:rehash256 = 1
 if &term == "xterm-256color"
   " enable 24bit true color
