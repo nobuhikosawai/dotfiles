@@ -121,6 +121,8 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 " let g:airline_theme = 'simple'
 let g:airline_theme = 'minimalist'
+nnoremap <silent> [b :bprev<CR>
+nnoremap <silent> ]b :bnext<CR>
 
 " ## Markdown Syntax
 let g:markdown_quote_syntax_filetypes = {
