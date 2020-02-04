@@ -30,6 +30,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
 " parenthis
 Plug 'luochen1990/rainbow'
+Plug 'cohama/lexima.vim'
 " fzf
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf.vim'
