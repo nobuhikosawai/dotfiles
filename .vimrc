@@ -50,6 +50,8 @@ Plug 'scrooloose/nerdcommenter'
 " git, github
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
+" icon
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 filetype plugin indent on
