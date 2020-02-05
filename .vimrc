@@ -55,17 +55,12 @@ call plug#end()
 filetype plugin indent on
 syntax enable
 
-"let g:molokai_original = 1
-let g:rehash256 = 1
 if &term == "xterm-256color"
   " enable 24bit true color
   if (has("termguicolors"))
    set termguicolors
   endif
   colorscheme monokai_pro
-  hi Comment ctermfg=102
-  hi Visual  ctermbg=236
-  hi Delimiter ctermfg=none
 endif
 
 set encoding=utf-8
