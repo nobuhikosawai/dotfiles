@@ -8,17 +8,23 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
+
+" vim-polyglot
+let g:polyglot_disabled = ['go']
+
 call plug#begin('~/.vim/plugged')
-" language pack
-Plug 'sheerun/vim-polyglot'
-" language service (lsp)
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " ruby
 Plug 'todesking/ruby_hl_lvar.vim'
 " rails
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-bundler'
+" language service (lsp)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" language pack
+Plug 'sheerun/vim-polyglot'
 " color schema
 Plug 'phanviet/vim-monokai-pro'
 Plug 'patstockwell/vim-monokai-tasty'
@@ -106,10 +112,12 @@ autocmd FileType ruby setl iskeyword+=?
 " # Plugin settings
 " ## vim-go
 let g:go_fmt_command = "goimports"
+let g:go_def_mapping_enabled = 0
 let g:go_metalinter_autosave = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
+let g:go_doc_keywordprg_enabled = 0
 
 " ## NERDTree
 nnoremap <silent><C-e> :NERDTreeToggle<CR>
