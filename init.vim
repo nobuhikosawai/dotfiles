@@ -1,13 +1,14 @@
-if &compatible
-  set nocompatible
-endif
-
 " install vim-plug if not installed
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+" https://github.com/junegunn/vim-plug/issues/739#issuecomment-516953621
+let plug_install = 0
+let autoload_plug_path = stdpath('config') . '/autoload/plug.vim'
+if !filereadable(autoload_plug_path)
+    silent exe '!curl -fL --create-dirs -o ' . autoload_plug_path .
+        \ ' https://raw.github.com/junegunn/vim-plug/master/plug.vim'
+    execute 'source ' . fnameescape(autoload_plug_path)
+    let plug_install = 1
 endif
+unlet autoload_plug_path
 
 " vim-polyglot
 let g:polyglot_disabled = ['go']
@@ -16,6 +17,7 @@ call plug#begin('~/.vim/plugged')
 " go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " ruby
+" NOTE: run `gem install neovim` if error occured.
 Plug 'todesking/ruby_hl_lvar.vim'
 " rails
 Plug 'tpope/vim-rails'
@@ -60,16 +62,17 @@ Plug 'airblade/vim-gitgutter'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
+if plug_install
+    PlugInstall --sync
+endif
+unlet plug_install
+
 filetype plugin indent on
 syntax enable
 
-if &term == "xterm-256color"
-  " enable 24bit true color
-  if (has("termguicolors"))
-   set termguicolors
-  endif
-  colorscheme monokai_pro
-endif
+" enable 24bit true color
+set termguicolors
+colorscheme monokai_pro
 
 set encoding=utf-8
 
@@ -98,7 +101,6 @@ set smartindent
 
 " use mouse
 set mouse=a
-set ttymouse=xterm2
 
 " clipboard
 set clipboard+=unnamed
@@ -281,38 +283,6 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
-function FindCursorPopUp()
-     let radius = get(a:000, 0, 2)
-     let srow = screenrow()
-     let scol = screencol()
-     " it's necessary to test entire rect, as some popup might be quite small
-     for r in range(srow - radius, srow + radius)
-       for c in range(scol - radius, scol + radius)
-         let winid = popup_locate(r, c)
-         if winid != 0
-           return winid
-         endif
-       endfor
-     endfor
-
-     return 0
-   endfunction
-
-   function ScrollPopUp(down)
-     let winid = FindCursorPopUp()
-     if winid == 0
-       return 0
-     endif
-
-     let pp = popup_getpos(winid)
-     call popup_setoptions( winid,
-           \ {'firstline' : pp.firstline + ( a:down ? 1 : -1 ) } )
-
-     return 1
-   endfunction
-nnoremap <expr> <c-d> ScrollPopUp(1) ? '<esc>' : '<c-d>'
-nnoremap <expr> <c-u> ScrollPopUp(0) ? '<esc>' : '<c-u>'
 
 " # Scripts
 " ## SyntaxInfo
