@@ -29,9 +29,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 " color schema
 Plug 'phanviet/vim-monokai-pro'
-Plug 'patstockwell/vim-monokai-tasty'
-Plug 'flazz/vim-colorschemes'
-Plug 'sickill/vim-monokai'
 Plug 'hzchirs/vim-material'
 Plug 'wadackel/vim-dogrun'
 Plug 'vim-airline/vim-airline'
