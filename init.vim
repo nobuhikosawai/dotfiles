@@ -29,10 +29,14 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 " color schema
 Plug 'phanviet/vim-monokai-pro'
+Plug 'joshdick/onedark.vim'
+Plug 'lifepillar/vim-solarized8'
 Plug 'hzchirs/vim-material'
 Plug 'wadackel/vim-dogrun'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" colorscheme tester
+Plug 'rhysd/try-colorscheme.vim'
 " indent
 Plug 'Yggdroot/indentLine'
 " parenthis
@@ -69,7 +73,8 @@ syntax enable
 
 " enable 24bit true color
 set termguicolors
-colorscheme monokai_pro
+"colorscheme monokai_pro
+colorscheme onedark
 
 set encoding=utf-8
 
@@ -127,9 +132,8 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 " ## Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-"let g:airline_theme = 'simple'
 "let g:airline_theme = 'minimalist'
-let g:airline_theme='material'
+let g:airline_theme='onedark'
 nnoremap <silent> [b :bprev<CR>
 nnoremap <silent> ]b :bnext<CR>
 
@@ -148,7 +152,7 @@ augroup END
 " ## GitGutter
 let g:gitgutter_override_sign_column_highlight = 0
 highlight SignColumn guibg=bg
-highlight SignColumn ctermbg=bg
+"highlight SignColumn ctermbg=bg
 hi GitGutterAdd ctermfg=154 ctermbg=none
 hi GitGutterChange ctermfg=222 ctermbg=none
 hi GitGutterDelete ctermfg=197 ctermbg=none
