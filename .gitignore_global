@@ -4,3 +4,5 @@
 rails.rb
 tags
 .nvmrc
+.generators
+.rakeTasks
