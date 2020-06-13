@@ -23,6 +23,8 @@ Plug 'todesking/ruby_hl_lvar.vim'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-bundler'
+" prettier
+Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 " language service (lsp)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " language pack
