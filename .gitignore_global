@@ -6,3 +6,4 @@ tags
 .nvmrc
 .generators
 .rakeTasks
+dump.rdb
