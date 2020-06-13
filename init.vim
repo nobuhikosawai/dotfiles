@@ -30,13 +30,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " language pack
 Plug 'sheerun/vim-polyglot'
 " color schema
-Plug 'phanviet/vim-monokai-pro'
 Plug 'joshdick/onedark.vim'
 Plug 'lifepillar/vim-solarized8'
 Plug 'hzchirs/vim-material'
 Plug 'wadackel/vim-dogrun'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'sainnhe/sonokai'
 " colorscheme tester
 Plug 'rhysd/try-colorscheme.vim'
 " indent
@@ -75,8 +75,11 @@ syntax enable
 
 " enable 24bit true color
 set termguicolors
-"colorscheme monokai_pro
-colorscheme onedark
+"colorscheme onedark
+let g:sonokai_style = 'shusia'
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 1
+colorscheme sonokai
 
 set encoding=utf-8
 
@@ -134,8 +137,8 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 " ## Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-"let g:airline_theme = 'minimalist'
-let g:airline_theme='onedark'
+"let g:airline_theme='onedark'
+let g:airline_theme='sonokai'
 nnoremap <silent> [b :bprev<CR>
 nnoremap <silent> ]b :bnext<CR>
 
