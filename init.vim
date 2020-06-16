@@ -75,11 +75,11 @@ syntax enable
 
 " enable 24bit true color
 set termguicolors
-"colorscheme onedark
-let g:sonokai_style = 'shusia'
-let g:sonokai_enable_italic = 1
-let g:sonokai_disable_italic_comment = 1
-colorscheme sonokai
+colorscheme onedark
+"let g:sonokai_style = 'shusia'
+"let g:sonokai_enable_italic = 1
+"let g:sonokai_disable_italic_comment = 1
+"colorscheme sonokai
 
 set encoding=utf-8
 
@@ -137,8 +137,8 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 " ## Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-"let g:airline_theme='onedark'
-let g:airline_theme='sonokai'
+let g:airline_theme='onedark'
+"let g:airline_theme='sonokai'
 nnoremap <silent> [b :bprev<CR>
 nnoremap <silent> ]b :bnext<CR>
 
