@@ -1,0 +1,5 @@
+" ベルを鳴らさないように
+set visualbell
+set noerrorbells
+" clipbord
+set clipboard=unnamed
