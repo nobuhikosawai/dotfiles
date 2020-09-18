@@ -23,6 +23,7 @@ Plug 'todesking/ruby_hl_lvar.vim'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rbenv'
 Plug 'tpope/vim-bundler'
+Plug 'thoughtbot/vim-rspec'
 " prettier
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 " language service (lsp)
@@ -63,6 +64,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " icon
 " Plug 'ryanoasis/vim-devicons'
+" dispatch
+Plug 'tpope/vim-dispatch'
 call plug#end()
 
 if plug_install
@@ -289,6 +292,15 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+
+" rspec
+" RSpec.vim appings
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>s :call RunNearestSpec()<CR>
+map <Leader>l :call RunLastSpec()<CR>
+map <Leader>a :call RunAllSpecs()<CR>m
+" Use with dispatch
+let g:rspec_command = "Dispatch DATABASE_PASSWORD='' DATABASE_URL=mysql2://root:@localhost bundle exec rspec {spec}"
 
 " # Scripts
 " ## SyntaxInfo
