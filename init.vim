@@ -38,6 +38,7 @@ Plug 'wadackel/vim-dogrun'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sainnhe/sonokai'
+Plug 'arcticicestudio/nord-vim'
 " colorscheme tester
 Plug 'rhysd/try-colorscheme.vim'
 " indent
@@ -78,7 +79,8 @@ syntax enable
 
 " enable 24bit true color
 set termguicolors
-colorscheme onedark
+colorscheme nord
+"colorscheme onedark
 "let g:sonokai_style = 'shusia'
 "let g:sonokai_enable_italic = 1
 "let g:sonokai_disable_italic_comment = 1
@@ -140,7 +142,8 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 " ## Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:airline_theme='onedark'
+let g:airline_theme='nord'
+"let g:airline_theme='onedark'
 "let g:airline_theme='sonokai'
 nnoremap <silent> [b :bprev<CR>
 nnoremap <silent> ]b :bnext<CR>
