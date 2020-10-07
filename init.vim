@@ -33,7 +33,6 @@ Plug 'sheerun/vim-polyglot'
 " color schema
 Plug 'joshdick/onedark.vim'
 Plug 'lifepillar/vim-solarized8'
-Plug 'hzchirs/vim-material'
 Plug 'wadackel/vim-dogrun'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
