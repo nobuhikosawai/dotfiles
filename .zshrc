@@ -118,21 +118,22 @@ bindkey '^s' pet-select
 [[ -f /Users/nobuhikosawai/.ghq/github.com/strobo-inc/leafee-watching/packages/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/nobuhikosawai/.ghq/github.com/strobo-inc/leafee-watching/packages/serverless/node_modules/tabtab/.completions/slss.zsh
 
 # nvm
-# NOTE: workaround by https://www.reddit.com/r/node/comments/4tg5jg/lazy_load_nvm_for_faster_shell_start/d5ib9fs/?utm_source=reddit&utm_medium=web2x&context=3
-# alternative options: https://github.com/nvm-sh/nvm/issues/1774#issuecomment-403661680
-declare -a NODE_GLOBALS=(`find ~/.nvm/versions/node -maxdepth 3 -type l -wholename '*/bin/*' | xargs -n1 basename | sort | uniq`)
-
-NODE_GLOBALS+=("node")
-NODE_GLOBALS+=("nvm")
+# NOTE: performance workaround by https://github.com/nvm-sh/nvm/issues/1774#issuecomment-403661680
+## Install zsh-async if it’s not present
+if [[ ! -a ~/.zsh-async ]]; then
+    git clone git@github.com:mafredri/zsh-async.git ~/.zsh-async
+fi
+source ~/.zsh-async/async.zsh
 
 export NVM_DIR="$HOME/.nvm"
-load_nvm () {
-  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+function load_nvm() {
+    [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+    [ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
 }
-
-for cmd in "${NODE_GLOBALS[@]}"; do
-  eval "${cmd}(){ unset -f ${NODE_GLOBALS}; load_nvm; ${cmd} \$@ }"
-done
+## Initialize a new worker
+async_start_worker nvm_worker -n
+async_register_callback nvm_worker load_nvm
+async_job nvm_worker sleep 0.1
 
 # kube
 KUBECONFIG="$HOME/.kube/my_config"
