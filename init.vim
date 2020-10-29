@@ -153,6 +153,7 @@ let g:markdown_quote_syntax_filetypes = {
       \   "start": "\\%(typescript\\|ts\\)",
       \   },
       \ }
+let g:vim_markdown_conceal = 0
 augroup markdown
   autocmd Filetype markdown highlight markdownHeadingDelimiter ctermfg=203
   autocmd Filetype markdown highlight markdownCodeDelimiter ctermfg=none
