@@ -3,3 +3,5 @@ set visualbell
 set noerrorbells
 " clipbord
 set clipboard=unnamed
+
+set surround
