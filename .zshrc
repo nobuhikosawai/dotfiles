@@ -136,7 +136,7 @@ async_register_callback nvm_worker load_nvm
 async_job nvm_worker sleep 0.1
 
 # kube
-KUBECONFIG="$HOME/.kube/my_config"
+export KUBECONFIG="$HOME/.kube/my_config"
 
 function extract() {
   case $1 in
