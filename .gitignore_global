@@ -7,3 +7,4 @@ tags
 .generators
 .rakeTasks
 dump.rdb
+.vscode/
