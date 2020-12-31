@@ -57,6 +57,9 @@ export PATH="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/platfo
 export GOPATH="$HOME/go"
 
 # rbenv
+if [[ ! -a ~/.rbenv ]]; then
+  git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+fi
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
@@ -76,6 +79,13 @@ if [[ -s "${HOME}/.zplug/init.zsh" ]]; then
 fi
 
 # hub
+if ! type "hub" > /dev/null; then
+  if [ `uname -s` = 'Linux' ]; then
+    sudo apt install hub # only assume Ubuntu/Debian
+  elif [ `uname -s` = 'Darwin' ]; then
+    brew install hub
+  fi
+fi
 function git(){hub "$@"}
 
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
