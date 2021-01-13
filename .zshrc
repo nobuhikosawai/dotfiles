@@ -145,8 +145,18 @@ async_start_worker nvm_worker -n
 async_register_callback nvm_worker load_nvm
 async_job nvm_worker sleep 0.1
 
-# kube
-export KUBECONFIG="$HOME/.kube/my_config"
+# k8s
+alias k='kubectl'
+alias kb='kustomize build'
+alias kc='kubectx'
+alias kd='kubectl describe'
+alias kg='kubectl get'
+alias kns='kubens'
+
+alias sw-context='switch-k8s-context'
+alias sw-ns='switch-k8s-namespace'
+# Only zsh
+alias -g P='$(kubectl get pods | peco | awk "{print \$1}")' # e.g. (kubectl get pod ${interactive selected pod})
 
 function extract() {
   case $1 in
