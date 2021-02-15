@@ -51,6 +51,8 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " markdown
 Plug 'joker1007/vim-markdown-quote-syntax'
+" yaml
+Plug 'pedrohdz/vim-yaml-folds'
 " tree
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -125,6 +127,9 @@ augroup END
 
 " ruby
 autocmd FileType ruby setl iskeyword+=?
+
+" vim-yaml-folds
+ set foldlevelstart=20
 
 " # Plugin settings
 " ## vim-go
