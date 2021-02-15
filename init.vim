@@ -51,6 +51,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " markdown
 Plug 'joker1007/vim-markdown-quote-syntax'
+Plug 'skanehira/preview-markdown.vim'
 " yaml
 Plug 'pedrohdz/vim-yaml-folds'
 " tree
@@ -160,6 +161,7 @@ let g:markdown_quote_syntax_filetypes = {
       \   },
       \ }
 let g:vim_markdown_conceal = 0
+let g:preview_markdown_parser = 'glow'
 augroup markdown
   autocmd Filetype markdown highlight markdownHeadingDelimiter ctermfg=203
   autocmd Filetype markdown highlight markdownCodeDelimiter ctermfg=none
