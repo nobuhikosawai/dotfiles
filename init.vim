@@ -47,6 +47,7 @@ Plug 'luochen1990/rainbow'
 Plug 'cohama/lexima.vim'
 " fzf
 Plug '/usr/local/opt/fzf'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 " markdown
 Plug 'joker1007/vim-markdown-quote-syntax'
