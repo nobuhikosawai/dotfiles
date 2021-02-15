@@ -14,6 +14,8 @@ POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
 POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 
+export EDITOR=vim
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -66,6 +68,7 @@ eval "$(rbenv init -)"
 
 # gnu-sed
 PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
 [[ -f /Users/nobuhikosawai/.nodebrew/node/v6.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/nobuhikosawai/.nodebrew/node/v6.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
@@ -154,9 +157,16 @@ alias kc='kubectx'
 alias kd='kubectl describe'
 alias kg='kubectl get'
 alias kns='kubens'
-
-alias sw-context='switch-k8s-context'
-alias sw-ns='switch-k8s-namespace'
+alias sw-kp='switch_kube_production'
+alias un-kp='unset_kube_config'
+function switch_kube_production() {
+  export KUBECONFIG=$HOME/.kube/prod_config
+}
+function unset_kube_config() {
+  unset KUBECONFIG
+}
+## completion
+[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 # Only zsh
 alias -g P='$(kubectl get pods | peco | awk "{print \$1}")' # e.g. (kubectl get pod ${interactive selected pod})
 
@@ -180,3 +190,13 @@ alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz,7z}=extract
 
 # gvm
 [[ -s "/Users/nobuhikosawai/.gvm/scripts/gvm" ]] && source "/Users/nobuhikosawai/.gvm/scripts/gvm"
+
+# aws
+alias sw-ap='switch_aws_production'
+alias un-ap='unset_aws_profile'
+function switch_aws_production() {
+  export AWS_PROFILE=production
+}
+function unset_aws_profile() {
+  unset AWS_PROFILE
+}
