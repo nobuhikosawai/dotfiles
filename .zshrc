@@ -198,3 +198,6 @@ function switch_aws_production() {
 function unset_aws_profile() {
   unset AWS_PROFILE
 }
+
+# work specific settings
+[ -f ~/.work_settings.sh ] && source ~/.work_settings.sh
