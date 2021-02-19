@@ -97,28 +97,26 @@ export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
 # peco
 ## search repository
-function peco-src () {
-   local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+function fzf-src () {
+   local selected_dir=$(ghq list -p | fzf)
    if [ -n "$selected_dir" ]; then
      BUFFER="cd ${selected_dir}"
      zle accept-line
    fi
-   zle clear-screen
  }
- zle -N peco-src
- bindkey '^]' peco-src
+ zle -N fzf-src
+ bindkey '^]' fzf-src
 
  ## search branch
- function peco-git-branch-checkout () {
-   local selected_branch=$(git branch -a --sort=-authordate | cut -b 3- | perl -pe 's#^remotes/origin/###' | perl -nlE 'say if !$c{$_}++' | grep -v -- "->" | peco)
+ function fzf-git-branch-checkout () {
+   local selected_branch=$(git branch -a --sort=-authordate | cut -b 3- | perl -pe 's#^remotes/origin/###' | perl -nlE 'say if !$c{$_}++' | grep -v -- "->" | fzf)
    if [ -n "$selected_branch" ]; then
      BUFFER="git checkout ${selected_branch}"
      zle accept-line
    fi
-   zle clear-screen
  }
- zle -N peco-git-branch-checkout
- bindkey '^g' peco-git-branch-checkout
+ zle -N fzf-git-branch-checkout
+ bindkey '^g' fzf-git-branch-checkout
 
 function pet-select() {
   BUFFER=$(pet search --query "$LBUFFER")
