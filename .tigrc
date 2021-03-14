@@ -1,0 +1,4 @@
+# User-defined external command to amend the last commit
+bind generic + !git commit --amend
+bind main    R !git rebase -i %(commit)
+bind diff    R !git rebase -i %(commit)
