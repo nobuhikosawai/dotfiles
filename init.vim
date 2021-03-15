@@ -45,6 +45,7 @@ Plug 'Yggdroot/indentLine'
 " parenthis
 Plug 'luochen1990/rainbow'
 Plug 'cohama/lexima.vim'
+Plug 'tpope/vim-surround'
 " fzf
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
