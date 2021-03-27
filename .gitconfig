@@ -47,3 +47,5 @@
 	prune = true
 [pull]
 	rebase = false
+[ghq]
+	root = ~/.ghq
