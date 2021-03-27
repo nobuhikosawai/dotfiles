@@ -49,3 +49,5 @@
 	rebase = false
 [ghq]
 	root = ~/.ghq
+[init]
+	defaultBranch = main
