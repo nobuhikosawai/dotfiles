@@ -117,10 +117,8 @@ set softtabstop=2
 set expandtab
 set autoindent
 set smartindent
-
 " use mouse
 set mouse=a
-
 " clipboard
 set clipboard+=unnamed
 set autoread
@@ -136,7 +134,7 @@ augroup END
 autocmd FileType ruby setl iskeyword+=?
 
 " vim-yaml-folds
- set foldlevelstart=20
+set foldlevelstart=20
 
 " # Plugin settings
 " ## vim-go
