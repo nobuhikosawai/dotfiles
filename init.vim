@@ -47,6 +47,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'luochen1990/rainbow'
 Plug 'cohama/lexima.vim'
 Plug 'tpope/vim-surround'
+Plug 'easymotion/vim-easymotion'
 " fzf
 Plug '/usr/local/opt/fzf'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
