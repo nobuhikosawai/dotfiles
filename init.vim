@@ -30,6 +30,8 @@ Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " language pack
 Plug 'sheerun/vim-polyglot'
+" syntax checker
+Plug 'dense-analysis/ale'
 " color schema
 Plug 'joshdick/onedark.vim'
 Plug 'lifepillar/vim-solarized8'
