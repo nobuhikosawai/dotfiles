@@ -123,6 +123,8 @@ set mouse=a
 
 " clipboard
 set clipboard+=unnamed
+set autoread
+set cursorline
 
 augroup fileTypeIndent
   autocmd!
