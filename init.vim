@@ -164,6 +164,7 @@ let g:markdown_quote_syntax_filetypes = {
       \   },
       \ }
 let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
 let g:preview_markdown_parser = 'glow'
 augroup markdown
   autocmd Filetype markdown highlight markdownHeadingDelimiter ctermfg=203
