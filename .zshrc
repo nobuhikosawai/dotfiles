@@ -168,6 +168,9 @@ function unset_kube_config() {
 # Only zsh
 alias -g P='$(kubectl get pods | peco | awk "{print \$1}")' # e.g. (kubectl get pod ${interactive selected pod})
 
+# terraform
+alias tf="terraform"
+
 function extract() {
   case $1 in
     *.tar.gz|*.tgz) tar xzvf $1;;
