@@ -16,7 +16,7 @@
 	tree = log --graph --pretty='format:%C(yellow)%h%Creset %s %Cgreen(%an)%Creset %Cred%d%Creset'
 	prb = pull-request --browse
 	poh = push origin HEAD
-	clean-merged = branch --merged | grep -v '*' | xargs -I % git branch -d %
+	clean-merged = "!f() { git branch --merged ${1:-master} | egrep -v \"(^\\*|${1:-master})\" | xargs -I % git branch -d %; };f"
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
