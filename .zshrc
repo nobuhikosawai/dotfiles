@@ -155,6 +155,7 @@ alias kc='kubectx'
 alias kd='kubectl describe'
 alias kg='kubectl get'
 alias kns='kubens'
+alias kubeapply='kubectl apply --server-side'
 alias sw-kp='switch_kube_production'
 alias un-kp='unset_kube_config'
 function switch_kube_production() {
