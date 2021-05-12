@@ -166,7 +166,7 @@ function unset_kube_config() {
 ## completion
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 # Only zsh
-alias -g P='$(kubectl get pods | peco | awk "{print \$1}")' # e.g. (kubectl get pod ${interactive selected pod})
+alias -g P='$(kubectl get pods | fzf | awk "{print \$1}")' # e.g. (kubectl get pod ${interactive selected pod})
 
 # terraform
 alias tf="terraform"
