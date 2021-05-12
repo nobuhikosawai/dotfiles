@@ -101,6 +101,11 @@ set encoding=utf-8
 set number
 set ruler
 
+" display unseen chars
+" https://maku77.github.io/vim/settings/show-space.html
+set listchars=tab:>.,trail:_
+set list
+
 " User backspace key to delete
 set backspace=2
 
