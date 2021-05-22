@@ -98,7 +98,7 @@ export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 # peco
 ## search repository
 function fzf-src () {
-   local selected_dir=$(ghq list -p | fzf)
+   local selected_dir=$(ghq list -p | fzf-tmux -p -w80% -h80%)
    if [ -n "$selected_dir" ]; then
      BUFFER="cd ${selected_dir}"
      zle accept-line
