@@ -32,6 +32,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 " syntax checker
 Plug 'dense-analysis/ale'
+" tmux
+Plug 'christoomey/vim-tmux-navigator'
 " color schema
 Plug 'lifepillar/vim-solarized8'
 Plug 'wadackel/vim-dogrun'
@@ -193,6 +195,14 @@ let g:indentLine_color_gui = "#5c595c"
 
 " ## rainbow
 let g:rainbow_active = 1
+
+" # Vim Tmux Navigator
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-w>h :TmuxNavigateLeft<CR>
+nnoremap <silent> <C-w>j :TmuxNavigateDown<CR>
+nnoremap <silent> <C-w>k :TmuxNavigateUp<CR>
+nnoremap <silent> <C-w>l :TmuxNavigateRight<CR>
+nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<CR>
 
 " ## coc.nvim 
 " if hidden is not set, TextEdit might fail.

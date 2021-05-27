@@ -98,7 +98,7 @@ export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 # peco
 ## search repository
 function fzf-src () {
-   local selected_dir=$(ghq list -p | fzf)
+   local selected_dir=$(ghq list -p | fzf-tmux -p -w80% -h80%)
    if [ -n "$selected_dir" ]; then
      BUFFER="cd ${selected_dir}"
      zle accept-line
@@ -109,7 +109,7 @@ function fzf-src () {
 
  ## search branch
  function fzf-git-branch-checkout () {
-   local selected_branch=$(git branch -a --sort=-authordate | cut -b 3- | perl -pe 's#^remotes/origin/###' | perl -nlE 'say if !$c{$_}++' | grep -v -- "->" | fzf)
+   local selected_branch=$(git branch -a --sort=-authordate | cut -b 3- | perl -pe 's#^remotes/origin/###' | perl -nlE 'say if !$c{$_}++' | grep -v -- "->" | fzf-tmux -p -w80% -h80%)
    if [ -n "$selected_branch" ]; then
      BUFFER="git checkout ${selected_branch}"
      zle accept-line
@@ -192,7 +192,7 @@ function unset_kube_config() {
 ## completion
 [[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 # Only zsh
-alias -g P='$(kubectl get pods | fzf | awk "{print \$1}")' # e.g. (kubectl get pod ${interactive selected pod})
+alias -g P='$(kubectl get pods | fzf-tmux -p -w80% -h80% | awk "{print \$1}")' # e.g. (kubectl get pod ${interactive selected pod})
 
 # terraform
 alias tf="terraform"
