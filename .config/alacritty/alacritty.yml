@@ -1,0 +1,113 @@
+gnv:
+  TERM: alacritty
+
+font:
+  normal:
+    # Font family
+    #
+    # Default:
+    #   - (macOS) Menlo
+    #   - (Linux) monospace
+    #   - (Windows) Consolas
+    # family: monospace
+
+    # The `style` can be specified to pick a specific face.
+    #family: "MonoLisa"
+    family: "JetBrains Mono"
+    style: Regular
+
+  # Bold font face
+  bold:
+    # Font family
+    #
+    # If the bold family is not specified, it will fall back to the
+    # value specified for the normal font.
+    # family: monospace
+
+    # The `style` can be specified to pick a specific face.
+    # family: "MesloLGM Nerd Font Mono"
+    #family: "MonoLisa"
+    family: "JetBrains Mono"
+    style: Bold
+
+  # Italic font face
+  italic:
+    # Font family
+    #
+    # If the italic family is not specified, it will fall back to the
+    # value specified for the normal font.
+    # family: monospace
+
+    # The `style` can be specified to pick a specific face.
+    #family: "MonoLisa"
+    family: "JetBrains Mono"
+    style: Italic
+
+  # Point size
+  size: 14.0
+
+schemes:
+  monokai_pro: &monokai_pro
+    # Colors (Monokai Pro)
+    # https://github.com/alacritty/alacritty/wiki/Color-schemes
+    # Default colors
+    primary:
+      background: '0x2D2A2E'
+      foreground: '0xFCFCFA'
+
+    # Normal colors
+    normal:
+      black:   '0x403E41'
+      red:     '0xFF6188'
+      green:   '0xA9DC76'
+      yellow:  '0xFFD866'
+      blue:    '0xFC9867'
+      magenta: '0xAB9DF2'
+      cyan:    '0x78DCE8'
+      white:   '0xFCFCFA'
+
+    # Bright colors
+    bright:
+      black:   '0x727072'
+      red:     '0xFF6188'
+      green:   '0xA9DC76'
+      yellow:  '0xFFD866'
+      blue:    '0xFC9867'
+      magenta: '0xAB9DF2'
+      cyan:    '0x78DCE8'
+      white:   '0xFCFCFA'
+  solarized_dark: &solarized_dark
+    # Colors (Solarized Dark)
+    # Default colors
+    primary:
+      background: '#002b36' # base03
+      foreground: '#839496' # base0
+
+    # Cursor colors
+    cursor:
+      text:   '#002b36' # base03
+      cursor: '#839496' # base0
+
+    # Normal colors
+    normal:
+      black:   '#073642' # base02
+      red:     '#dc322f' # red
+      green:   '#859900' # green
+      yellow:  '#b58900' # yellow
+      blue:    '#268bd2' # blue
+      magenta: '#d33682' # magenta
+      cyan:    '#2aa198' # cyan
+      white:   '#eee8d5' # base2
+
+    # Bright colors
+    bright:
+      black:   '#586e75' # base01
+      red:     '#cb4b16' # orange
+      green:   '#586e75' # base01
+      yellow:  '#657b83' # base00
+      blue:    '#839496' # base0
+      magenta: '#6c71c4' # violet
+      cyan:    '#93a1a1' # base1
+      white:   '#fdf6e3' # base3
+
+colors: *monokai_pro
