@@ -195,8 +195,10 @@ let g:indentLine_color_gui = "#5c595c"
 
 " ## rainbow
 let g:rainbow_active = 1
+let s:configuration = sonokai#get_configuration()
+let s:palette = sonokai#get_palette(s:configuration.style)
 let g:rainbow_conf = {
-\	'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick'],
+\	'guifgs': ['#76cce0', '#f39660', '#9ed072', '#fc5d7c'],
 \	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
 \	'guis': [''],
 \	'cterms': [''],
