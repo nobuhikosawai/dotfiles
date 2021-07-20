@@ -58,6 +58,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'joker1007/vim-markdown-quote-syntax'
 Plug 'skanehira/preview-markdown.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'SidOfc/mkdx'
 " wrting
 Plug 'junegunn/goyo.vim'
 " yaml
