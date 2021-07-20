@@ -32,6 +32,12 @@ alias webstorm='open -a /Applications/WebStorm.app'
 alias intellij='open -a /Applications/IntelliJ\ IDEA\ CE.app'
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
 alias doco="docker-compose"
+
+# Util
+## Calendar with japanese holidays
+alias calx="cal ; curl -s https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv | iconv -f SHIFT-JIS -t UTF-8 | grep -E \"`date '+%Y/%-m/'`\""
+alias calx3="cal -3; curl -s https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv | iconv -f SHIFT-JIS -t UTF-8 | grep -E \"`date -v-1m '+%Y/%-m/'`|`date '+%Y/%-m/'`|`date -v+1m '+%Y/%-m/'`\""
+
 #
 #yarn
 #
