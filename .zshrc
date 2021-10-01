@@ -68,29 +68,12 @@ eval "$(rbenv init -)"
 # gnu-sed
 PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/nobuhikosawai/.nodebrew/node/v6.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/nobuhikosawai/.nodebrew/node/v6.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/nobuhikosawai/.nodebrew/node/v6.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/nobuhikosawai/.nodebrew/node/v6.12.0/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.zsh
-
 # zplug
 if [[ -s "${HOME}/.zplug/init.zsh" ]]; then
   source "${HOME}/.zplug/init.zsh"
   zplug "agkozak/zsh-z"
   zplug load
 fi
-
-# hub
-if ! type "hub" > /dev/null; then
-  if [ `uname -s` = 'Linux' ]; then
-    sudo apt install hub # only assume Ubuntu/Debian
-  elif [ `uname -s` = 'Darwin' ]; then
-    brew install hub
-  fi
-fi
-function git(){hub "$@"}
 
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
@@ -116,18 +99,6 @@ function fzf-src () {
  }
  zle -N fzf-git-branch-checkout
  bindkey '^g' fzf-git-branch-checkout
-
-function pet-select() {
-  BUFFER=$(pet search --query "$LBUFFER")
-  CURSOR=$#BUFFER
-  zle redisplay
-}
-zle -N pet-select
-bindkey '^s' pet-select
-
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[[ -f /Users/nobuhikosawai/.ghq/github.com/strobo-inc/leafee-watching/packages/serverless/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/nobuhikosawai/.ghq/github.com/strobo-inc/leafee-watching/packages/serverless/node_modules/tabtab/.completions/slss.zsh
 
 # nvm
 # NOTE: performance workaround by https://github.com/nvm-sh/nvm/issues/1774#issuecomment-403661680
