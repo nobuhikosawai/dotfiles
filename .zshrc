@@ -31,25 +31,19 @@ alias doco="docker-compose"
 alias calx="cal ; curl -s https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv | iconv -f SHIFT-JIS -t UTF-8 | grep -E \"`date '+%Y/%-m/'`\""
 alias calx3="cal -3; curl -s https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv | iconv -f SHIFT-JIS -t UTF-8 | grep -E \"`date -v-1m '+%Y/%-m/'`|`date '+%Y/%-m/'`|`date -v+1m '+%Y/%-m/'`\""
 
-#
 #yarn
-#
 export PATH="$PATH:$HOME/.yarn/bin"
-#
+
 #libxml2
-#
 export PATH="/usr/local/opt/libxml2/bin:$PATH"
-#
+
 #Android plaform-tools
-#
 export PATH="/Users/nobuhikosawai/Library/Android/sdk/platform-tools:$PATH"
-#
+
 #MECAB_PATH
-#
 export MECAB_PATH="/usr/local/Cellar/mecab/0.996/lib/libmecab.dylib"
-#
+
 # flutter
-#
 export PATH="/Users/nobuhikosawai/development/flutter/bin:$PATH"
 
 # go
@@ -75,9 +69,10 @@ if [[ -s "${HOME}/.zplug/init.zsh" ]]; then
   zplug load
 fi
 
+#mysql
 export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
 
-# peco
+# fzf
 ## search repository
 function fzf-src () {
    local selected_dir=$(ghq list -p | fzf-tmux -p -w80% -h80%)
@@ -197,7 +192,6 @@ function switch_aws_production() {
 function unset_aws_profile() {
   unset AWS_PROFILE
 }
-
 # work specific settings
 [ -f ~/.work_settings.sh ] && source ~/.work_settings.sh
 
