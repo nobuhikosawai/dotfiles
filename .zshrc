@@ -217,14 +217,3 @@ if [ -f '$HOME/google-cloud-sdk/path.zsh.inc' ]; then . '$HOME/google-cloud-sdk/
 # The next line enables shell command completion for gcloud.
 if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-cloud-sdk/completion.zsh.inc'; fi
 
-# bookmark
-# https://threkk.medium.com/how-to-use-bookmarks-in-bash-zsh-6b8074e40774
-if [ -d "$HOME/.bookmarks" ]; then
-  export CDPATH=".:$HOME/.bookmarks:/"
-  alias goto="cd -P"
-  _goto()
-  {
-    local IFS=$'\n'
-    COMPREPLY=( $( compgen -W "$(/bin/ls ~/.bookmarks)" -- ${COMP_WORDS[COMP_CWORDS]} ) )
-  } && complete -F _goto goto
-fi
