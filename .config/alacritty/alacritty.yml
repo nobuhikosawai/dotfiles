@@ -52,30 +52,30 @@ schemes:
     # https://github.com/alacritty/alacritty/wiki/Color-schemes
     # Default colors
     primary:
-      background: '0x2D2A2E'
-      foreground: '0xFCFCFA'
+      background: '#2D2A2E'
+      foreground: '#FCFCFA'
 
     # Normal colors
     normal:
-      black:   '0x403E41'
-      red:     '0xFF6188'
-      green:   '0xA9DC76'
-      yellow:  '0xFFD866'
-      blue:    '0xFC9867'
-      magenta: '0xAB9DF2'
-      cyan:    '0x78DCE8'
-      white:   '0xFCFCFA'
+      black:   '#403E41'
+      red:     '#FF6188'
+      green:   '#A9DC76'
+      yellow:  '#FFD866'
+      blue:    '#FC9867'
+      magenta: '#AB9DF2'
+      cyan:    '#78DCE8'
+      white:   '#FCFCFA'
 
     # Bright colors
     bright:
-      black:   '0x727072'
-      red:     '0xFF6188'
-      green:   '0xA9DC76'
-      yellow:  '0xFFD866'
-      blue:    '0xFC9867'
-      magenta: '0xAB9DF2'
-      cyan:    '0x78DCE8'
-      white:   '0xFCFCFA'
+      black:   '#727072'
+      red:     '#FF6188'
+      green:   '#A9DC76'
+      yellow:  '#FFD866'
+      blue:    '#FC9867'
+      magenta: '#AB9DF2'
+      cyan:    '#78DCE8'
+      white:   '#FCFCFA'
 
 colors: *monokai_pro
 
