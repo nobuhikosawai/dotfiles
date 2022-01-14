@@ -66,6 +66,14 @@ PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
 if [[ -s "${HOME}/.zplug/init.zsh" ]]; then
   source "${HOME}/.zplug/init.zsh"
   zplug "agkozak/zsh-z"
+  zplug "zsh-users/zsh-completions"
+  # Install plugins if there are plugins that have not been installed
+  if ! zplug check --verbose; then
+      printf "Install? [y/N]: "
+      if read -q; then
+          echo; zplug install
+      fi
+  fi
   zplug load
 fi
 
