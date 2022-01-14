@@ -94,6 +94,13 @@ function fzf-src () {
  }
  zle -N fzf-git-branch-checkout
  bindkey '^g' fzf-git-branch-checkout
+# fh - repeat history
+function fzf-fh() {
+  BUFFER=$( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
+  CURSOR=$#BUFFER
+}
+zle -N fzf-fh
+bindkey '^R' fzf-fh
 
 # nvm
 # NOTE: performance workaround by https://github.com/nvm-sh/nvm/issues/1774#issuecomment-403661680
