@@ -75,6 +75,8 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'ryanoasis/vim-devicons'
 " dispatch
 Plug 'tpope/vim-dispatch'
+" coplilot
+Plug 'github/copilot.vim'
 call plug#end()
 
 if plug_install
