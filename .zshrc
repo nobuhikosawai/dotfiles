@@ -92,16 +92,17 @@ function fzf-src () {
  zle -N fzf-src
  bindkey '^]' fzf-src
 
- ## search branch
- function fzf-git-branch-checkout () {
-   local selected_branch=$(git branch -a --sort=-authordate | cut -b 3- | perl -pe 's#^remotes/origin/###' | perl -nlE 'say if !$c{$_}++' | grep -v -- "->" | fzf-tmux -p -w80% -h80%)
-   if [ -n "$selected_branch" ]; then
-     BUFFER="git checkout ${selected_branch}"
-     zle accept-line
-   fi
- }
- zle -N fzf-git-branch-checkout
- bindkey '^g' fzf-git-branch-checkout
+## search branch
+function fzf-git-branch-checkout () {
+ local selected_branch=$(git branch -a --sort=-authordate | cut -b 3- | perl -pe 's#^remotes/origin/###' | perl -nlE 'say if !$c{$_}++' | grep -v -- "->" | fzf-tmux -p -w80% -h80%)
+ if [ -n "$selected_branch" ]; then
+   BUFFER="git checkout ${selected_branch}"
+   zle accept-line
+ fi
+}
+zle -N fzf-git-branch-checkout
+bindkey '^g' fzf-git-branch-checkout
+
 # fh - repeat history
 function fzf-fh() {
   BUFFER=$( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
