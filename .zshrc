@@ -5,6 +5,8 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+export SPACESHIP_CHAR_SYMBOL='$ '
+
 export TERM="screen-256color"
 
 export EDITOR=vim
