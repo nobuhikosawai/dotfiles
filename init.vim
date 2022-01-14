@@ -35,12 +35,9 @@ Plug 'dense-analysis/ale'
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
 " color schema
-Plug 'lifepillar/vim-solarized8'
-Plug 'wadackel/vim-dogrun'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sainnhe/sonokai'
-Plug 'arcticicestudio/nord-vim'
 " colorscheme tester
 Plug 'rhysd/try-colorscheme.vim'
 " indent
@@ -90,7 +87,6 @@ syntax enable
 
 " enable 24bit true color
 set termguicolors
-"colorscheme nord
 "let g:sonokai_style = 'shusia'
 let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 1
@@ -161,7 +157,6 @@ nnoremap <silent><C-e> :NERDTreeToggle<CR>
 " ## Airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-"let g:airline_theme='nord'
 let g:airline_theme='sonokai'
 nnoremap <silent> [b :bprev<CR>
 nnoremap <silent> ]b :bnext<CR>
