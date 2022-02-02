@@ -17,6 +17,7 @@
 	prb = pull-request --browse
 	poh = push origin HEAD
 	clean-merged = "!f() { local default_branch=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}'); git branch --merged ${1:-$default_branch} | egrep -v \"(^\\*|${1:-$default_branch})\" | xargs -I % git branch -d %; };f"
+	tmp= commit -a -m 'tmp' -n
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
