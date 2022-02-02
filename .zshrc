@@ -96,11 +96,11 @@ function fzf-src () {
 
 ## search branch
 function fzf-git-branch-checkout () {
- local selected_branch=$(git branch -a --sort=-authordate | cut -b 3- | perl -pe 's#^remotes/origin/###' | perl -nlE 'say if !$c{$_}++' | grep -v -- "->" | fzf-tmux -p -w80% -h80%)
- if [ -n "$selected_branch" ]; then
-   BUFFER="git checkout ${selected_branch}"
-   zle accept-line
- fi
+  local selected_branch=$(git --no-pager branch -vv | fzf-tmux -p +m -w80% -h80%)
+  if [ -n "$selected_branch" ]; then
+    BUFFER="git checkout $(echo "$selected_branch" | awk '{print $1}' | sed 's/.* //')"
+    zle accept-line
+  fi
 }
 zle -N fzf-git-branch-checkout
 bindkey '^g' fzf-git-branch-checkout
