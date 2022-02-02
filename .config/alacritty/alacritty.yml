@@ -92,3 +92,10 @@ key_bindings:
 - { key: E,        mods: Alt,           chars: "\x1be"                       }
 - { key: W,        mods: Alt,           chars: "\x1bw"                       }
 
+window:
+  dimensions:
+    columns: 140
+    lines: 42
+  position:
+    x: 200 
+    y: 100
