@@ -77,6 +77,43 @@ schemes:
       cyan:    '#78DCE8'
       white:   '#FCFCFA'
 
+  night_owl: &night_owl
+    # Colors (Night Owl by Sarah Drasner)
+    # https://github.com/sdras/night-owl-vscode-theme/blob/main/themes/Night%20Owl-color-theme.json
+    # Default colors
+    primary:
+      background: '#011627'
+      foreground: '#d6deeb'
+
+    cursor:
+      text: '#011627'
+      cursor: '#80a4c2'
+
+    selection:
+      background: '#1b90dd'
+
+    # Normal colors
+    normal:
+      black:   '#011627'
+      red:     '#ef5350'
+      green:   '#22da6e'
+      yellow:  '#c5e478'
+      blue:    '#82aaff'
+      magenta: '#c792ea'
+      cyan:    '#21c7a8'
+      white:   '#ffffff'
+
+    # Bright colors
+    bright:
+      black:   '#575656'
+      red:     '#ef5350'
+      green:   '#22da6e'
+      yellow:  '#ffeb95'
+      blue:    '#82aaff'
+      magenta: '#c792ea'
+      cyan:    '#7fdbca'
+      white:   '#ffffff'
+
 colors: *monokai_pro
 
 key_bindings:

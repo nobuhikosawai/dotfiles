@@ -38,6 +38,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sainnhe/sonokai'
+Plug 'haishanh/night-owl.vim'
 " colorscheme tester
 Plug 'rhysd/try-colorscheme.vim'
 " indent
