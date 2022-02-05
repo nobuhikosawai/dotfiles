@@ -4,7 +4,7 @@ function clock_emoji() {
   local hour=$1
   local mod_hour=$(($hour % 12))
   if [ $mod_hour -eq 0 ]; then
-    local time="\U1f55B"
+    local time="1f55B"
   else
     local hex_hour=$(printf '%x\n' $(echo $((mod_hour - 1))))
     local time=$(echo $((16#1f550+16#$hex_hour)) | xargs printf '%x\n')
