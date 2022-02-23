@@ -273,6 +273,9 @@ nnoremap <silent> <C-w>k :TmuxNavigateUp<CR>
 nnoremap <silent> <C-w>l :TmuxNavigateRight<CR>
 nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<CR>
 
+" # ale
+let g:ale_linters_explicit = 1
+
 " ## coc.nvim 
 " if hidden is not set, TextEdit might fail.
 set hidden
