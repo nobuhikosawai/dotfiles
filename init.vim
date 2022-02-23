@@ -60,9 +60,12 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'junegunn/goyo.vim'
 " yaml
 Plug 'pedrohdz/vim-yaml-folds'
-" tree
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+" filer
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-git-status.vim'
+Plug 'lambdalisue/fern-hijack.vim'
+Plug 'LumaKernel/fern-mapping-fzf.vim'
+
 if !has('nvim')
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
@@ -154,8 +157,17 @@ let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
 let g:go_doc_keywordprg_enabled = 0
 
-" ## NERDTree
-nnoremap <silent><C-e> :NERDTreeToggle<CR>
+" ## Fern
+" ref: https://github.com/lambdalisue/dotfiles/blob/master/nvim/plugin.d/fern.vim
+function! s:smart_path() abort
+  if !empty(&buftype) || bufname('%') =~# '^[^:]\+://'
+    return fnameescape(fnamemodify('.', ':p'))
+  endif
+  return fnameescape(fnamemodify(expand('%'), ':p:h'))
+endfunction
+nnoremap <C-n> :Fern . -reveal=% -drawer -toggle<CR>
+nnoremap <silent> <Leader>ee :<C-u>Fern <C-r>=<SID>smart_path()<CR> -reveal=%:p<CR>
+nnoremap <silent> <Leader>EE :<C-u>Fern . -drawer -toggle -reveal=%<CR>
 
 " ## Airline
 let g:airline#extensions#tabline#enabled = 1
