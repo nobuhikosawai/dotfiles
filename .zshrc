@@ -113,6 +113,17 @@ function fzf-fh() {
 zle -N fzf-fh
 bindkey '^R' fzf-fh
 
+# alacritty theme switcher
+function fzf-alacritty-theme-switcher() {
+  local config_path="$HOME/.config/alacritty/alacritty.yml"
+  local selected_theme=$(cat $config_path | yq '.schemes | keys' | awk '{print $2}' |  fzf-tmux -p +m -w80% -h80%)
+  if [ -n "$selected_theme" ]; then
+    theme="$selected_theme" yq -i '.colors alias = env(theme)' $config_path
+  fi
+}
+zle -N fzf-alacritty-theme-switcher
+alias ats="fzf-alacritty-theme-switcher"
+
 # nvm
 # NOTE: performance workaround by https://github.com/nvm-sh/nvm/issues/1774#issuecomment-403661680
 ## Install zsh-async if it’s not present
