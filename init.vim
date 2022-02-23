@@ -135,6 +135,9 @@ set clipboard+=unnamed
 set autoread
 set cursorline
 
+" leader
+let g:mapleader = "\<Space>"
+
 augroup fileTypeIndent
   autocmd!
   autocmd BufNewFile,BufRead *.rb setlocal tabstop=2 softtabstop=2 shiftwidth=2
