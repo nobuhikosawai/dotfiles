@@ -10,15 +10,12 @@ if !filereadable(autoload_plug_path)
 endif
 unlet autoload_plug_path
 
-" vim-polyglot
-let g:polyglot_disabled = ['go']
-
 call plug#begin('~/.vim/plugged')
 " go
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " ruby
 " NOTE: run `gem install neovim` if error occured.
-Plug 'todesking/ruby_hl_lvar.vim'
+"Plug 'todesking/ruby_hl_lvar.vim'
 " rails
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-rbenv'
@@ -28,8 +25,6 @@ Plug 'thoughtbot/vim-rspec'
 Plug 'prettier/vim-prettier', { 'do': 'npm install' }
 " language service (lsp)
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" language pack
-Plug 'sheerun/vim-polyglot'
 " syntax checker
 Plug 'dense-analysis/ale'
 " tmux
@@ -65,6 +60,8 @@ Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern-hijack.vim'
 Plug 'LumaKernel/fern-mapping-fzf.vim'
+" treesitter
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 if !has('nvim')
   Plug 'roxma/nvim-yarp'
@@ -477,3 +474,16 @@ if &term =~ "xterm"
     cnoremap <special> <Esc>[200~ <nop>
     cnoremap <special> <Esc>[201~ <nop>
 endif
+
+" ## treesitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  highlight = {
+    enable = true,
+  },
+  indent = {
+    enable = true,
+  },
+  ensure_installed = "maintained",
+}
+EOF
