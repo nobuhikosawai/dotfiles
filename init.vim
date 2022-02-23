@@ -402,7 +402,7 @@ nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
 map <Leader>l :call RunLastSpec()<CR>
-map <Leader>a :call RunAllSpecs()<CR>m
+map <Leader>ra :call RunAllSpecs()<CR>
 " Use with dispatch
 let g:rspec_command = "Dispatch DATABASE_PASSWORD='' DATABASE_URL=mysql2://root:@localhost bundle exec rspec {spec}"
 
