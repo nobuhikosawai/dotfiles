@@ -43,10 +43,9 @@ Plug 'luochen1990/rainbow'
 Plug 'cohama/lexima.vim'
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
-" fzf
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
+" fuzzy finder
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 " markdown
 Plug 'joker1007/vim-markdown-quote-syntax'
 Plug 'skanehira/preview-markdown.vim'
@@ -487,3 +486,9 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained",
 }
 EOF
+
+" ## telescope
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
