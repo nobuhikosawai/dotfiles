@@ -39,7 +39,6 @@ Plug 'rhysd/try-colorscheme.vim'
 " indent
 Plug 'Yggdroot/indentLine'
 " parenthis
-Plug 'luochen1990/rainbow'
 Plug 'cohama/lexima.vim'
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
@@ -201,65 +200,6 @@ set updatetime=300
 
 " ## indentLine
 let g:indentLine_color_gui = "#5c595c"
-
-" ## rainbow
-let g:rainbow_active = 1
-let s:configuration = sonokai#get_configuration()
-let s:palette = sonokai#get_palette(s:configuration.style)
-let g:rainbow_conf = {
-\	'guifgs': ['#76cce0', '#f39660', '#9ed072', '#fc5d7c'],
-\	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-\	'guis': [''],
-\	'cterms': [''],
-\	'operators': '_,_',
-\	'contains_prefix': 'TOP',
-\	'parentheses_options': '',
-\	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-\	'separately': {
-\		'*': {},
-\		'markdown': {
-\			'parentheses_options': 'containedin=markdownCode contained',
-\		},
-\		'lisp': {
-\			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-\		},
-\		'haskell': {
-\			'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/\v\{\ze[^-]/ end=/}/ fold'],
-\		},
-\		'ocaml': {
-\			'parentheses': ['start=/(\ze[^*]/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/\[|/ end=/|\]/ fold', 'start=/{/ end=/}/ fold'],
-\		},
-\		'tex': {
-\			'parentheses_options': 'containedin=texDocZone',
-\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-\		},
-\		'vim': {
-\			'parentheses_options': 'containedin=vimFuncBody,vimExecute',
-\			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold'],
-\		},
-\		'xml': {
-\			'syn_name_prefix': 'xmlRainbow',
-\			'parentheses': ['start=/\v\<\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'))?)*\>/ end=#</\z1># fold'],
-\		},
-\		'xhtml': {
-\			'parentheses': ['start=/\v\<\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'))?)*\>/ end=#</\z1># fold'],
-\		},
-\		'html': 0,
-\		'perl': {
-\			'syn_name_prefix': 'perlBlockFoldRainbow',
-\		},
-\		'php': {
-\			'syn_name_prefix': 'phpBlockRainbow',
-\			'contains_prefix': '',
-\			'parentheses': ['start=/(/ end=/)/ containedin=@htmlPreproc contains=@phpClTop', 'start=/\[/ end=/\]/ containedin=@htmlPreproc contains=@phpClTop', 'start=/{/ end=/}/ containedin=@htmlPreproc contains=@phpClTop', 'start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold contains_prefix=TOP'],
-\		},
-\		'stylus': {
-\			'parentheses': ['start=/{/ end=/}/ fold contains=@colorableGroup'],
-\		},
-\		'css': 0,
-\		'sh': 0,
-\	}
-\}
 
 " # Vim Tmux Navigator
 let g:tmux_navigator_no_mappings = 1
