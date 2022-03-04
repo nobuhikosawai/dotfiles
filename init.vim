@@ -34,6 +34,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sainnhe/sonokai'
 Plug 'haishanh/night-owl.vim'
+Plug 'tanvirtin/monokai.nvim'
 " colorscheme tester
 Plug 'rhysd/try-colorscheme.vim'
 " indent
@@ -92,7 +93,7 @@ set termguicolors
 let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 1
 let g:sonokai_transparent_background = 1
-colorscheme sonokai
+colorscheme monokai_pro
 
 set encoding=utf-8
 
