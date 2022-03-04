@@ -433,6 +433,9 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+
 " ## telescope
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
