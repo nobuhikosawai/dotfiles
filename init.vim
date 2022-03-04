@@ -49,7 +49,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'joker1007/vim-markdown-quote-syntax'
 Plug 'skanehira/preview-markdown.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
-" wrting
+" writing
 Plug 'junegunn/goyo.vim'
 " yaml
 Plug 'pedrohdz/vim-yaml-folds'
