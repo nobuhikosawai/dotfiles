@@ -57,7 +57,6 @@ Plug 'pedrohdz/vim-yaml-folds'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern-hijack.vim'
-Plug 'LumaKernel/fern-mapping-fzf.vim'
 " treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
