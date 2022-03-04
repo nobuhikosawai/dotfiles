@@ -59,6 +59,7 @@ Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern-hijack.vim'
 " treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'p00f/nvim-ts-rainbow'
 
 if !has('nvim')
   Plug 'roxma/nvim-yarp'
@@ -421,6 +422,12 @@ require'nvim-treesitter.configs'.setup {
   },
   indent = {
     enable = true,
+  },
+  rainbow = {
+    enable = true,
+    disable = { "vim" },
+    extended_mode = true,
+    max_file_lines = nil,
   },
   ensure_installed = "maintained",
 }
