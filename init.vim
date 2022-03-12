@@ -29,6 +29,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'dense-analysis/ale'
 " tmux
 Plug 'christoomey/vim-tmux-navigator'
+" statusline
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kdheepak/tabline.nvim'
+" motion
+Plug 'phaazon/hop.nvim'
+" textobjects
+Plug 'wellle/targets.vim'
 " color schema
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -38,10 +45,9 @@ Plug 'tanvirtin/monokai.nvim'
 " colorscheme tester
 Plug 'rhysd/try-colorscheme.vim'
 " indent
-Plug 'Yggdroot/indentLine'
+Plug 'lukas-reineke/indent-blankline.nvim'
 " parenthis
 Plug 'tpope/vim-surround'
-Plug 'easymotion/vim-easymotion'
 " fuzzy finder
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
@@ -70,10 +76,10 @@ if !has('nvim')
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 " comment
-Plug 'scrooloose/nerdcommenter'
+Plug 'numToStr/Comment.nvim'
 " git, github
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
+Plug 'lewis6991/gitsigns.nvim'
 " icon
 " Plug 'ryanoasis/vim-devicons'
 " dispatch
@@ -171,10 +177,6 @@ nnoremap <C-n> :Fern . -reveal=% -drawer -toggle<CR>
 nnoremap <silent> <Leader>ee :<C-u>Fern <C-r>=<SID>smart_path()<CR> -reveal=%:p<CR>
 nnoremap <silent> <Leader>EE :<C-u>Fern . -drawer -toggle -reveal=%<CR>
 
-" ## Airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-let g:airline_theme='sonokai'
 nnoremap <silent> [b :bprev<CR>
 nnoremap <silent> ]b :bnext<CR>
 
@@ -192,18 +194,6 @@ augroup markdown
   autocmd Filetype markdown highlight markdownCodeDelimiter ctermfg=none
   autocmd Filetype markdown highlight markdownCode ctermfg=208
 augroup END
-
-" ## GitGutter
-let g:gitgutter_override_sign_column_highlight = 0
-highlight SignColumn guibg=bg
-"highlight SignColumn ctermbg=bg
-hi GitGutterAdd ctermfg=154 ctermbg=none
-hi GitGutterChange ctermfg=222 ctermbg=none
-hi GitGutterDelete ctermfg=197 ctermbg=none
-set updatetime=300
-
-" ## indentLine
-let g:indentLine_color_gui = "#5c595c"
 
 " # Vim Tmux Navigator
 let g:tmux_navigator_no_mappings = 1
@@ -438,6 +428,15 @@ require'nvim-treesitter.configs'.setup {
   },
   ensure_installed = "maintained",
 }
+require("indent_blankline").setup {
+    space_char_blankline = " ",
+    show_current_context = true,
+    show_current_context_start = true,
+}
+require('gitsigns').setup()
+require('Comment').setup()
+require('lualine').setup()
+require("tabline").setup{}
 require'nvim-treesitter.configs'.setup {
   textobjects = {
     select = {
@@ -453,6 +452,7 @@ require'nvim-treesitter.configs'.setup {
     },
   },
 }
+require('hop').setup{}
 require('nvim-autopairs').setup{}
 EOF
 
@@ -464,6 +464,11 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" ## hop
+nnoremap <leader>hp <cmd>HopPattern<cr>
+nnoremap <leader>hc <cmd>HopChar2<cr>
+nnoremap <leader>hw <cmd>HopWord<cr>
 
 " ## nvim-ts-hint-textobject
 omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
