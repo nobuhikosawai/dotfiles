@@ -1,6 +1,5 @@
 gnv:
   TERM: alacritty
-
 font:
   normal:
     # Font family
@@ -12,11 +11,8 @@ font:
     # family: monospace
 
     # The `style` can be specified to pick a specific face.
-    #family: "MonoLisa"
-    family: "JetBrains Mono"
+    family: "JetBrainsMono Nerd Font"
     style: Regular
-
-  # Bold font face
   bold:
     # Font family
     #
@@ -26,11 +22,8 @@ font:
 
     # The `style` can be specified to pick a specific face.
     # family: "MesloLGM Nerd Font Mono"
-    #family: "MonoLisa"
-    family: "JetBrains Mono"
+    family: "JetBrainsMono Nerd Font"
     style: Bold
-
-  # Italic font face
   italic:
     # Font family
     #
@@ -39,13 +32,10 @@ font:
     # family: monospace
 
     # The `style` can be specified to pick a specific face.
-    #family: "MonoLisa"
-    family: "JetBrains Mono"
+    family: "JetBrainsMono Nerd Font"
     style: Italic
-
   # Point size
   size: 14.0
-
 schemes:
   monokai_pro: &monokai_pro
     # Colors (Monokai Pro)
