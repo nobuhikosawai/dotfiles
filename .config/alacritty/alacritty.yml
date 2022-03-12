@@ -392,22 +392,21 @@ schemes:
       white: '0xacb0d0'
 colors: *monokai_pro
 key_bindings:
-- { key: C,        mods: Alt|Shift,     chars: "\x1bC"                       }
-- { key: J,        mods: Alt,           chars: "\x1bj"                       }
-- { key: K,        mods: Alt,           chars: "\x1bk"                       }
-- { key: C,        mods: Alt,           chars: "\x1bc"                       }
-- { key: L,        mods: Alt,           chars: "\x1bl"                       }
-- { key: H,        mods: Alt,           chars: "\x1bh"                       }
-- { key: S,        mods: Alt,           chars: "\x1bs"                       }
-- { key: V,        mods: Alt,           chars: "\x1bv"                       }
-- { key: A,        mods: Alt,           chars: "\x1ba"                       }
-- { key: E,        mods: Alt,           chars: "\x1be"                       }
-- { key: W,        mods: Alt,           chars: "\x1bw"                       }
-
+  - {key: C, mods: Alt|Shift, chars: "\eC"}
+  - {key: J, mods: Alt, chars: "\ej"}
+  - {key: K, mods: Alt, chars: "\ek"}
+  - {key: C, mods: Alt, chars: "\ec"}
+  - {key: L, mods: Alt, chars: "\el"}
+  - {key: H, mods: Alt, chars: "\eh"}
+  - {key: S, mods: Alt, chars: "\es"}
+  - {key: V, mods: Alt, chars: "\ev"}
+  - {key: A, mods: Alt, chars: "\ea"}
+  - {key: E, mods: Alt, chars: "\ee"}
+  - {key: W, mods: Alt, chars: "\ew"}
 window:
   dimensions:
     columns: 140
     lines: 42
   position:
-    x: 200 
+    x: 200
     y: 100
