@@ -37,13 +37,13 @@ Plug 'phaazon/hop.nvim'
 " textobjects
 Plug 'wellle/targets.vim'
 " color schema
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'sainnhe/sonokai'
-Plug 'haishanh/night-owl.vim'
+Plug 'Julpikar/night-owl.nvim'
+Plug 'cocopon/iceberg.vim'
 Plug 'tanvirtin/monokai.nvim'
-" colorscheme tester
-Plug 'rhysd/try-colorscheme.vim'
+Plug 'tiagovla/tokyodark.nvim'
+Plug 'ishan9299/nvim-solarized-lua'
+Plug 'christianchiarulli/nvcode-color-schemes.vim'
+Plug 'kyazdani42/nvim-web-devicons'
 " indent
 Plug 'lukas-reineke/indent-blankline.nvim'
 " parenthis
@@ -98,10 +98,6 @@ syntax enable
 
 " enable 24bit true color
 set termguicolors
-"let g:sonokai_style = 'shusia'
-let g:sonokai_enable_italic = 1
-let g:sonokai_disable_italic_comment = 1
-let g:sonokai_transparent_background = 1
 colorscheme monokai_pro
 
 set encoding=utf-8
