@@ -40,7 +40,6 @@ Plug 'rhysd/try-colorscheme.vim'
 " indent
 Plug 'Yggdroot/indentLine'
 " parenthis
-Plug 'cohama/lexima.vim'
 Plug 'tpope/vim-surround'
 Plug 'easymotion/vim-easymotion'
 " fuzzy finder
@@ -60,7 +59,11 @@ Plug 'lambdalisue/fern-git-status.vim'
 Plug 'lambdalisue/fern-hijack.vim'
 " treesitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-treesitter/nvim-treesitter-textobjects'
 Plug 'p00f/nvim-ts-rainbow'
+Plug 'mfussenegger/nvim-ts-hint-textobject'
+Plug 'windwp/nvim-autopairs'
+Plug 'windwp/nvim-ts-autotag'
 
 if !has('nvim')
   Plug 'roxma/nvim-yarp'
@@ -424,6 +427,9 @@ require'nvim-treesitter.configs'.setup {
   indent = {
     enable = true,
   },
+  autotag = {
+    enable = true,
+  },
   rainbow = {
     enable = true,
     disable = { "vim" },
@@ -432,6 +438,22 @@ require'nvim-treesitter.configs'.setup {
   },
   ensure_installed = "maintained",
 }
+require'nvim-treesitter.configs'.setup {
+  textobjects = {
+    select = {
+      enable = true,
+      lookahead = true,
+      keymaps = {
+        ["af"] = "@function.outer",
+        ["if"] = "@function.inner",
+        ["ac"] = "@class.outer",
+        ["ic"] = "@class.inner",
+        ["ip"] = "@parameter.inner",
+      },
+    },
+  },
+}
+require('nvim-autopairs').setup{}
 EOF
 
 set foldmethod=expr
@@ -442,3 +464,7 @@ nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" ## nvim-ts-hint-textobject
+omap     <silent> m :<C-U>lua require('tsht').nodes()<CR>
+vnoremap <silent> m :lua require('tsht').nodes()<CR>
