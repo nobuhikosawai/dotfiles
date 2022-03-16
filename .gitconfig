@@ -18,7 +18,9 @@
 	poh = push origin HEAD
 	clean-merged = "!f() { local default_branch=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}'); git branch --merged ${1:-$default_branch} | egrep -v \"(^\\*|${1:-$default_branch})\" | xargs -I % git branch -d %; };f"
 	clean-merged-squash="!f(){ local default_branch=$(git remote show origin | grep 'HEAD branch' | awk '{print $NF}'); git checkout -q $default_branch && git for-each-ref refs/heads/ \"--format=%(refname:short)\" | while read branch; do mergeBase=$(git merge-base $default_branch $branch) && [[ $(git cherry $default_branch $(git commit-tree $(git rev-parse \"$branch^{tree}\") -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done; }; f"
+  pull-current = "!f() { git pull origin $(git branch --show-current); }; f"
 	tmp= commit -a -m 'tmp' -n
+  n = now -n --all --stat # using git-now
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global

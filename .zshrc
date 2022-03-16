@@ -124,6 +124,29 @@ function fzf-alacritty-theme-switcher() {
 zle -N fzf-alacritty-theme-switcher
 alias ats="fzf-alacritty-theme-switcher"
 
+#git fixup
+function git-fixup() {
+  if git diff --cached --quiet; then
+      local commits="No staged changes. Use git add -p to add them."
+      local ret=1
+  else
+      local commits=$(git log --oneline -n 20)
+      local ret=$?
+  fi
+
+  if [[ "$ret" != 0 ]]; then
+      headline=$(head -n1 <<< "$commits")
+      if [[ "$headline" = "No staged changes. Use git add -p to add them." ]]; then
+          echo "$headline" >&2
+      fi
+  fi
+
+  local line=$(echo "$commits" | fzf-tmux -p +m -w80% -h80%)
+  if [[ "$?" = 0 && "$line" != "" ]]; then
+    git commit --fixup "$(awk '{print $1}' <<< "$line")" "$@"
+  fi
+}
+
 # nvm
 # NOTE: performance workaround by https://github.com/nvm-sh/nvm/issues/1774#issuecomment-403661680
 ## Install zsh-async if it’s not present
