@@ -74,18 +74,11 @@ Plug 'p00f/nvim-ts-rainbow'
 Plug 'mfussenegger/nvim-ts-hint-textobject'
 Plug 'windwp/nvim-autopairs'
 Plug 'windwp/nvim-ts-autotag'
-
-if !has('nvim')
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
 " comment
 Plug 'numToStr/Comment.nvim'
 " git, github
 Plug 'tpope/vim-fugitive'
 Plug 'lewis6991/gitsigns.nvim'
-" icon
-" Plug 'ryanoasis/vim-devicons'
 Plug 'rbgrouleff/bclose.vim'
 Plug 'iberianpig/tig-explorer.vim'
 " dispatch
@@ -447,18 +440,6 @@ require'nvim-treesitter.configs'.setup {
     extended_mode = true,
     max_file_lines = nil,
   },
-  ensure_installed = "maintained",
-}
-require("indent_blankline").setup {
-    space_char_blankline = " ",
-    show_current_context = true,
-    show_current_context_start = true,
-}
-require('gitsigns').setup()
-require('Comment').setup()
-require('lualine').setup()
-require("tabline").setup{}
-require'nvim-treesitter.configs'.setup {
   textobjects = {
     select = {
       enable = true,
@@ -477,7 +458,22 @@ require'nvim-treesitter.configs'.setup {
       },
     },
   },
+
+  ensure_installed = "maintained",
 }
+require("indent_blankline").setup {
+    space_char_blankline = " ",
+    show_current_context = true,
+    show_current_context_start = true,
+}
+require('gitsigns').setup{}
+require('Comment').setup{}
+require('lualine').setup{
+  -- options = {
+  --   globalstatus = true,
+  -- },
+}
+require("tabline").setup{}
 require('hop').setup{}
 require('nvim-autopairs').setup{}
 EOF
