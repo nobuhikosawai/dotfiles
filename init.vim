@@ -40,10 +40,11 @@ Plug 'wellle/targets.vim'
 Plug 'Julpikar/night-owl.nvim'
 Plug 'cocopon/iceberg.vim'
 Plug 'tanvirtin/monokai.nvim'
-Plug 'tiagovla/tokyodark.nvim'
+Plug 'folke/tokyonight.nvim'
 Plug 'ishan9299/nvim-solarized-lua'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'kyazdani42/nvim-web-devicons'
+Plug 'marko-cerovac/material.nvim'
 " indent
 Plug 'lukas-reineke/indent-blankline.nvim'
 " parenthis
@@ -101,7 +102,8 @@ syntax enable
 
 " enable 24bit true color
 set termguicolors
-colorscheme monokai_pro
+" colorscheme monokai_pro
+colorscheme tokyonight
 
 set encoding=utf-8
 
