@@ -86,6 +86,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'lewis6991/gitsigns.nvim'
 " icon
 " Plug 'ryanoasis/vim-devicons'
+Plug 'rbgrouleff/bclose.vim'
+Plug 'iberianpig/tig-explorer.vim'
 " dispatch
 Plug 'tpope/vim-dispatch'
 " coplilot
