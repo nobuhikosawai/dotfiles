@@ -550,7 +550,6 @@ cmp.setup {
 local null_ls = require("null-ls").setup({
     sources = {
         -- require("null-ls").builtins.diagnostics.prettier,
-        require("null-ls").builtins.completion.spell,
     },
     on_attach = function(client)
       if client.resolved_capabilities.document_formatting then
