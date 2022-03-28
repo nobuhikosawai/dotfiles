@@ -92,6 +92,8 @@ Plug 'pwntester/octo.nvim'
 Plug 'tpope/vim-dispatch'
 " coplilot
 Plug 'github/copilot.vim'
+" org mode
+Plug 'nvim-orgmode/orgmode'
 call plug#end()
 
 if plug_install
@@ -410,6 +412,8 @@ cmp.setup({
     { name = 'luasnip' },
   }, {
     { name = 'buffer' },
+  },{
+    { name = 'orgmode' },
   })
 })
 
@@ -729,6 +733,12 @@ require"octo".setup({
       toggle_viewed = "<leader><space>",   -- toggle viewer viewed state
     }
   }
+})
+-- Setup orgmode
+require('orgmode').setup_ts_grammar()
+require('orgmode').setup({
+  org_agenda_files = {'~/org/**/*'},
+  org_default_notes_file = '~/org/index.org',
 })
 EOF
 
