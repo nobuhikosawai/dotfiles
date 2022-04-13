@@ -2,3 +2,4 @@
 bind generic + !git commit --amend
 bind main    R !git rebase -i %(commit)
 bind diff    R !git rebase -i %(commit)
+set main-view = id date author commit-title:graph=yes,refs=yes
