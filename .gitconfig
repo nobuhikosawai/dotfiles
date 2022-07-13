@@ -38,8 +38,6 @@
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 
-[commit]
-	template = ~/.stCommitMsg
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [github]
@@ -48,7 +46,5 @@
 	prune = true
 [pull]
 	rebase = false
-[ghq]
-	root = ~/.ghq
 [init]
 	defaultBranch = main
