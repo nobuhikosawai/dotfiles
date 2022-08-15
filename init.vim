@@ -51,6 +51,9 @@ Plug 'ishan9299/nvim-solarized-lua'
 Plug 'christianchiarulli/nvcode-color-schemes.vim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'marko-cerovac/material.nvim'
+Plug 'shaunsingh/nord.nvim'
+Plug 'NTBBloodbath/doom-one.nvim'
+Plug 'EdenEast/nightfox.nvim', { 'tag': 'v1.0.0' }
 " indent
 Plug 'lukas-reineke/indent-blankline.nvim'
 " parenthis
@@ -62,8 +65,13 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'joker1007/vim-markdown-quote-syntax'
 Plug 'skanehira/preview-markdown.vim'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+Plug 'SidOfc/mkdx'
+Plug 'jakewvincent/mkdnflow.nvim'
 " writing
 Plug 'junegunn/goyo.vim'
+" note taking
+Plug 'renerocksai/calendar-vim'
+Plug 'renerocksai/telekasten.nvim'
 " yaml
 Plug 'pedrohdz/vim-yaml-folds'
 " filer
@@ -91,9 +99,9 @@ Plug 'pwntester/octo.nvim'
 " dispatch
 Plug 'tpope/vim-dispatch'
 " coplilot
-Plug 'github/copilot.vim'
-" org mode
-Plug 'nvim-orgmode/orgmode'
+" Plug 'github/copilot.vim'
+" terminal
+Plug 'akinsho/toggleterm.nvim'
 call plug#end()
 
 if plug_install
@@ -106,8 +114,13 @@ syntax enable
 
 " enable 24bit true color
 set termguicolors
+" let g:gruvbox_material_palette = 'original'
 " colorscheme monokai_pro
-colorscheme tokyonight
+" let g:tokyonight_transparent = 'true'
+" colorscheme tokyonight
+" colorscheme nord
+" colorscheme doom-one
+" colorscheme nightfox
 
 set encoding=utf-8
 
@@ -336,8 +349,7 @@ require'nvim-treesitter.configs'.setup {
       },
     },
   },
-
-  ensure_installed = "maintained",
+  ensure_installed = { },
 }
 require("indent_blankline").setup {
     space_char_blankline = " ",
@@ -347,9 +359,9 @@ require("indent_blankline").setup {
 require('gitsigns').setup{}
 require('Comment').setup{}
 require('lualine').setup{
-  -- options = {
-  --   globalstatus = true,
-  -- },
+  options = {
+    globalstatus = true,
+  },
 }
 require("tabline").setup{}
 require('hop').setup{}
@@ -372,19 +384,38 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  vim.keymap.set('n', '<space>wl', function()
+    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+  end, bufopts)
+  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
+  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
+  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+
+
+
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
 -- Setup nvim-cmp.
@@ -412,8 +443,6 @@ cmp.setup({
     { name = 'luasnip' },
   }, {
     { name = 'buffer' },
-  },{
-    { name = 'orgmode' },
   })
 })
 
@@ -547,20 +576,55 @@ cmp.setup {
 }
 
 -- Setup null-ls
+local async_formatting = function(bufnr)
+    bufnr = bufnr or vim.api.nvim_get_current_buf()
+
+    vim.lsp.buf_request(
+        bufnr,
+        "textDocument/formatting",
+        { textDocument = { uri = vim.uri_from_bufnr(bufnr) } },
+        function(err, res, ctx)
+            if err then
+                local err_msg = type(err) == "string" and err or err.message
+                -- you can modify the log message / level (or ignore it completely)
+                vim.notify("formatting: " .. err_msg, vim.log.levels.WARN)
+                return
+            end
+
+            -- don't apply results if buffer is unloaded or has been modified
+            if not vim.api.nvim_buf_is_loaded(bufnr) or vim.api.nvim_buf_get_option(bufnr, "modified") then
+                return
+            end
+
+            if res then
+                local client = vim.lsp.get_client_by_id(ctx.client_id)
+                vim.lsp.util.apply_text_edits(res, bufnr, client and client.offset_encoding or "utf-16")
+                vim.api.nvim_buf_call(bufnr, function()
+                    vim.cmd("silent noautocmd update")
+                end)
+            end
+        end
+    )
+end
+
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
 local null_ls = require("null-ls").setup({
     sources = {
-        -- require("null-ls").builtins.diagnostics.prettier,
+        require("null-ls").builtins.formatting.prettier,
     },
-    on_attach = function(client)
-      if client.resolved_capabilities.document_formatting then
-          vim.cmd([[
-          augroup LspFormatting
-              autocmd! * <buffer>
-              autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
-          augroup END
-          ]])
-      end
-  end,
+    on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+            vim.api.nvim_create_autocmd("BufWritePost", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                    async_formatting(bufnr)
+                end,
+            })
+        end
+    end,
 })
 
 -- Lsp Installer
@@ -573,6 +637,19 @@ lsp_installer.on_server_ready(function(server)
       },
       capabilities = capabilities
     }
+    -- Use null-ls for formatting
+    if server.name == "tsserver" then
+      opts.on_attach = function(client)
+        client.resolved_capabilities.document_formatting = false
+        client.resolved_capabilities.document_range_formatting = false
+      end
+    end
+    -- if server.name == "volar" then
+    --   opts.on_attach = function(client)
+    --     client.resolved_capabilities.document_formatting = false
+    --     client.resolved_capabilities.document_range_formatting = false
+    --   end
+    -- end
     server:setup(opts)
 end)
 
@@ -587,6 +664,7 @@ saga.init_lsp_saga {
   },
 }
 
+-- Setup trouble
 require("trouble").setup {}
 vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>Trouble<cr>",
   {silent = true, noremap = true}
@@ -733,11 +811,139 @@ require"octo".setup({
     }
   }
 })
--- Setup orgmode
-require('orgmode').setup_ts_grammar()
-require('orgmode').setup({
-  org_agenda_files = {'~/org/**/*'},
-  org_default_notes_file = '~/org/index.org',
+
+--- Setup toggleterm
+require("toggleterm").setup{}
+
+-- Setup nightfox color theme
+require('nightfox').setup({
+  options = {
+    transparent = true,
+  }
+})
+
+vim.cmd("colorscheme nightfox")
+
+
+local home = vim.fn.expand("~/zettelkasten")
+require('telekasten').setup({
+    home         = home,
+
+    -- if true, telekasten will be enabled when opening a note within the configured home
+    take_over_my_home = true,
+
+    -- auto-set telekasten filetype: if false, the telekasten filetype will not be used
+    --                               and thus the telekasten syntax will not be loaded either
+    auto_set_filetype = true,
+
+    -- dir names for special notes (absolute path or subdir name)
+    dailies      = home .. '/' .. 'daily',
+    weeklies     = home .. '/' .. 'weekly',
+    templates    = home .. '/' .. 'templates',
+
+    -- image (sub)dir for pasting
+    -- dir name (absolute path or subdir name)
+    -- or nil if pasted images shouldn't go into a special subdir
+    image_subdir = "img",
+
+    -- markdown file extension
+    extension    = ".md",
+
+    -- prefix file with uuid
+    prefix_title_by_uuid = false,
+    -- file uuid type ("rand" or input for os.date()")
+    uuid_type = "%Y%m%d%H%M",
+    -- UUID separator
+    uuid_sep = "-",
+
+    -- following a link to a non-existing note will create it
+    follow_creates_nonexisting = true,
+    dailies_create_nonexisting = true,
+    weeklies_create_nonexisting = true,
+
+    -- template for new notes (new_note, follow_link)
+    -- set to `nil` or do not specify if you do not want a template
+    template_new_note = home .. '/' .. 'templates/new_note.md',
+
+    -- template for newly created daily notes (goto_today)
+    -- set to `nil` or do not specify if you do not want a template
+    template_new_daily = home .. '/' .. 'templates/daily.md',
+
+    -- template for newly created weekly notes (goto_thisweek)
+    -- set to `nil` or do not specify if you do not want a template
+    template_new_weekly= home .. '/' .. 'templates/weekly.md',
+
+    -- image link style
+    -- wiki:     ![[image name]]
+    -- markdown: ![](image_subdir/xxxxx.png)
+    image_link_style = "markdown",
+
+    -- integrate with calendar-vim
+    plug_into_calendar = true,
+    calendar_opts = {
+        -- calendar week display mode: 1 .. 'WK01', 2 .. 'WK 1', 3 .. 'KW01', 4 .. 'KW 1', 5 .. '1'
+        weeknm = 4,
+        -- use monday as first day of week: 1 .. true, 0 .. false
+        calendar_monday = 1,
+        -- calendar mark: where to put mark for marked days: 'left', 'right', 'left-fit'
+        calendar_mark = 'left-fit',
+    },
+
+    -- telescope actions behavior
+    close_after_yanking = false,
+    insert_after_inserting = true,
+
+    -- tag notation: '#tag', ':tag:', 'yaml-bare'
+    tag_notation = "#tag",
+
+    -- command palette theme: dropdown (window) or ivy (bottom panel)
+    command_palette_theme = "ivy",
+
+    -- tag list theme:
+    -- get_cursor: small tag list at cursor; ivy and dropdown like above
+    show_tags_theme = "ivy",
+
+    -- when linking to a note in subdir/, create a [[subdir/title]] link
+    -- instead of a [[title only]] link
+    subdirs_in_links = true,
+
+    -- template_handling
+    -- What to do when creating a new note via `new_note()` or `follow_link()`
+    -- to a non-existing note
+    -- - prefer_new_note: use `new_note` template
+    -- - smart: if day or week is detected in title, use daily / weekly templates (default)
+    -- - always_ask: always ask before creating a note
+    template_handling = "smart",
+
+    -- path handling:
+    --   this applies to:
+    --     - new_note()
+    --     - new_templated_note()
+    --     - follow_link() to non-existing note
+    --
+    --   it does NOT apply to:
+    --     - goto_today()
+    --     - goto_thisweek()
+    --
+    --   Valid options:
+    --     - smart: put daily-looking notes in daily, weekly-looking ones in weekly,
+    --              all other ones in home, except for notes/with/subdirs/in/title.
+    --              (default)
+    --
+    --     - prefer_home: put all notes in home except for goto_today(), goto_thisweek()
+    --                    except for notes with subdirs/in/title.
+    --
+    --     - same_as_current: put all new notes in the dir of the current note if
+    --                        present or else in home
+    --                        except for notes/with/subdirs/in/title.
+    new_note_location = "smart",
+
+    -- should all links be updated when a file is renamed
+    rename_update_links = true,
+})
+
+require('mkdnflow').setup({
+    -- Config goes here; leave blank for defaults
 })
 EOF
 
@@ -773,3 +979,9 @@ nnoremap <silent> [e :Lspsaga diagnostic_jump_next<CR>
 nnoremap <silent> ]e :Lspsaga diagnostic_jump_prev<CR>
 nnoremap <silent> <A-d> <cmd>lua require('lspsaga.floaterm').open_float_terminal()<CR> -- or open_float_terminal('lazygit')<CR>
 tnoremap <silent> <A-d> <C-\><C-n>:lua require('lspsaga.floaterm').close_float_terminal()<CR>
+
+let g:mkdx#settings     = { 'highlight': { 'enable': 1 },
+                        \ 'enter': { 'shift': 1 },
+                        \ 'links': { 'external': { 'enable': 1 } },
+                        \ 'toc': { 'text': 'Table of Contents', 'update_on_write': 1 },
+                        \ 'fold': { 'enable': 1 } }
