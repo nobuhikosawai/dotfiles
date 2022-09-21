@@ -60,6 +60,14 @@ ts.setup {
       },
     },
   },
-  ensure_installed = { "lua", "rust", "tsx" },
+  ensure_installed = { "lua", "rust", "typescript", "tsx" },
 }
 
+-- https://github.com/andymass/vim-matchup#features
+-- disable highlight all matches
+vim.g.matchup_matchparen_enabled = 0
+
+-- Use treesitter to fold
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 99

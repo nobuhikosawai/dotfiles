@@ -8,9 +8,6 @@ local fb_actions = require "telescope".extensions.file_browser.actions
 require("telescope").load_extension "file_browser"
 
 require("telescope").setup {
-  defaults = {
-    layout_config = { height = 40 }
-  },
   extensions = {
     file_browser = {
       theme = "ivy",

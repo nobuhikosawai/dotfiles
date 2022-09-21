@@ -45,9 +45,10 @@ return packer.startup(function(use)
   use 'onsails/lspkind-nvim'
 
   -- Additional LSP related plugins
-  use { 'glepnir/lspsaga.nvim', branch = "main" }
+  use { "glepnir/lspsaga.nvim", branch = "main" }
   use { 'folke/trouble.nvim', requires =  { 'kyazdani42/nvim-web-devicons' } }
   use 'stevearc/aerial.nvim'
+  use "RRethy/vim-illuminate"
 
   -- Treesitter
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
