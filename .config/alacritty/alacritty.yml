@@ -418,7 +418,7 @@ schemes:
     indexed_colors:
       - {index: 16, color: '0xf4a261'}
       - {index: 17, color: '0xd67ad2'}
-colors: *nightfox
+colors: *monokai_pro
 key_bindings:
   - {key: C, mods: Alt|Shift, chars: "\eC"}
   - {key: J, mods: Alt, chars: "\ej"}
@@ -513,9 +513,11 @@ key_bindings:
   - {key: Period, mods: Alt|Shift, chars: "\e>"} # Alt + >
   - {key: Comma, mods: Alt|Shift, chars: "\e<"} # Alt + <
 window:
+  opacity: 0.9
   dimensions:
     columns: 140
     lines: 42
   position:
     x: 200
     y: 100
+  decorations: buttonless
