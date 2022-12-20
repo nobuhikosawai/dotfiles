@@ -134,6 +134,11 @@ _G.packer_plugins = {
     path = "/Users/nobuhikosawai/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
     url = "https://github.com/lewis6991/gitsigns.nvim"
   },
+  ["hop.nvim"] = {
+    loaded = true,
+    path = "/Users/nobuhikosawai/.local/share/nvim/site/pack/packer/start/hop.nvim",
+    url = "https://github.com/phaazon/hop.nvim"
+  },
   ["indent-blankline.nvim"] = {
     loaded = true,
     path = "/Users/nobuhikosawai/.local/share/nvim/site/pack/packer/start/indent-blankline.nvim",
@@ -239,11 +244,6 @@ _G.packer_plugins = {
     path = "/Users/nobuhikosawai/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag",
     url = "https://github.com/windwp/nvim-ts-autotag"
   },
-  ["nvim-ts-hint-textobject"] = {
-    loaded = true,
-    path = "/Users/nobuhikosawai/.local/share/nvim/site/pack/packer/start/nvim-ts-hint-textobject",
-    url = "https://github.com/mfussenegger/nvim-ts-hint-textobject"
-  },
   ["nvim-ts-rainbow"] = {
     loaded = true,
     path = "/Users/nobuhikosawai/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow",
@@ -279,10 +279,20 @@ _G.packer_plugins = {
     path = "/Users/nobuhikosawai/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  ["toggleterm.nvim"] = {
+    loaded = true,
+    path = "/Users/nobuhikosawai/.local/share/nvim/site/pack/packer/start/toggleterm.nvim",
+    url = "https://github.com/akinsho/toggleterm.nvim"
+  },
   ["trouble.nvim"] = {
     loaded = true,
     path = "/Users/nobuhikosawai/.local/share/nvim/site/pack/packer/start/trouble.nvim",
     url = "https://github.com/folke/trouble.nvim"
+  },
+  ["vim-illuminate"] = {
+    loaded = true,
+    path = "/Users/nobuhikosawai/.local/share/nvim/site/pack/packer/start/vim-illuminate",
+    url = "https://github.com/RRethy/vim-illuminate"
   },
   ["vim-matchup"] = {
     loaded = true,

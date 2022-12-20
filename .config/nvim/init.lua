@@ -22,7 +22,7 @@ vim.opt.expandtab = true
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 -- use mouse
-vim.opt.mouse = a
+vim.opt.mouse = "a"
 -- clipboard
 vim.opt.clipboard:append{'unnamedplus'}
 vim.opt.autoread = true
@@ -31,4 +31,4 @@ vim.opt.cursorline = true
 vim.g.mapleader = " "
 
 vim.opt.termguicolors = true
-vim.cmd("colorscheme nightfox")
+vim.cmd("colorscheme monokaipro")

@@ -33,9 +33,6 @@ local on_attach = function(client, bufnr)
   -- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>f',function() vim.lsp.buf.format { async = true } end, bufopts)
-
-  -- code outline
-  require("aerial").on_attach(client, bufnr)
 end
 
 local lsp_flags = {
@@ -43,7 +40,7 @@ local lsp_flags = {
   debounce_text_changes = 150,
 }
 
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,

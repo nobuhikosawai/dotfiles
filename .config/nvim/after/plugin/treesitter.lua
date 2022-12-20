@@ -60,7 +60,7 @@ ts.setup {
       },
     },
   },
-  ensure_installed = { "lua", "rust", "typescript", "tsx" },
+  ensure_installed = { "lua", "rust", "typescript", "tsx", "javascript", "hcl" },
 }
 
 -- https://github.com/andymass/vim-matchup#features

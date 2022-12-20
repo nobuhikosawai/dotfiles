@@ -39,6 +39,7 @@ require("null-ls").setup({
     sources = {
         -- require("null-ls").builtins.formatting.eslint_d,
         require("null-ls").builtins.formatting.prettier,
+        require("null-ls").builtins.formatting.shellcheck,
     },
     debug = false,
     on_attach = function(client, bufnr)
