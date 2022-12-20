@@ -1,9 +1,7 @@
 *~
 .DS_Store
 .idea
-rails.rb
 tags
-.nvmrc
 .generators
 .rakeTasks
 dump.rdb
