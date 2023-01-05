@@ -34,12 +34,14 @@ local async_formatting = function(bufnr)
 end
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local null_ls = require('null-ls')
 
-require("null-ls").setup({
+null_ls.setup({
     sources = {
-        -- require("null-ls").builtins.formatting.eslint_d,
-        require("null-ls").builtins.formatting.prettier,
-        require("null-ls").builtins.formatting.shellcheck,
+        null_ls.builtins.diagnostics.eslint_d,
+        null_ls.builtins.diagnostics.cspell,
+        null_ls.builtins.formatting.prettierd,
+        null_ls.builtins.formatting.shellcheck,
     },
     debug = false,
     on_attach = function(client, bufnr)
