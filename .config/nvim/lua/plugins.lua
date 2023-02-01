@@ -103,4 +103,7 @@ return packer.startup(function(use)
 
   -- Markdown
   use { 'iamcco/markdown-preview.nvim', run = function() vim.fn['mkdp#util#install']() end }
+
+  -- Frontend
+  use "norcalli/nvim-colorizer.lua"
 end)
