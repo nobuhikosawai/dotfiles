@@ -13,6 +13,9 @@ return packer.startup(function(use)
   -- colorscheme
   use 'EdenEast/nightfox.nvim'
   use 'https://gitlab.com/__tpb/monokai-pro.nvim'
+  use { "catppuccin/nvim", as = "catppuccin" }
+  use 'folke/tokyonight.nvim'
+  use 'cocopon/iceberg.vim'
 
   -- Background
   use 'xiyaowong/nvim-transparent'
