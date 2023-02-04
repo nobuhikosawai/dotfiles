@@ -117,11 +117,15 @@ alias rubocop='bundle exec rubocop'
 alias rubymine='open -a /Applications/RubyMine.app'
 alias intellij='open -a /Applications/IntelliJ\ IDEA\ CE.app'
 alias doco="docker-compose"
+alias lz="lazygit"
 
 # Util
 ## Calendar with japanese holidays
 alias calx="cal ; curl -s https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv | iconv -f SHIFT-JIS -t UTF-8 | grep -E \"`date '+%Y/%-m/'`\""
 alias calx3="cal -3; curl -s https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv | iconv -f SHIFT-JIS -t UTF-8 | grep -E \"`date -v-1m '+%Y/%-m/'`|`date '+%Y/%-m/'`|`date -v+1m '+%Y/%-m/'`\""
+
+# lazygit 
+export XDG_CONFIG_HOME="$HOME/.config"
 
 #yarn
 export PATH="$PATH:$HOME/.yarn/bin"
