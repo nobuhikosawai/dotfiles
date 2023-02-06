@@ -112,4 +112,15 @@ return packer.startup(function(use)
 
   -- Frontend
   use "norcalli/nvim-colorizer.lua"
+
+  -- Test
+  use {
+    "nvim-neotest/neotest",
+    requires = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+      "haydenmeade/neotest-jest"
+    }
+  }
 end)
