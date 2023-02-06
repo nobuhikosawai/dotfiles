@@ -28,6 +28,10 @@ vim.opt.clipboard:append{'unnamedplus'}
 vim.opt.autoread = true
 vim.opt.cursorline = true
 
+-- highlight yank
+vim.api.nvim_create_augroup('highlight_yank', {} )
+vim.api.nvim_create_autocmd('TextYankPost', {group = 'highlight_yank', pattern = '*', callback = function() require'vim.highlight'.on_yank() end})
+
 vim.g.mapleader = " "
 
 vim.opt.termguicolors = true
