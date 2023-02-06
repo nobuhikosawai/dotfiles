@@ -30,13 +30,18 @@ ts.setup {
         ["if"] = "@function.inner",
         ["ak"] = "@class.outer",
         ["ik"] = "@class.inner",
-        ["ip"] = "@parameter.inner",
+        -- ["ip"] = "@parameter.inner",
+        -- ["ap"] = "@parameter.outer",
         ["as"] = "@statement.outer",
         ["il"] = "@loop.inner",
         ["al"] = "@loop.outer",
         ["ic"] = "@conditional.inner",
         ["ac"] = "@conditional.outer",
-        ["so"] = "@statement.outer"
+        ["ab"] = "@block.outer",
+
+        -- custom capture
+        ["ad"] = "@declaration.outer",
+        ["id"] = "@declaration.inner",
       },
     },
     move = {
@@ -61,6 +66,24 @@ ts.setup {
     },
   },
   ensure_installed = { "lua", "rust", "typescript", "tsx", "javascript", "hcl", "terraform" },
+  playground = {
+    enable = true,
+    disable = {},
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+    persist_queries = false, -- Whether the query persists across vim sessions
+    keybindings = {
+      toggle_query_editor = 'o',
+      toggle_hl_groups = 'i',
+      toggle_injected_languages = 't',
+      toggle_anonymous_nodes = 'a',
+      toggle_language_display = 'I',
+      focus_language = 'f',
+      unfocus_language = 'F',
+      update = 'R',
+      goto_node = '<cr>',
+      show_help = '?',
+    },
+  }
 }
 
 -- https://github.com/andymass/vim-matchup#features

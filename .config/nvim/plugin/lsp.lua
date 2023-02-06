@@ -42,14 +42,31 @@ local lsp_flags = {
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-nvim_lsp.tsserver.setup {
-  on_attach = on_attach,
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-  cmd = { "typescript-language-server", "--stdio" },
-  flags = lsp_flags,
-  capabilities = capabilities,
-} 
+-- typescript
+-- typescript.nvim(https://github.com/jose-elias-alvarez/typescript.nvim) is used. if not, then use the following setup.
+-- nvim_lsp.tsserver.setup {
+--   on_attach = on_attach,
+--   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+--   cmd = { "typescript-language-server", "--stdio" },
+--   flags = lsp_flags,
+--   capabilities = capabilities,
+-- }
+require("typescript").setup({
+    disable_commands = false, -- prevent the plugin from creating Vim commands
+    debug = false, -- enable debug logging for commands
+    go_to_source_definition = {
+        fallback = true, -- fall back to standard LSP definition on failure
+    },
+    server = { -- pass options to lspconfig's setup method
+      on_attach = on_attach,
+      filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+      cmd = { "typescript-language-server", "--stdio" },
+      flags = lsp_flags,
+      capabilities = capabilities,
+    },
+})
 
+-- rust
 nvim_lsp.rust_analyzer.setup{
   on_attach = on_attach,
   flags = lsp_flags,

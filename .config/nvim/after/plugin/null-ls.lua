@@ -38,7 +38,12 @@ local null_ls = require('null-ls')
 
 null_ls.setup({
     sources = {
-        null_ls.builtins.diagnostics.eslint_d,
+        null_ls.builtins.diagnostics.eslint_d.with({
+          condition = function(utils)
+            return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs", ".eslintrc.json", "eslint.config.js" })
+          end,
+          prefer_local = "node_modules/.bin",
+        }),
         null_ls.builtins.diagnostics.cspell.with({
           extra_args = { '--config', '~/.config/cspell/cspell.json'}
         }),

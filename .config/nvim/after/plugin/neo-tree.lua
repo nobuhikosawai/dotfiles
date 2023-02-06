@@ -2,6 +2,28 @@ if (not pcall(require, "neo-tree")) then
   return
 end
 
+
+-- lsp integration
+--[[
+  Update typescript import path after move/rename on neo-tree
+  Keep in mind that the tsserver language server needs to be running in the background for this command to run. This is easy enough, though. Just open any TypeScript file and then your subsequent renames/moves will automatically update imports in other files.
+  See more at: https://github.com/nvim-neo-tree/neo-tree.nvim/wiki/Recipes#handle-rename-or-move-file-event
+]]
+local function on_file_move(args)
+  local ts_clients = vim.lsp.get_active_clients({ name = "tsserver" })
+  for _, ts_client in ipairs(ts_clients) do
+    ts_client.request("workspace/executeCommand", {
+      command = "_typescript.applyRenameFile",
+      arguments = {
+        {
+          sourceUri = vim.uri_from_fname(args.source),
+          targetUri = vim.uri_from_fname(args.destination),
+        },
+      },
+    })
+  end
+end
+
 -- Unless you are still migrating, remove the deprecated commands from v1.x
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
@@ -16,6 +38,8 @@ vim.fn.sign_define("DiagnosticSignHint",
   {text = "", texthl = "DiagnosticSignHint"})
 -- NOTE: this is changed from v1.x, which used the old style of highlight groups
 -- in the form "LspDiagnosticsSignWarning"
+
+local events = require("neo-tree.events")
 
 require("neo-tree").setup({
   close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
@@ -211,7 +235,18 @@ require("neo-tree").setup({
         ["gg"] = "git_commit_and_push",
       }
     }
+  },
+  event_handlers = {
+    {
+      event = events.FILE_MOVED,
+      handler = on_file_move,
+    },
+    {
+      event = events.FILE_RENAMED,
+      handler = on_file_move,
+    },
   }
+
 })
 
 vim.cmd([[nnoremap \ :Neotree toggle<cr>]])

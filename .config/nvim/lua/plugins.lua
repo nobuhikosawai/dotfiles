@@ -51,6 +51,8 @@ return packer.startup(function(use)
   use 'hrsh7th/cmp-cmdline'
   use { 'hrsh7th/nvim-cmp', requires = { 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' } }
   use 'onsails/lspkind-nvim'
+  ----  Language specific plugins
+  use 'jose-elias-alvarez/typescript.nvim'
 
   -- Additional LSP related plugins
   use { "glepnir/lspsaga.nvim", branch = "main" }
@@ -61,6 +63,7 @@ return packer.startup(function(use)
   -- Treesitter
   use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
   use 'nvim-treesitter/nvim-treesitter-textobjects'
+  use 'nvim-treesitter/playground'
   use 'p00f/nvim-ts-rainbow'
   use 'windwp/nvim-ts-autotag'
   use 'andymass/vim-matchup'
