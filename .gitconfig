@@ -24,6 +24,7 @@
 [core]
 	editor = vim
 	excludesfile = ~/.gitignore_global
+  pager = delta # using delta
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
@@ -50,8 +51,6 @@
 	defaultBranch = main
 
 ; delta
-[core]
-    pager = delta
 [interactive]
     diffFilter = delta --color-only
 [delta]

@@ -105,6 +105,9 @@ export TERM="screen-256color"
 
 export EDITOR=vim
 
+# git / less
+export LESS=-iXFR
+
 # Customize to your needs...
 alias g='git'
 alias gs='git status'
@@ -119,7 +122,7 @@ alias intellij='open -a /Applications/IntelliJ\ IDEA\ CE.app'
 alias doco="docker-compose"
 alias lz="lazygit"
 
-# Util
+# util
 ## Calendar with japanese holidays
 alias calx="cal ; curl -s https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv | iconv -f SHIFT-JIS -t UTF-8 | grep -E \"`date '+%Y/%-m/'`\""
 alias calx3="cal -3; curl -s https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv | iconv -f SHIFT-JIS -t UTF-8 | grep -E \"`date -v-1m '+%Y/%-m/'`|`date '+%Y/%-m/'`|`date -v+1m '+%Y/%-m/'`\""
@@ -184,7 +187,7 @@ function fzf-git-branch-checkout () {
 zle -N fzf-git-branch-checkout
 bindkey '^g' fzf-git-branch-checkout
 
-# fh - repeat history
+## fh - repeat history
 function fzf-fh() {
   BUFFER=$( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
   CURSOR=$#BUFFER
@@ -192,7 +195,7 @@ function fzf-fh() {
 zle -N fzf-fh
 bindkey '^R' fzf-fh
 
-# alacritty theme switcher
+##  alacritty theme switcher
 function fzf-alacritty-theme-switcher() {
   local config_path="$HOME/.config/alacritty/alacritty.yml"
   local selected_theme=$(cat $config_path | yq '.schemes | keys' | awk '{print $2}' |  fzf-tmux -p +m -w80% -h80%)
