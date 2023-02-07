@@ -2,3 +2,8 @@ git:
   paging:
     colorArg: always
     pager: delta --dark --paging=never
+keybinding:
+  universal:
+    quit: "<c-c>"
+    return: "q" # return to previous menu, will quit if there's nowhere to return
+quitOnTopLevelReturn: true
