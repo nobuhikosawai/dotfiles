@@ -11,4 +11,4 @@ saga.setup({
   },
 })
 
-keymap({"n","v"}, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
+keymap({"n","v"}, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true, desc = "code action" })

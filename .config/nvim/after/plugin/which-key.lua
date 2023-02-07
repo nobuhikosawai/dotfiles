@@ -31,6 +31,6 @@ wk.register({
     name = "ToggleTerm"
   },
   l = {
-    name = "lazygit"
+    name = "lsp"
   }
 }, { prefix = "<leader>" })

@@ -66,4 +66,4 @@ end
 
 vim.api.nvim_set_keymap("n", "<leader>mm", "<cmd>exe v:count1 . 'ToggleTerm'<CR>", {noremap = true, silent = true, desc = "ToggleTerm"})
 -- vim.api.nvim_set_keymap("n", "<leader>tig", "<cmd>lua _tig_toggle()<CR>", {noremap = true, silent = true, desc = "tig" }})
-vim.api.nvim_set_keymap("n", "<leader>lz", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true, desc = "lazygit"})
+vim.api.nvim_set_keymap("n", "<C-l>", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true, desc = "lazygit"})
