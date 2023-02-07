@@ -4,3 +4,4 @@
 
 (import_statement) @statement.outer
 (return_statement) @statement.outer
+(expression_statement) @statement.outer
