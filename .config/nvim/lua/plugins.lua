@@ -101,10 +101,10 @@ return packer.startup(function(use)
   use 'ggandor/leap.nvim'
   use { 'phaazon/hop.nvim', branch = 'v2' }
 
-  -- tmux
+  -- Tmux
   use 'alexghergh/nvim-tmux-navigation'
 
-  -- terminal
+  -- Terminal
   use {"akinsho/toggleterm.nvim", tag = '*' }
 
   -- Markdown
@@ -123,4 +123,8 @@ return packer.startup(function(use)
       "haydenmeade/neotest-jest"
     }
   }
+
+  -- cheat sheet
+  use { "folke/which-key.nvim" }
+
 end)

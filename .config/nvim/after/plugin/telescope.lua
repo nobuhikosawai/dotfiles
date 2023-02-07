@@ -48,18 +48,18 @@ require("telescope").setup {
 -- Files
 vim.keymap.set('n', '<leader>fg', function()
   builtin.live_grep()
-end)
+end, { desc = "Telescope live_grep"})
 vim.keymap.set('n', '<leader>ff', function()
   builtin.find_files()
-end)
+end, { desc = "Telescope find_files"})
 
 -- Nvim
 vim.keymap.set('n', '<leader>fb', function()
   builtin.buffers()
-end)
-vim.keymap.set('n', '<leader>fh', function()
-  builtin.help_tags()
-end)
+end, { desc = "Telescope find_buffers"})
+-- vim.keymap.set('n', '<leader>fh', function()
+--   builtin.help_tags()
+-- end)
 
 -- File browser
 local function telescope_buffer_dir()
@@ -75,5 +75,5 @@ vim.keymap.set("n", "<leader>fe", function()
     grouped = true,
     initial_mode = "normal",
   })
-end)
+end, { desc = "Telescope file_browser"})
 
