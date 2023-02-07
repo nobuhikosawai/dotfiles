@@ -124,7 +124,16 @@ return packer.startup(function(use)
     }
   }
 
-  -- cheat sheet
+  -- Cheat sheet
   use { "folke/which-key.nvim" }
 
+  -- Session
+  use { 'rmagatti/auto-session' }
+
+  -- Yank
+  use { "AckslD/nvim-neoclip.lua",
+    requires = {
+      {'nvim-telescope/telescope.nvim'},
+    },
+  }
 end)

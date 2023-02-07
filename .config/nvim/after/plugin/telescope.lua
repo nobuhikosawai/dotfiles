@@ -6,6 +6,7 @@ local builtin = require("telescope.builtin")
 local fb_actions = require "telescope".extensions.file_browser.actions
 
 require("telescope").load_extension "file_browser"
+require('telescope').load_extension('neoclip')
 
 local telescopeConfig = require("telescope.config")
 -- Clone the default Telescope configuration
@@ -77,3 +78,7 @@ vim.keymap.set("n", "<leader>fe", function()
   })
 end, { desc = "Telescope file_browser"})
 
+
+vim.keymap.set("n", "<leader>fy", "<cmd>Telescope neoclip<cr>",
+  {silent = true, noremap = true, desc = "Telescope neoclip"}
+)
