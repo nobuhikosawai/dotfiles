@@ -13,4 +13,4 @@ vim.keymap.set('n', '<leader>hp',  '<cmd>HopPattern<cr>', { desc= "HopPattern" }
 -- vim.keymap.set('n', '<leader>hc',  '<cmd>HopChar2<cr>', { desc = "HopChar2" })
 vim.keymap.set('n', 's',  '<cmd>HopChar2<cr>', { desc = "HopChar2" }) -- like leap use `s` here
 vim.keymap.set('n', '<leader>hw',  '<cmd>HopWord<cr>', { desc = "HopWord" })
-vim.keymap.set('n', '<leader>hl',  '<cmd>HopLineStart<cr>', { desc = "HopLineStart" })
+vim.keymap.set('n', '<leader>hv',  '<cmd>HopLineStart<cr>', { desc = "HopLineStart" })
