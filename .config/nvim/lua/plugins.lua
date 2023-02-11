@@ -21,8 +21,8 @@ return packer.startup(function(use)
   use 'xiyaowong/nvim-transparent'
 
   -- Statusline
-  use { 'nvim-lualine/lualine.nvim', requires = 'kyazdani42/nvim-web-devicons' }
-  use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = 'kyazdani42/nvim-web-devicons' }
+  use { 'nvim-lualine/lualine.nvim', requires = {'nobuhikosawai/nvim-web-devicons', branch='support-ext-convention'} }
+  use { 'akinsho/bufferline.nvim', tag = "v2.*", requires = {'nobuhikosawai/nvim-web-devicons', branch='support-ext-convention'} }
 
   -- Telescope
   use { 'nvim-telescope/telescope.nvim', tag = '0.1.0', requires = { 'nvim-lua/plenary.nvim' } } 
@@ -34,7 +34,7 @@ return packer.startup(function(use)
       branch = 'v2.x',
       requires = { 
         'nvim-lua/plenary.nvim',
-        'kyazdani42/nvim-web-devicons',
+        {'nobuhikosawai/nvim-web-devicons', branch='support-ext-convention'},
         'MunifTanjim/nui.nvim',
       }
   }
@@ -56,7 +56,7 @@ return packer.startup(function(use)
 
   -- Additional LSP related plugins
   use { "glepnir/lspsaga.nvim", branch = "main" }
-  use { 'folke/trouble.nvim', requires =  { 'kyazdani42/nvim-web-devicons' } }
+  use { 'folke/trouble.nvim', requires =  { {'nobuhikosawai/nvim-web-devicons', branch='support-ext-convention'} } }
   use 'stevearc/aerial.nvim'
   use "RRethy/vim-illuminate"
 
@@ -90,7 +90,7 @@ return packer.startup(function(use)
     requires = {
       'nvim-lua/plenary.nvim',
       'nvim-telescope/telescope.nvim',
-      'kyazdani42/nvim-web-devicons',
+      {'nobuhikosawai/nvim-web-devicons', branch='support-ext-convention'},
     },
   }
 
