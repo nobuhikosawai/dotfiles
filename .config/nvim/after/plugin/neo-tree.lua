@@ -250,3 +250,4 @@ require("neo-tree").setup({
 })
 
 vim.cmd([[nnoremap \ :Neotree toggle<cr>]])
+vim.cmd([[nnoremap <leader>nb  :Neotree buffers<cr>]])
