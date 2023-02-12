@@ -32,7 +32,7 @@ vim.opt.cursorline = true
 vim.api.nvim_create_augroup('highlight_yank', {} )
 vim.api.nvim_create_autocmd('TextYankPost', {group = 'highlight_yank', pattern = '*', callback = function() require'vim.highlight'.on_yank() end})
 
-vim.g.mapleader = " "
+-- vim.g.mapleader = " " -- call this before setting up lazy.nvim
 
 vim.opt.termguicolors = true
 -- vim.cmd("colorscheme nightfox")
