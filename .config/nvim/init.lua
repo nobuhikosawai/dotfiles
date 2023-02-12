@@ -1,10 +1,12 @@
-require('plugins')
+vim.g.mapleader = " " -- call this before setting up lazy.nvim
+
+require("config.lazy")
 
 -- Settings
-vim.opt.encoding = 'utf-8'
+vim.opt.encoding = "utf-8"
 vim.opt.number = true
 vim.opt.ruler = true
-vim.wo.listchars = 'tab:>.,trail:_' --https://maku77.github.io/vim/settings/show-space.html
+vim.wo.listchars = "tab:>.,trail:_" --https://maku77.github.io/vim/settings/show-space.html
 vim.opt.list = true
 -- User backspace key to delete
 vim.opt.backspace = "2"
@@ -24,19 +26,19 @@ vim.opt.smartindent = true
 -- use mouse
 vim.opt.mouse = "a"
 -- clipboard
-vim.opt.clipboard:append{'unnamedplus'}
+vim.opt.clipboard:append({ "unnamedplus" })
 vim.opt.autoread = true
 vim.opt.cursorline = true
 
 -- highlight yank
-vim.api.nvim_create_augroup('highlight_yank', {} )
-vim.api.nvim_create_autocmd('TextYankPost', {group = 'highlight_yank', pattern = '*', callback = function() require'vim.highlight'.on_yank() end})
-
--- vim.g.mapleader = " " -- call this before setting up lazy.nvim
+vim.api.nvim_create_augroup("highlight_yank", {})
+vim.api.nvim_create_autocmd("TextYankPost", {
+  group = "highlight_yank",
+  pattern = "*",
+  callback = function()
+    require("vim.highlight").on_yank()
+  end,
+})
 
 vim.opt.termguicolors = true
--- vim.cmd("colorscheme nightfox")
--- vim.cmd("colorscheme monokaipro")
--- vim.cmd.colorscheme "tokyonight"
-vim.cmd.colorscheme "catppuccin"
--- vim.cmd.colorscheme "iceberg"
+vim.cmd.colorscheme("catppuccin")
