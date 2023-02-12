@@ -95,6 +95,7 @@ return {
       })
     end,
   },
+
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -191,66 +192,29 @@ return {
     "glepnir/lspsaga.nvim",
     branch = "main",
     event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require("lspsaga").setup({
-        symbol_in_winbar = {
-          respect_root = true,
-        },
-      })
-
-      vim.keymap.set(
-        { "n", "v" },
-        "<leader>ca",
-        "<cmd>Lspsaga code_action<CR>",
-        { silent = true, desc = "code action" }
-      )
-    end,
+    keys = {
+      { "<leader>ca", "<cmd>Lspsaga code_action<CR>", desc = "code action", mode = { "n", "v" } },
+    },
+    opts = {
+      symbol_in_winbar = {
+        respect_root = true,
+      },
+    },
   },
+
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
-      {
-        "<leader>xx",
-        "<cmd>TroubleToggle<cr>",
-        silent = true,
-        noremap = true,
-        desc = "TroubleToggle",
-      },
-      {
-        "<leader>xw",
-        "<cmd>TroubleToggle workspace_diagnostics<cr>",
-        silent = true,
-        noremap = true,
-        desc = "TroubleToggle workspace_diagnostics",
-      },
-      {
-        "<leader>xd",
-        "<cmd>TroubleToggle document_diagnostics<cr>",
-        silent = true,
-        noremap = true,
-        desc = "TroubleToggle document_diagnostics",
-      },
-      {
-        "<leader>xl",
-        "<cmd>TroubleToggle loclist<cr>",
-        silent = true,
-        noremap = true,
-        desc = "TroubleToggle loclist",
-      },
-      {
-        "<leader>xq",
-        "<cmd>TroubleToggle quickfix<cr>",
-        silent = true,
-        noremap = true,
-        desc = "TroubleToggle quickfix",
-      },
-      -- vim.keymap.set("n", "gR", "<cmd>TroubleToggle lsp_references<cr>",
-      --   {silent = true, noremap = true}
-      -- )
+      { "<leader>xx", "<cmd>TroubleToggle<cr>", desc = "TroubleToggle" },
+      { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "TroubleToggle workspace_diagnostics" },
+      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "TroubleToggle document_diagnostics" },
+      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>", desc = "TroubleToggle loclist" },
+      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", desc = "TroubleToggle quickfix" },
     },
     config = true,
   },
+
   {
     "stevearc/aerial.nvim",
     keys = {
@@ -265,5 +229,48 @@ return {
       })
     end,
   },
-  { "RRethy/vim-illuminate", config = true },
+
+  {
+    "RRethy/vim-illuminate",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function(_, opts)
+      require("illuminate").configure(opts)
+    end,
+  },
+
+  -- better folding
+  -- ref: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = "kevinhwang91/promise-async",
+    event = "BufReadPost",
+    init = function()
+      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevelstart = 99
+      vim.o.foldenable = true
+
+      -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
+      vim.keymap.set("n", "zR", function()
+        require("ufo").openAllFolds()
+      end)
+      vim.keymap.set("n", "zM", function()
+        require("ufo").closeAllFolds()
+      end)
+    end,
+    config = function()
+      local capabilities = vim.lsp.protocol.make_client_capabilities()
+      capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+      }
+      local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
+      for _, ls in ipairs(language_servers) do
+        require("lspconfig")[ls].setup({
+          capabilities = capabilities,
+          -- you can add other fields for setting up lsp server in this table
+        })
+      end
+      require("ufo").setup()
+    end,
+  },
 }

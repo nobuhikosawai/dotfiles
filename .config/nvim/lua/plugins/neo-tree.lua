@@ -17,6 +17,7 @@ return {
       vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
       -- NOTE: this is changed from v1.x, which used the old style of highlight groups
       -- in the form "LspDiagnosticsSignWarning"
+
       if vim.fn.argc() == 1 then
         local stat = vim.loop.fs_stat(vim.fn.argv(0))
         if stat and stat.type == "directory" then
@@ -26,7 +27,7 @@ return {
     end,
     cmd = "Neotree",
     keys = {
-      { "\\", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
+      { "\\", "<cmd>Neotree reveal<cr>", desc = "NeoTree" },
       { "<leader>nb", "<cmd>Neotree buffers<cr>", desc = "Neotree buffers" },
     },
     config = function()

@@ -5,7 +5,6 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "nvim-treesitter/playground",
       "p00f/nvim-ts-rainbow",
       "windwp/nvim-ts-autotag",
       "andymass/vim-matchup",
@@ -103,9 +102,12 @@ return {
       vim.g.matchup_matchparen_enabled = 0
 
       -- Use treesitter to fold
-      vim.opt.foldmethod = "expr"
-      vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-      vim.opt.foldlevel = 99
+      -- Disabling this now in favor of `nvim-ufo`. See `lua/plugins/lsp.lua`.
+      -- vim.opt.foldmethod = "expr"
+      -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+      -- vim.opt.foldlevel = 99
     end,
   },
+
+  { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
 }

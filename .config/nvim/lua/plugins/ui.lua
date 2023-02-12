@@ -1,4 +1,5 @@
 return {
+  -- statusline
   {
     "nvim-lualine/lualine.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -11,6 +12,8 @@ return {
       })
     end,
   },
+
+  -- bufferline
   {
     "akinsho/bufferline.nvim",
     version = "v3.*",
@@ -22,6 +25,8 @@ return {
     end,
     config = true,
   },
+
+  -- window transparent
   {
     "xiyaowong/nvim-transparent",
     cmd = {
@@ -47,16 +52,48 @@ return {
     end,
   },
 
+  -- icons
   {
     "nvim-tree/nvim-web-devicons",
-    config = function()
-      require("nvim-web-devicons").set_icon({
+    opts = {
+      serict = true,
+      override_by_filename = {
         ["stories.tsx"] = {
           -- icon = "󰂺",
           icon = "",
           color = "#ff4785",
           cterm_color = "65",
           name = "StorybookTsx",
+        },
+      },
+    },
+  },
+
+  -- scrollbar
+  {
+    "petertriho/nvim-scrollbar",
+    dependencies = {
+      "catppuccin/nvim",
+      "lewis6991/gitsigns.nvim",
+      "kevinhwang91/nvim-hlslens",
+    },
+    event = "BufReadPost",
+    config = function()
+      local colors = require("catppuccin.palettes").get_palette()
+      require("scrollbar").setup({
+        handle = { color = colors.surface0 },
+        marks = {
+          Cursor = { color = colors.blue },
+          Search = { color = colors.maroon },
+          Error = { color = colors.rosewater },
+          Warn = { color = colors.warning },
+          Info = { color = colors.green },
+          Hint = { color = colors.yellow },
+          Misc = { color = colors.lavender },
+        },
+        handlers = {
+          gitsigns = true, -- Requires gitsigns
+          search = true, -- Requires hlslens
         },
       })
     end,
