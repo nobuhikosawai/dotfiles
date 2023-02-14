@@ -7,10 +7,10 @@ return {
       {
         "williamboman/mason-lspconfig.nvim",
         opts = {
-          ensure_installed = { "lua_ls", "rust_analyzer", "tsserver" },
+          ensure_installed = { "lua_ls", "rust_analyzer", "tsserver", "tailwindcss", "graphql", "astro", "prismals" },
         },
       },
-      { "j-hui/fidget.nvim", config = true },
+      { "j-hui/fidget.nvim",       config = true },
       ----  Language specific plugins
       "jose-elias-alvarez/typescript.nvim",
     },
@@ -57,7 +57,43 @@ return {
         debounce_text_changes = 150,
       }
 
-      local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+      -- for nvim-ufo
+      -- https://github.com/kevinhwang91/nvim-ufo
+      local _capabilities = vim.lsp.protocol.make_client_capabilities()
+      _capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true,
+      }
+
+      local capabilities = require("cmp_nvim_lsp").default_capabilities(_capabilities)
+
+      -- lua_ls
+      nvim_lsp.lua_ls.setup({
+        on_attach = on_attach,
+        flags = lsp_flags,
+        capabilities = capabilities,
+        settings = {
+          Lua = {
+            runtime = {
+              -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+              version = "LuaJIT",
+            },
+            diagnostics = {
+              -- Get the language server to recognize the `vim` global
+              globals = { "vim" },
+            },
+            workspace = {
+              -- Make the server aware of Neovim runtime files
+              library = vim.api.nvim_get_runtime_file("", true),
+              checkThirdParty = false,
+            },
+            -- Do not send telemetry data containing a randomized but unique identifier
+            telemetry = {
+              enable = false,
+            },
+          },
+        },
+      })
 
       -- typescript
       -- typescript.nvim(https://github.com/jose-elias-alvarez/typescript.nvim) is used. if not, then use the following setup.
@@ -81,6 +117,34 @@ return {
           flags = lsp_flags,
           capabilities = capabilities,
         },
+      })
+
+      -- tailwindcss
+      nvim_lsp.tailwindcss.setup({
+        on_attach = on_attach,
+        flags = lsp_flags,
+        capabilities = capabilities,
+      })
+
+      -- graphql
+      nvim_lsp.graphql.setup({
+        on_attach = on_attach,
+        flags = lsp_flags,
+        capabilities = capabilities,
+      })
+
+      -- prismals
+      nvim_lsp.prismals.setup({
+        on_attach = on_attach,
+        flags = lsp_flags,
+        capabilities = capabilities,
+      })
+
+      -- astro
+      nvim_lsp.astro.setup({
+        on_attach = on_attach,
+        flags = lsp_flags,
+        capabilities = capabilities,
       })
 
       -- rust
@@ -129,7 +193,7 @@ return {
           -- documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+          ["<C-b>"] = cmp.mapping.scroll_docs( -4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
@@ -149,8 +213,8 @@ return {
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
+            elseif luasnip.jumpable( -1) then
+              luasnip.jump( -1)
             else
               fallback()
             end
@@ -206,11 +270,11 @@ return {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
-      { "<leader>xx", "<cmd>TroubleToggle<cr>", desc = "TroubleToggle" },
+      { "<leader>xx", "<cmd>TroubleToggle<cr>",                       desc = "TroubleToggle" },
       { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "TroubleToggle workspace_diagnostics" },
-      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "TroubleToggle document_diagnostics" },
-      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>", desc = "TroubleToggle loclist" },
-      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", desc = "TroubleToggle quickfix" },
+      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",  desc = "TroubleToggle document_diagnostics" },
+      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>",               desc = "TroubleToggle loclist" },
+      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",              desc = "TroubleToggle quickfix" },
     },
     config = true,
   },
@@ -239,7 +303,6 @@ return {
   },
 
   -- better folding
-  -- ref: https://github.com/kevinhwang91/nvim-ufo#minimal-configuration
   {
     "kevinhwang91/nvim-ufo",
     dependencies = "kevinhwang91/promise-async",
@@ -257,20 +320,6 @@ return {
         require("ufo").closeAllFolds()
       end)
     end,
-    config = function()
-      local capabilities = vim.lsp.protocol.make_client_capabilities()
-      capabilities.textDocument.foldingRange = {
-        dynamicRegistration = false,
-        lineFoldingOnly = true,
-      }
-      local language_servers = require("lspconfig").util.available_servers() -- or list servers manually like {'gopls', 'clangd'}
-      for _, ls in ipairs(language_servers) do
-        require("lspconfig")[ls].setup({
-          capabilities = capabilities,
-          -- you can add other fields for setting up lsp server in this table
-        })
-      end
-      require("ufo").setup()
-    end,
+    config = true,
   },
 }

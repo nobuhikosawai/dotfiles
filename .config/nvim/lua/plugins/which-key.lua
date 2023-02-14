@@ -6,7 +6,8 @@ return {
       vim.o.timeout = true
       vim.o.timeoutlen = 300
     end,
-    event = "VeryLazy",
+    -- event = "VeryLazy",
+    keys = { "<leader>" },
     config = function()
       local wk = require("which-key")
 
@@ -36,6 +37,18 @@ return {
         l = {
           name = "lsp",
         },
+        b = {
+          name = "Bufferline",
+        },
+        n = {
+          name = "Neotree",
+        },
+        r = {
+          name = "refactoring"
+        },
+        s = {
+          name = "search/replace"
+        }
       }, { prefix = "<leader>" })
     end,
   },

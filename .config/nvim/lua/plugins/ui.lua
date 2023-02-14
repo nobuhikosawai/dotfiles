@@ -19,6 +19,9 @@ return {
     version = "v3.*",
     dependencies = "nvim-tree/nvim-web-devicons",
     event = "VeryLazy",
+    keys = {
+      { "<leader>bb", "<cmd>BufferLinePick<cr>", desc = "BufferLinePick" },
+    },
     init = function()
       vim.keymap.set("n", "[b", ":bprevious<CR>", {})
       vim.keymap.set("n", "]b", ":bnext<CR>", {})
@@ -75,25 +78,34 @@ return {
     dependencies = {
       "catppuccin/nvim",
       "lewis6991/gitsigns.nvim",
-      "kevinhwang91/nvim-hlslens",
+      {
+        "kevinhwang91/nvim-hlslens",
+        config = function()
+          -- require('hlslens').setup() is not required
+          require("scrollbar.handlers.search").setup({
+            -- hlslens config overrides
+            override_lens = function()
+            end,
+          })
+        end,
+      },
     },
     event = "BufReadPost",
     config = function()
       local colors = require("catppuccin.palettes").get_palette()
       require("scrollbar").setup({
-        handle = { color = colors.surface0 },
+        handle = { color = colors.crust },
         marks = {
-          Cursor = { color = colors.blue },
-          Search = { color = colors.maroon },
-          Error = { color = colors.rosewater },
-          Warn = { color = colors.warning },
+          Cursor = { color = colors.lavender },
+          Search = { color = colors.blue },
+          Error = { color = colors.maroon },
+          Warn = { color = colors.pearch },
           Info = { color = colors.green },
-          Hint = { color = colors.yellow },
-          Misc = { color = colors.lavender },
+          Hint = { color = colors.rosewater },
+          Misc = { color = colors.sapphire },
         },
         handlers = {
           gitsigns = true, -- Requires gitsigns
-          search = true, -- Requires hlslens
         },
       })
     end,

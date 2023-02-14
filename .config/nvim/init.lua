@@ -8,6 +8,7 @@ vim.opt.number = true
 vim.opt.ruler = true
 vim.wo.listchars = "tab:>.,trail:_" --https://maku77.github.io/vim/settings/show-space.html
 vim.opt.list = true
+vim.opt.iskeyword:append("-")
 -- User backspace key to delete
 vim.opt.backspace = "2"
 -- Improve search
