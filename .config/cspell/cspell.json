@@ -1,3 +1,16 @@
 {
   "allowCompoundWords": true,
+  "dictionaries": ["public", "private"],
+  "dictionaryDefinitions": [
+    {
+      "name": "public",
+      "path": "~/.config/cspell/public.txt",
+      "description": "public dictionary"
+    },
+    {
+      "name": "private",
+      "path": "~/.config/cspell/private.txt",
+      "description": "private local dictionary"
+    }
+  ]
 }
