@@ -4,7 +4,7 @@ return {
     branch = "v2.x",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
+      'nvim-tree/nvim-web-devicons',
       "MunifTanjim/nui.nvim",
     },
     init = function()
@@ -18,6 +18,7 @@ return {
       -- NOTE: this is changed from v1.x, which used the old style of highlight groups
       -- in the form "LspDiagnosticsSignWarning"
 
+      -- start on launch
       if vim.fn.argc() == 1 then
         local stat = vim.loop.fs_stat(vim.fn.argv(0))
         if stat and stat.type == "directory" then
@@ -27,7 +28,7 @@ return {
     end,
     cmd = "Neotree",
     keys = {
-      { "\\", "<cmd>Neotree reveal<cr>", desc = "NeoTree" },
+      { "\\", "<cmd>Neotree toggle<cr>", desc = "NeoTree" },
       { "<leader>nb", "<cmd>Neotree buffers<cr>", desc = "Neotree buffers" },
     },
     config = function()
@@ -198,7 +199,7 @@ return {
               --"thumbs.db"
             },
           },
-          follow_current_file = false, -- This will find and focus the file in the active buffer every
+          follow_current_file = true, -- This will find and focus the file in the active buffer every
           -- time the current file is changed while the tree is open.
           group_empty_dirs = false, -- when true, empty folders will be grouped together
           hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree

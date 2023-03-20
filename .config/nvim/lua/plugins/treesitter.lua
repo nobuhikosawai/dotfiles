@@ -8,6 +8,7 @@ return {
       "p00f/nvim-ts-rainbow",
       "windwp/nvim-ts-autotag",
       "andymass/vim-matchup",
+      "JoosepAlviste/nvim-ts-context-commentstring",
     },
     config = function()
       local ts = require("nvim-treesitter.configs")
@@ -76,7 +77,20 @@ return {
             },
           },
         },
-        ensure_installed = { "lua", "rust", "typescript", "tsx", "javascript", "hcl", "terraform" },
+        ensure_installed = {
+          "lua",
+          "rust",
+          "typescript",
+          "tsx",
+          "javascript",
+          "hcl",
+          "terraform",
+          "graphql",
+          "astro",
+          "markdown",
+          "markdown_inline",
+          "yaml",
+        },
         playground = {
           enable = true,
           disable = {},
@@ -95,6 +109,9 @@ return {
             show_help = "?",
           },
         },
+        context_commentstring = {
+          enable = true,
+        },
       })
 
       -- https://github.com/andymass/vim-matchup#features
@@ -106,6 +123,11 @@ return {
       -- vim.opt.foldmethod = "expr"
       -- vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
       -- vim.opt.foldlevel = 99
+
+      -- mdx
+      -- https://phelipetls.github.io/posts/mdx-syntax-highlight-treesitter-nvim/
+      local ft_to_parser = require("nvim-treesitter.parsers").filetype_to_parsername
+      ft_to_parser.mdx = "markdown"
     end,
   },
 

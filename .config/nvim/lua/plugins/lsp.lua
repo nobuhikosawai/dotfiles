@@ -7,10 +7,19 @@ return {
       {
         "williamboman/mason-lspconfig.nvim",
         opts = {
-          ensure_installed = { "lua_ls", "rust_analyzer", "tsserver", "tailwindcss", "graphql", "astro", "prismals" },
+          ensure_installed = {
+            "lua_ls",
+            "rust_analyzer",
+            "tsserver",
+            "tailwindcss",
+            "graphql",
+            "astro",
+            "prismals",
+            "marksman",
+          },
         },
       },
-      { "j-hui/fidget.nvim",       config = true },
+      { "j-hui/fidget.nvim", config = true },
       ----  Language specific plugins
       "jose-elias-alvarez/typescript.nvim",
     },
@@ -110,7 +119,8 @@ return {
         go_to_source_definition = {
           fallback = true, -- fall back to standard LSP definition on failure
         },
-        server = { -- pass options to lspconfig's setup method
+        server = {
+          -- pass options to lspconfig's setup method
           on_attach = on_attach,
           filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
           cmd = { "typescript-language-server", "--stdio" },
@@ -133,7 +143,7 @@ return {
         capabilities = capabilities,
       })
 
-      -- prismals
+      -- prisma
       nvim_lsp.prismals.setup({
         on_attach = on_attach,
         flags = lsp_flags,
@@ -157,6 +167,12 @@ return {
         },
         capabilities = capabilities,
       })
+
+      -- marksman(markdown)
+      nvim_lsp.marksman.setup({})
+
+      -- ruby
+      nvim_lsp.solargraph.setup({})
     end,
   },
 
@@ -170,6 +186,13 @@ return {
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
       "onsails/lspkind-nvim",
+      {
+        "zbirenbaum/copilot-cmp",
+        dependencies = "zbirenbaum/copilot.lua",
+        config = function()
+          require("copilot_cmp").setup()
+        end,
+      }, -- copilot
     },
     event = "InsertEnter",
     config = function()
@@ -193,7 +216,7 @@ return {
           -- documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
-          ["<C-b>"] = cmp.mapping.scroll_docs( -4),
+          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
           ["<C-f>"] = cmp.mapping.scroll_docs(4),
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
@@ -213,8 +236,8 @@ return {
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
-            elseif luasnip.jumpable( -1) then
-              luasnip.jump( -1)
+            elseif luasnip.jumpable(-1) then
+              luasnip.jump(-1)
             else
               fallback()
             end
@@ -224,10 +247,26 @@ return {
           { name = "nvim_lsp" },
           { name = "nvim_lsp_signature_help" },
           { name = "luasnip" },
+          { name = "copilot" },
           { name = "buffer" },
         }),
         formatting = {
-          format = lspkind.cmp_format({ mode = "symbol", maxwidth = 50 }),
+          format = lspkind.cmp_format({
+            mode = "symbol_text",
+            menu = {
+              buffer = "[Buffer]",
+              nvim_lsp = "[LSP]",
+              luasnip = "[LuaSnip]",
+              nvim_lua = "[Lua]",
+              latex_symbols = "[Latex]",
+              Copilot = "",
+            },
+          }),
+        },
+        experimental = {
+          ghost_text = {
+            hl_group = "LspCodeLens",
+          },
         },
       })
 
@@ -270,11 +309,11 @@ return {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
-      { "<leader>xx", "<cmd>TroubleToggle<cr>",                       desc = "TroubleToggle" },
+      { "<leader>xx", "<cmd>TroubleToggle<cr>", desc = "TroubleToggle" },
       { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "TroubleToggle workspace_diagnostics" },
-      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",  desc = "TroubleToggle document_diagnostics" },
-      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>",               desc = "TroubleToggle loclist" },
-      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",              desc = "TroubleToggle quickfix" },
+      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "TroubleToggle document_diagnostics" },
+      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>", desc = "TroubleToggle loclist" },
+      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", desc = "TroubleToggle quickfix" },
     },
     config = true,
   },

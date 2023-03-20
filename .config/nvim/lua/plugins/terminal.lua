@@ -1,3 +1,5 @@
+local lazygitKey = "<leader>gc"
+
 return {
   {
     "akinsho/toggleterm.nvim",
@@ -12,6 +14,7 @@ return {
         vim.keymap.set("t", "<C-w>k", [[<Cmd>wincmd k<CR>]], opts)
         vim.keymap.set("t", "<C-w>l", [[<Cmd>wincmd l<CR>]], opts)
       end
+
       -- if you only want these mappings for toggle term use term://*toggleterm#* instead
       vim.api.nvim_create_autocmd("TermOpen", {
         pattern = "*",
@@ -22,7 +25,7 @@ return {
       -- vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
     end,
     keys = {
-      { "<C-l>", desc = "lazygit" },
+      { lazygitKey, desc = "lazygit" },
     },
     config = function()
       require("toggleterm").setup({
@@ -83,8 +86,7 @@ return {
       -- vim.api.nvim_set_keymap("n", "<leader>tig", "<cmd>lua _tig_toggle()<CR>", {noremap = true, silent = true, desc = "tig" }})
       vim.api.nvim_set_keymap(
         "n",
-        "<C-l>",
-        "<cmd>lua _lazygit_toggle()<CR>",
+        lazygitKey,("<cmd>lua _lazygit_toggle()<CR>"),
         { noremap = true, silent = true, desc = "lazygit" }
       )
     end,

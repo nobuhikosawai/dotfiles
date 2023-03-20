@@ -3,33 +3,15 @@ return {
     "nvim-telescope/telescope.nvim",
     version = "0.1.1",
     dependencies = { "nvim-lua/plenary.nvim" },
+    -- stylua: ignore
     keys = {
-      {
-        "<leader>fg",
-        function()
-          require("telescope.builtin").live_grep()
-        end,
-        desc = "Telescope live_grep",
-      },
-      {
-        "<leader>ff",
-        function()
-          require("telescope.builtin").find_files()
-        end,
-        desc = "Telescope find_files",
-      },
-      {
-        "<leader>fb",
-        function()
-          require("telescope.builtin").buffers()
-        end,
-        desc = "Telescope find_buffers",
-      },
+      { "<space>fg", function() require("telescope.builtin").live_grep() end,  desc = "Telescope live_grep", },
+      { "<space>ff", function() require("telescope.builtin").find_files() end, desc = "Telescope find_files", },
+      { "<space>fb", function() require("telescope.builtin").buffers() end,    desc = "Telescope find_buffers", },
       -- Telescope plugin commands
       -- File browser
-
       {
-        "<leader>fe",
+        "<space>fe",
         function()
           local function telescope_buffer_dir()
             return vim.fn.expand("%:p:h")
@@ -46,21 +28,23 @@ return {
         end,
         desc = "Telescope file_browser",
       },
-
-      {
-        "<leader>fy",
-        "<cmd>Telescope neoclip<cr>",
-        silent = true,
-        noremap = true,
-        desc = "Telescope neoclip",
-      },
+      -- neoclip
+      { "<space>fy", "<cmd>Telescope neoclip<cr>",                                       desc = "Telescope neoclip" },
+      -- frecency
+      { "<space>fR", "<cmd>Telescope frecency<cr>",                                      desc = "Telescope frecency" },
+      -- recent_files
+      { "<space>fr", "<cmd>lua require('telescope').extensions.recent_files.pick()<CR>", desc = "Telescope recent_files" },
+      --harpoon
+      { "<space>fj", "<cmd>Telescope harpoon marks<cr>",                                 desc = "Telescope harpoon marks" },
     },
     config = function()
-      local builtin = require("telescope.builtin")
       local fb_actions = require("telescope").extensions.file_browser.actions
 
       require("telescope").load_extension("file_browser")
       require("telescope").load_extension("neoclip")
+      require("telescope").load_extension("frecency")
+      require("telescope").load_extension("recent_files")
+      require("telescope").load_extension("harpoon")
 
       local telescopeConfig = require("telescope.config")
       -- Clone the default Telescope configuration
@@ -75,11 +59,30 @@ return {
         defaults = {
           -- `hidden = true` is not supported in text grep commands.
           vimgrep_arguments = vimgrep_arguments,
+          layout_config = {
+            horizontal = {
+              prompt_position = "top",
+            },
+          },
+          sorting_strategy = "ascending",
+          mappings = {
+            n = {
+              ["<C-d>"] = require("telescope.actions").delete_buffer,
+            },
+            i = {
+              ["<C-w>"] = "which_key",
+              ["<C-d>"] = require("telescope.actions").delete_buffer,
+            },
+          },
         },
         pickers = {
           find_files = {
             -- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
             find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+          },
+          buffers = {
+            ignore_current_buffer = true,
+            sort_lastused = true,
           },
         },
         extensions = {
@@ -97,6 +100,13 @@ return {
               },
             },
           },
+          frecency = {
+            show_unindexed = false,
+            default_workspace = ":CWD:",
+          },
+          recent_files = {
+            only_cwd = true,
+          },
         },
       })
     end,
@@ -104,4 +114,12 @@ return {
 
   -- Filer
   "nvim-telescope/telescope-file-browser.nvim",
+
+  -- Frequency
+  {
+    "nvim-telescope/telescope-frecency.nvim",
+    dependencies = { "kkharji/sqlite.lua" },
+  },
+
+  { "smartpde/telescope-recent-files" },
 }

@@ -44,10 +44,13 @@ return {
           name = "Neotree",
         },
         r = {
-          name = "refactoring"
+          name = "refactoring",
         },
         s = {
-          name = "search/replace"
+          name = "Search/replace",
+        },
+        j = {
+          name = "Harpoon",
         }
       }, { prefix = "<leader>" })
     end,

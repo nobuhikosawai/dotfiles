@@ -38,4 +38,36 @@ return {
       },
     },
   },
+
+  {
+    "folke/todo-comments.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = true,
+  },
+
+  -- copilot
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = {
+          enabled = false,
+          auto_trigger = true,
+        },
+        panel = {
+          enabled = false,
+        },
+      })
+    end,
+  },
+
+  {
+    "github/copilot.vim",
+    event = { "BufReadPre", "BufNewFile" },
+    cmd = "Copilot",
+    enabled = false, -- in favor of zbirenbaum/copilot.lua
+  },
 }
