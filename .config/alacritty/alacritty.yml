@@ -11,8 +11,11 @@ font:
     # family: monospace
 
     # The `style` can be specified to pick a specific face.
-    family: "JetBrainsMono Nerd Font"
+    # family: "JetBrainsMono Nerd Font"
+    # family: "MonoLisa"
     style: Regular
+    family: "Iosevka Nerd Font"
+    # style: Extended
   bold:
     # Font family
     #
@@ -22,8 +25,10 @@ font:
 
     # The `style` can be specified to pick a specific face.
     # family: "MesloLGM Nerd Font Mono"
-    family: "JetBrainsMono Nerd Font"
+    # family: "MonoLisa"
     style: Bold
+    family: "Iosevka Nerd Font"
+    # style: Bold Extended
   italic:
     # Font family
     #
@@ -32,8 +37,10 @@ font:
     # family: monospace
 
     # The `style` can be specified to pick a specific face.
-    family: "JetBrainsMono Nerd Font"
+    # family: "MonoLisa"
     style: Italic
+    family: "Iosevka Nerd Font"
+    # style: Extended Italic
   # Point size
   size: 14.0
 schemes:
@@ -618,7 +625,7 @@ key_bindings:
   - { key: Period, mods: Alt|Shift, chars: "\e>" } # Alt + >
   - { key: Comma, mods: Alt|Shift, chars: "\e<" } # Alt + <
 window:
-  opacity: 0.9
+  opacity: 0.85
   dimensions:
     columns: 140
     lines: 42
