@@ -7,3 +7,6 @@ keybinding:
     quit: "<c-c>"
     return: "q" # return to previous menu, will quit if there's nowhere to return
 quitOnTopLevelReturn: true
+os:
+  editCommand: "nvim"
+  openCommand: "code -rg {{filename}}"
