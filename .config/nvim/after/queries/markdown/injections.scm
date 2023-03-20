@@ -1,6 +1,3 @@
-(fenced_code_block
- (info_string) @lang
- (code_fence_content) @content
- (#vim-match? @lang "^(rb|ruby)(:.*)?$")
- (#set! language "ruby")
-)
+; extends
+; https://phelipetls.github.io/posts/mdx-syntax-highlight-treesitter-nvim/
+((inline) @_inline (#match? @_inline "^\(import\|export\)")) @tsx

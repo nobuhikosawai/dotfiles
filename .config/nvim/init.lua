@@ -43,3 +43,9 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 vim.opt.termguicolors = true
 vim.cmd.colorscheme("catppuccin")
+
+vim.filetype.add({
+  extension = {
+    mdx = 'mdx'
+  }
+})
