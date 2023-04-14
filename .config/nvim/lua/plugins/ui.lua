@@ -43,7 +43,6 @@ return {
     },
     config = function()
       require("transparent").setup({
-        enable = false,
         extra_groups = {
           -- In particular, when you set it to 'all', that means all available groups
           -- example of akinsho/nvim-bufferline.lua
@@ -54,7 +53,6 @@ return {
           "BufferLineSeparator",
           "BufferLineIndicatorSelected",
         },
-        exclude = {}, -- table: groups you don't want to clear
       })
     end,
   },

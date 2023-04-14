@@ -10,12 +10,14 @@ return {
     keys = {
       {
         "<leader>tt",
-        "<cmd>require('neotest').run.run(vim.fn.expand('%'))<cr>",
+        function()
+          require("neotest").run.run(vim.fn.expand("%"))
+        end,
         desc = "Neotest run current file",
       },
       {
         "<leader>to",
-        "<cmd>require('neotest').output_panel.toggle()<cr>",
+        function() require('neotest').output_panel.toggle() end,
         desc = "Neotest output_panel toggle",
       },
     },
@@ -26,7 +28,7 @@ return {
         },
         adapters = {
           require("neotest-jest")({
-            jestCommand = "npm test --",
+            jestCommand = "npm run test --",
             cwd = function(path)
               return vim.fn.getcwd()
             end,

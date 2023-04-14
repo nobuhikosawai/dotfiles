@@ -121,6 +121,7 @@ alias rubymine='open -a /Applications/RubyMine.app'
 alias intellij='open -a /Applications/IntelliJ\ IDEA\ CE.app'
 alias doco="docker-compose"
 alias lz="lazygit"
+alias nvim="OPENAI_API_KEY=$OPENAI_API_KEY nvim"
 
 # util
 ## Calendar with japanese holidays

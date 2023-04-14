@@ -157,6 +157,9 @@ return {
         capabilities = capabilities,
       })
 
+      -- vue
+      nvim_lsp.volar.setup{}
+
       -- rust
       nvim_lsp.rust_analyzer.setup({
         on_attach = on_attach,
