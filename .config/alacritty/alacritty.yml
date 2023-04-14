@@ -627,8 +627,8 @@ key_bindings:
 window:
   opacity: 0.85
   dimensions:
-    columns: 140
-    lines: 42
+    columns: 280
+    lines: 63
   position:
     x: 200
     y: 100
