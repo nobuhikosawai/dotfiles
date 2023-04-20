@@ -1,4 +1,4 @@
-local lazygitKey = "<leader>gc"
+local lazygitKey = "<leader>lz"
 
 return {
   {
