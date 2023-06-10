@@ -42,7 +42,7 @@ font:
     family: "Iosevka Nerd Font"
     # style: Extended Italic
   # Point size
-  size: 14.0
+  # size: 14.0
 schemes:
   catppuccin: &catppuccin
     primary:
@@ -632,4 +632,4 @@ window:
   position:
     x: 200
     y: 100
-  decorations: buttonless
+  # decorations: buttonless
