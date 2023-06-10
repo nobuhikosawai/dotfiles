@@ -28,9 +28,9 @@ return {
             diagnostics_postprocess = function(diagnostic)
               diagnostic.severity = vim.diagnostic.severity.HINT
             end,
-        diagnostic_config = {
-            virtual_text = false,
-        },
+            diagnostic_config = {
+              virtual_text = false,
+            },
           }),
           null_ls.builtins.diagnostics.shellcheck,
           null_ls.builtins.formatting.prettierd,
