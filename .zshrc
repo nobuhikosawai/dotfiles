@@ -125,8 +125,10 @@ alias nvim="OPENAI_API_KEY=$OPENAI_API_KEY nvim"
 
 # util
 ## Calendar with japanese holidays
-alias calx="cal ; curl -s https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv | iconv -f SHIFT-JIS -t UTF-8 | grep -E \"`date '+%Y/%-m/'`\""
-alias calx3="cal -3; curl -s https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv | iconv -f SHIFT-JIS -t UTF-8 | grep -E \"`date -v-1m '+%Y/%-m/'`|`date '+%Y/%-m/'`|`date -v+1m '+%Y/%-m/'`\""
+if [ "$(uname)" = 'Darwin' ]; then
+  alias calx="cal ; curl -s https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv | iconv -f SHIFT-JIS -t UTF-8 | grep -E \"`date '+%Y/%-m/'`\""
+  alias calx3="cal -3; curl -s https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv | iconv -f SHIFT-JIS -t UTF-8 | grep -E \"`date -v-1m '+%Y/%-m/'`|`date '+%Y/%-m/'`|`date -v+1m '+%Y/%-m/'`\""
+fi
 
 # lazygit 
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -230,6 +232,9 @@ function git-fixup() {
   fi
 }
 
+# fnm
+export PATH="/home/nobuhikosawai/.local/share/fnm:$PATH"
+eval "`fnm env`"
 # node
 eval "$(fnm env --use-on-cd)"
 
