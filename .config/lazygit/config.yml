@@ -1,12 +1,12 @@
 git:
   paging:
     colorArg: always
-    pager: delta --dark --paging=never
+    pager: delta --dark --paging=never --side-by-side
 keybinding:
   universal:
     quit: "<c-c>"
     return: "q" # return to previous menu, will quit if there's nowhere to return
 quitOnTopLevelReturn: true
 os:
-  edit: "nvim"
+  edit: "nvr -l {{filename}}" # using neovim-remote. see: https://github.com/mhinz/neovim-remote
   open: "code -rg {{filename}}"
