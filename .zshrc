@@ -117,20 +117,33 @@ alias ga='git add'
 alias rake='bundle exec rake'
 alias rspec='bundle exec rspec'
 alias rubocop='bundle exec rubocop'
-alias rubymine='open -a /Applications/RubyMine.app'
-alias intellij='open -a /Applications/IntelliJ\ IDEA\ CE.app'
+case "$OSTYPE" in
+  darwin*)
+    alias rubymine='open -a /Applications/RubyMine.app'
+    alias intellij='open -a /Applications/IntelliJ\ IDEA\ CE.app'
+esac
 alias doco="docker-compose"
 alias lz="lazygit"
-alias nvim="OPENAI_API_KEY=$OPENAI_API_KEY nvim"
+alias nvim="OPENAI_API_KEY=$OPENAI_API_KEY nvim --listen /tmp/nvimsocket" # Using neovim-remote. see: https://github.com/mhinz/neovim-remote
+
+# include ~/.local/bin
+export PATH="/home/nobuhikosawai/.local/bin:$PATH"
+
+# docker
+case "$OSTYPE" in
+  linux*)
+    export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
+esac
 
 # util
 ## Calendar with japanese holidays
-if [ "$(uname)" = 'Darwin' ]; then
-  alias calx="cal ; curl -s https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv | iconv -f SHIFT-JIS -t UTF-8 | grep -E \"`date '+%Y/%-m/'`\""
-  alias calx3="cal -3; curl -s https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv | iconv -f SHIFT-JIS -t UTF-8 | grep -E \"`date -v-1m '+%Y/%-m/'`|`date '+%Y/%-m/'`|`date -v+1m '+%Y/%-m/'`\""
-fi
+case "$OSTYPE" in
+  darwin*)
+    alias calx="cal ; curl -s https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv | iconv -f SHIFT-JIS -t UTF-8 | grep -E \"`date '+%Y/%-m/'`\""
+    alias calx3="cal -3; curl -s https://www8.cao.go.jp/chosei/shukujitsu/syukujitsu.csv | iconv -f SHIFT-JIS -t UTF-8 | grep -E \"`date -v-1m '+%Y/%-m/'`|`date '+%Y/%-m/'`|`date -v+1m '+%Y/%-m/'`\""
+esac
 
-# lazygit 
+# lazygit
 export XDG_CONFIG_HOME="$HOME/.config"
 
 #yarn
@@ -154,18 +167,25 @@ export PATH="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/platfo
 export GOPATH="$HOME/go"
 
 # rbenv
-if [[ ! -a ~/.rbenv ]]; then
-  git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-fi
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-export PATH="$HOME/.rbenv/bin:$PATH"
+# package manager supports this now, so re-consider this.
+# if [[ ! -a ~/.rbenv ]]; then
+#   git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+# fi
+# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 eval "$(rbenv init -)"
+export PATH="$HOME/.rbenv/bin:$PATH"
 
 # gnu-sed
-PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+case "$OSTYPE" in
+  darwin*)
+    PATH="/usr/local/opt/gnu-sed/libexec/gnubin:$PATH"
+esac
 
 #mysql
-export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+case "$OSTYPE" in
+  darwin*)
+    export PATH="/usr/local/opt/mysql@5.7/bin:$PATH"
+esac
 
 # fzf
 ## search repository
@@ -209,7 +229,7 @@ function fzf-alacritty-theme-switcher() {
 zle -N fzf-alacritty-theme-switcher
 alias ats="fzf-alacritty-theme-switcher"
 
-#git fixup
+##git fixup
 function git-fixup() {
   if git diff --cached --quiet; then
       local commits="No staged changes. Use git add -p to add them."
@@ -255,7 +275,7 @@ function unset_kube_config() {
   unset KUBECONFIG
 }
 ## completion
-[[ /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
+[[ -s /usr/local/bin/kubectl ]] && source <(kubectl completion zsh)
 # Only zsh
 alias -g P='$(kubectl get pods | fzf-tmux -p -w80% -h80% | awk "{print \$1}")' # e.g. (kubectl get pod ${interactive selected pod})
 
@@ -304,6 +324,8 @@ if [ -f '$HOME/google-cloud-sdk/completion.zsh.inc' ]; then . '$HOME/google-clou
 # toggl
 alias tg='toggl'
 
+# direnv
+eval "$(direnv hook zsh)"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -319,3 +341,11 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
+
+# pnpm
+export PNPM_HOME="/home/nobuhikosawai/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
