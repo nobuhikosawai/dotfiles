@@ -9,6 +9,7 @@ vim.opt.ruler = true
 vim.wo.listchars = "tab:>.,trail:_" --https://maku77.github.io/vim/settings/show-space.html
 vim.opt.list = true
 vim.opt.iskeyword:append("-")
+vim.opt.swapfile = false
 -- User backspace key to delete
 vim.opt.backspace = "2"
 -- Improve search
@@ -34,18 +35,18 @@ vim.opt.cursorline = true
 -- highlight yank
 vim.api.nvim_create_augroup("highlight_yank", {})
 vim.api.nvim_create_autocmd("TextYankPost", {
-  group = "highlight_yank",
-  pattern = "*",
-  callback = function()
-    require("vim.highlight").on_yank()
-  end,
+	group = "highlight_yank",
+	pattern = "*",
+	callback = function()
+		require("vim.highlight").on_yank()
+	end,
 })
 
 vim.opt.termguicolors = true
 vim.cmd.colorscheme("catppuccin")
 
 vim.filetype.add({
-  extension = {
-    mdx = 'mdx'
-  }
+	extension = {
+		mdx = 'mdx'
+	}
 })

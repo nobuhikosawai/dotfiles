@@ -5,7 +5,6 @@ return {
     event = { "BufReadPost", "BufNewFile" },
     dependencies = {
       "nvim-treesitter/nvim-treesitter-textobjects",
-      "p00f/nvim-ts-rainbow",
       "windwp/nvim-ts-autotag",
       "andymass/vim-matchup",
       "JoosepAlviste/nvim-ts-context-commentstring",
@@ -26,12 +25,6 @@ return {
         },
         matchup = {
           enable = true,
-        },
-        rainbow = {
-          enable = true,
-          disable = { "vim" },
-          extended_mode = true,
-          max_file_lines = nil,
         },
         textobjects = {
           select = {
@@ -94,7 +87,7 @@ return {
         playground = {
           enable = true,
           disable = {},
-          updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
+          updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
           persist_queries = false, -- Whether the query persists across vim sessions
           keybindings = {
             toggle_query_editor = "o",

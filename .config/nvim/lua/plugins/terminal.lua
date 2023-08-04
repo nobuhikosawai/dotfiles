@@ -86,7 +86,7 @@ return {
       -- vim.api.nvim_set_keymap("n", "<leader>tig", "<cmd>lua _tig_toggle()<CR>", {noremap = true, silent = true, desc = "tig" }})
       vim.api.nvim_set_keymap(
         "n",
-        lazygitKey,("<cmd>lua _lazygit_toggle()<CR>"),
+        lazygitKey, ("<cmd>lua _lazygit_toggle()<CR>"),
         { noremap = true, silent = true, desc = "lazygit" }
       )
     end,

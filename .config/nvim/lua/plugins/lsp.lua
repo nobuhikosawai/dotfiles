@@ -19,7 +19,7 @@ return {
           },
         },
       },
-      { "j-hui/fidget.nvim", config = true },
+      { "j-hui/fidget.nvim",       tag = "legacy", config = true },
       ----  Language specific plugins
       "jose-elias-alvarez/typescript.nvim",
     },
@@ -115,9 +115,9 @@ return {
       -- }
       require("typescript").setup({
         disable_commands = false, -- prevent the plugin from creating Vim commands
-        debug = false, -- enable debug logging for commands
+        debug = false,            -- enable debug logging for commands
         go_to_source_definition = {
-          fallback = true, -- fall back to standard LSP definition on failure
+          fallback = true,        -- fall back to standard LSP definition on failure
         },
         server = {
           -- pass options to lspconfig's setup method
@@ -158,7 +158,7 @@ return {
       })
 
       -- vue
-      nvim_lsp.volar.setup{}
+      nvim_lsp.volar.setup {}
 
       -- rust
       nvim_lsp.rust_analyzer.setup({
@@ -175,7 +175,55 @@ return {
       nvim_lsp.marksman.setup({})
 
       -- ruby
-      nvim_lsp.solargraph.setup({})
+      -- nvim_lsp.solargraph.setup({})
+      --
+      -- https://github.com/Shopify/ruby-lsp/blob/main/EDITORS.md
+      -- textDocument/diagnostic support until 0.10.0 is released
+      _timers = {}
+      local function setup_diagnostics(client, buffer)
+        if require("vim.lsp.diagnostic")._enable then
+          return
+        end
+
+        local diagnostic_handler = function()
+          local params = vim.lsp.util.make_text_document_params(buffer)
+          client.request("textDocument/diagnostic", { textDocument = params }, function(err, result)
+            if err then
+              local err_msg = string.format("diagnostics error - %s", vim.inspect(err))
+              vim.lsp.log.error(err_msg)
+            end
+            if not result then
+              return
+            end
+            vim.lsp.diagnostic.on_publish_diagnostics(
+              nil,
+              vim.tbl_extend("keep", params, { diagnostics = result.items }),
+              { client_id = client.id }
+            )
+          end)
+        end
+
+        diagnostic_handler() -- to request diagnostics on buffer when first attaching
+
+        vim.api.nvim_buf_attach(buffer, false, {
+          on_lines = function()
+            if _timers[buffer] then
+              vim.fn.timer_stop(_timers[buffer])
+            end
+            _timers[buffer] = vim.fn.timer_start(200, diagnostic_handler)
+          end,
+          on_detach = function()
+            if _timers[buffer] then
+              vim.fn.timer_stop(_timers[buffer])
+            end
+          end,
+        })
+      end
+      nvim_lsp.ruby_ls.setup({
+        on_attach = function(client, buffer)
+          setup_diagnostics(client, buffer)
+        end,
+      })
     end,
   },
 
@@ -312,11 +360,11 @@ return {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
-      { "<leader>xx", "<cmd>TroubleToggle<cr>", desc = "TroubleToggle" },
+      { "<leader>xx", "<cmd>TroubleToggle<cr>",                       desc = "TroubleToggle" },
       { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "TroubleToggle workspace_diagnostics" },
-      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "TroubleToggle document_diagnostics" },
-      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>", desc = "TroubleToggle loclist" },
-      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", desc = "TroubleToggle quickfix" },
+      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",  desc = "TroubleToggle document_diagnostics" },
+      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>",               desc = "TroubleToggle loclist" },
+      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",              desc = "TroubleToggle quickfix" },
     },
     config = true,
   },
