@@ -10,7 +10,7 @@ modmap:
 keymap:
   - name: MacOS-like
     application:
-      not: ["wezterm", "kitty", "alacritty"]
+      not: ["wezterm", "kitty", "alacritty", "jetbrains-rubymine"]
     remap:
       # Cursor
       C-b: left
