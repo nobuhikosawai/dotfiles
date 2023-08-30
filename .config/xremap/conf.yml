@@ -10,26 +10,20 @@ modmap:
 keymap:
   - name: MacOS-like
     application:
-      not: ["wezterm", "kitty", "alacritty", "jetbrains-rubymine"]
+      not: ["wezterm", "kitty", "alacritty"] # terminal
     remap:
       # Cursor
       C-b: left
-      C-f: right
       C-p: up
       C-n: down
-      # Forward/Backward word
       M-b: C-left
       M-f: C-right
-      # Beginning/End of line
       C-a: home
       C-e: end
       # Super
-      SUPER-f: C-f
       SUPER-c: C-c
       SUPER-x: C-x
       SUPER-v: C-v
-      # SUPER-k: C-k
-      # SUPER-SHIFT-k: SUPER-SHIFT-k
       SUPER-t: C-t
       SUPER-r: C-r
       SUPER-s: C-s
@@ -37,16 +31,18 @@ keymap:
       SUPER-w: C-w
       SUPER-p: C-p
       SUPER-o: C-o
-      # SUPER-l: C-l
       SUPER-n: C-n
       SUPER-z: C-z
       C-h: Backspace
       C-d: delete
-      # Kill line
-      # C-k: [Shift-end, C-x]
+  - name: Ctrl-f
+    application:
+      not: ["wezterm", "kitty", "alacritty", "jetbrains-rubymine", "Code", "obsidian"] # terminal + apps that support vim key binding
+    remap:
+      C-f: right
+      SUPER-f: C-f
   - name: Google Chrome
     application:
       only: [google-chrome, Chromium]
     remap:
-      SUPER-d: M-d
       C-k: [Shift-end, C-x]
