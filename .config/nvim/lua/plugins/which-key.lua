@@ -51,7 +51,10 @@ return {
         },
         j = {
           name = "Harpoon",
-        }
+        },
+        o = {
+          name = 'Other',
+        },
       }, { prefix = "<leader>" })
     end,
   },

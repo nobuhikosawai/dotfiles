@@ -87,6 +87,18 @@ return {
         desc = "Flash Treesitter Search",
       },
       {
+        "L",
+        mode = { "n", "o", "x" },
+        function()
+          require("flash").jump({
+            search = { mode = "search", max_length = 0 },
+            label = { after = { 0, 0 } },
+            pattern = "^"
+          })
+        end,
+        desc = "Line Search",
+      },
+      {
         "<c-s>",
         mode = { "c" },
         function()

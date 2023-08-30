@@ -2,6 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
+    cmd = { 'Mason' },
     dependencies = {
       { "williamboman/mason.nvim", config = true },
       {
@@ -16,6 +17,8 @@ return {
             "astro",
             "prismals",
             "marksman",
+            "eslint",
+            "pyright"
           },
         },
       },
@@ -160,6 +163,9 @@ return {
       -- vue
       nvim_lsp.volar.setup {}
 
+      -- eslint
+      nvim_lsp.eslint.setup({})
+
       -- rust
       nvim_lsp.rust_analyzer.setup({
         on_attach = on_attach,
@@ -224,6 +230,10 @@ return {
           setup_diagnostics(client, buffer)
         end,
       })
+
+
+      -- python
+      nvim_lsp.pyright.setup({})
     end,
   },
 

@@ -6,6 +6,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
       "haydenmeade/neotest-jest",
+      "olimorris/neotest-rspec",
     },
     keys = {
       {
@@ -20,6 +21,11 @@ return {
         function() require('neotest').output_panel.toggle() end,
         desc = "Neotest output_panel toggle",
       },
+      {
+        "<leader>ts",
+        function() require('neotest').summary.toggle() end,
+        desc = "Neotest summary toggle",
+      }
     },
     config = function()
       require("neotest").setup({
@@ -31,6 +37,15 @@ return {
             jestCommand = "npm run test --",
             cwd = function(path)
               return vim.fn.getcwd()
+            end,
+          }),
+          require "neotest-rspec" ({
+            rspec_cmd = function()
+              return vim.tbl_flatten({
+                "bundle",
+                "exec",
+                "rspec",
+              })
             end,
           }),
         },

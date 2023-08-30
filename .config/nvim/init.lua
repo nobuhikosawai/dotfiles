@@ -5,6 +5,7 @@ require("config.lazy")
 -- Settings
 vim.opt.encoding = "utf-8"
 vim.opt.number = true
+vim.wo.relativenumber = true
 vim.opt.ruler = true
 vim.wo.listchars = "tab:>.,trail:_" --https://maku77.github.io/vim/settings/show-space.html
 vim.opt.list = true
@@ -43,7 +44,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.opt.termguicolors = true
-vim.cmd.colorscheme("catppuccin")
+-- vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("monokai-pro")
 
 vim.filetype.add({
 	extension = {

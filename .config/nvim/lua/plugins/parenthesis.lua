@@ -5,7 +5,7 @@ return {
     opts = {
       check_ts = true,
     },
-    enabled = false,
+    -- enabled = false,
   },
   { "kylechui/nvim-surround", version = "*", config = true, event = { "BufReadPre", "BufNewFile" } },
   {
@@ -13,7 +13,8 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       require('insx.preset.standard').setup()
-    end
+    end,
+    enabled=false,
   },
   {
     'HiPhish/rainbow-delimiters.nvim',
