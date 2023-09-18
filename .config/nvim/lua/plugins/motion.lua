@@ -1,58 +1,8 @@
 return {
-  { "ggandor/leap.nvim", enabled = false },
-  {
-    "phaazon/hop.nvim",
-    branch = "v2",
-    event = { "BufReadPost", "BufNewFile" },
-    config = true,
-    enabled = false,
-    init = function()
-      vim.api.nvim_set_keymap(
-        "",
-        "f",
-        "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true })<cr>",
-        {}
-      )
-      vim.api.nvim_set_keymap(
-        "",
-        "F",
-        "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true })<cr>",
-        {}
-      )
-      vim.api.nvim_set_keymap(
-        "",
-        "t",
-        "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, hint_offset = -1 })<cr>",
-        {}
-      )
-      vim.api.nvim_set_keymap(
-        "",
-        "T",
-        "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 })<cr>",
-        {}
-      )
-
-      vim.keymap.set("n", "<leader>hp", "<cmd>HopPattern<cr>", { desc = "HopPattern" })
-      -- vim.keymap.set('n', '<leader>hc',  '<cmd>HopChar2<cr>', { desc = "HopChar2" })
-      vim.keymap.set("n", "s", "<cmd>HopChar2<cr>", { desc = "HopChar2" }) -- like leap use `s` here
-      vim.keymap.set("n", "<leader>hw", "<cmd>HopWord<cr>", { desc = "HopWord" })
-      vim.keymap.set("n", "<leader>hv", "<cmd>HopLineStart<cr>", { desc = "HopLineStart" })
-    end,
-  },
   {
     "folke/flash.nvim",
     event = "VeryLazy",
-    enabled = true,
-    opts = {
-      jump = {
-        autojump = true,
-      },
-      -- modes = {
-      --   char = {
-      --     multi_line = false
-      --   }
-      -- }
-    },
+    enabled = false,
     keys = {
       {
         "s",
@@ -106,6 +56,55 @@ return {
         end,
         desc = "Toggle Flash Search",
       },
+      {
+        "<c-s>",
+        mode = { "n", "o", "x" },
+        function()
+          local Flash = require("flash")
+
+          ---@param opts Flash.Format
+          local function format(opts)
+            -- always show first and second label
+            return {
+              { opts.match.label1, "FlashMatch" },
+              { opts.match.label2, "FlashLabel" },
+            }
+          end
+
+          Flash.jump({
+            search = { mode = "search" },
+            label = { after = false, before = { 0, 0 }, uppercase = false, format = format },
+            pattern = [[\<]],
+            action = function(match, state)
+              state:hide()
+              Flash.jump({
+                search = { max_length = 0 },
+                highlight = { matches = false },
+                label = { format = format },
+                matcher = function(win)
+                  -- limit matches to the current label
+                  return vim.tbl_filter(function(m)
+                    return m.label == match.label and m.win == win
+                  end, state.results)
+                end,
+                labeler = function(matches)
+                  for _, m in ipairs(matches) do
+                    m.label = m.label2 -- use the second label
+                  end
+                end,
+              })
+            end,
+            labeler = function(matches, state)
+              local labels = state:labels()
+              for m, match in ipairs(matches) do
+                match.label1 = labels[math.floor((m - 1) / #labels) + 1]
+                match.label2 = labels[(m - 1) % #labels + 1]
+                match.label = match.label1
+              end
+            end,
+          })
+        end,
+      }
     },
   }
 }

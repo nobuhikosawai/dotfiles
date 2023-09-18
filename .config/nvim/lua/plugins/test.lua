@@ -6,6 +6,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
       "haydenmeade/neotest-jest",
+      'marilari88/neotest-vitest',
       "olimorris/neotest-rspec",
     },
     keys = {
@@ -48,6 +49,7 @@ return {
               })
             end,
           }),
+          require("neotest-vitest")
         },
       })
     end,

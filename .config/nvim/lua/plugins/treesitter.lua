@@ -13,6 +13,10 @@ return {
       local ts = require("nvim-treesitter.configs")
 
       ts.setup({
+        auto_install = true,
+        ignore_install = {},
+        sync_install = false,
+        modules = {},
         highlight = {
           enable = true,
         },
@@ -124,4 +128,6 @@ return {
   },
 
   { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
+
+  { "nvim-treesitter/nvim-treesitter-context", event = { "BufReadPost", "BufNewFile" } },
 }

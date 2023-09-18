@@ -1,4 +1,4 @@
-vim.g.mapleader = "," -- call this before setting up lazy.nvim
+vim.g.mapleader = " " -- call this before setting up lazy.nvim
 
 require("config.lazy")
 
@@ -52,3 +52,6 @@ vim.filetype.add({
 		mdx = 'mdx'
 	}
 })
+
+vim.opt.spell = true
+vim.opt.spelllang = { 'en_us' }

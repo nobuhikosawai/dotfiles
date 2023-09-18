@@ -48,7 +48,7 @@ return {
         -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
         vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+        -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
         vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
         -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
         -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
@@ -56,10 +56,10 @@ return {
         --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
         -- end, bufopts)
         -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-        vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, bufopts) -- suggested keymap is <leader>rn
+        vim.keymap.set("n", ",lr", vim.lsp.buf.rename, bufopts) -- suggested keymap is <leader>rn
         -- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-        vim.keymap.set("n", "<space>lf", function()
+        vim.keymap.set("n", ",gr", vim.lsp.buf.references, bufopts)
+        vim.keymap.set("n", ",lf", function()
           vim.lsp.buf.format({ async = true })
         end, bufopts) -- suggested keymap is <leader>f
       end
@@ -254,6 +254,7 @@ return {
           require("copilot_cmp").setup()
         end,
       }, -- copilot
+      "f3fora/cmp-spell",
     },
     event = "InsertEnter",
     config = function()
@@ -310,6 +311,15 @@ return {
           { name = "luasnip" },
           { name = "copilot" },
           { name = "buffer" },
+          {
+              name = 'spell',
+              option = {
+                  keep_all_entries = false,
+                  enable_in_context = function()
+                      return true
+                  end,
+              },
+          },
         }),
         formatting = {
           format = lspkind.cmp_format({
@@ -357,7 +367,7 @@ return {
     branch = "main",
     event = { "BufReadPre", "BufNewFile" },
     keys = {
-      { "<leader>ca", "<cmd>Lspsaga code_action<CR>", desc = "code action", mode = { "n", "v" } },
+      { ",ca", "<cmd>Lspsaga code_action<CR>", desc = "code action", mode = { "n", "v" } },
     },
     opts = {
       symbol_in_winbar = {
