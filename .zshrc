@@ -235,7 +235,7 @@ function git-fixup() {
       local commits="No staged changes. Use git add -p to add them."
       local ret=1
   else
-      local commits=$(git log --oneline -n 20)
+      local commits=$(git log --oneline -n 30)
       local ret=$?
   fi
 
@@ -349,3 +349,7 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# flyctl by fly.io
+export FLYCTL_INSTALL="/home/nobuhikosawai/.fly"
+export PATH="$FLYCTL_INSTALL/bin:$PATH"
