@@ -10,7 +10,7 @@ modmap:
 keymap:
   - name: MacOS-like
     application:
-      not: ["wezterm", "kitty", "alacritty"] # terminal
+      not: ["wezterm", "kitty", "alacritty", "Code"] # terminal
     remap:
       # Cursor
       C-b: left
