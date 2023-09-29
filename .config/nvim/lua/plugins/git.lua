@@ -8,7 +8,7 @@ return {
     cmd = { "DiffviewOpen", "DiffviewClose", "DiffviewToggleFiles", "DiffviewFocusFiles" },
   },
   { "dinhhuy258/git.nvim",     config = true,                          event = { "BufReadPre", "BufNewFile" } },
-  { 'TimUntersberger/neogit',  dependencies = 'nvim-lua/plenary.nvim', cmd = { "Neogit" },                    config = true },
+  { 'TimUntersberger/neogit',  dependencies = 'nvim-lua/plenary.nvim', cmd = { "Neogit" },                    config = true, enabled = false },
   {
     'akinsho/git-conflict.nvim',
     version = "*",

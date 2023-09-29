@@ -29,7 +29,6 @@ return {
     cmd = "Neotree",
     keys = {
       { "\\",         "<cmd>Neotree toggle<cr>",  desc = "NeoTree" },
-      { "<leader>nb", "<cmd>Neotree buffers<cr>", desc = "Neotree buffers" },
     },
     config = function()
       -- lsp integration

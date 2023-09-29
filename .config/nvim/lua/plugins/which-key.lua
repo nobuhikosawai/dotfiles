@@ -28,9 +28,6 @@ return {
         t = {
           name = "Neotest",
         },
-        h = {
-          name = "Hop",
-        },
         m = {
           name = "ToggleTerm",
         },
@@ -40,16 +37,13 @@ return {
         b = {
           name = "Bufferline",
         },
-        n = {
-          name = "Neotree",
-        },
         r = {
           name = "refactoring",
         },
         s = {
           name = "Search/replace",
         },
-        j = {
+        h = {
           name = "Harpoon",
         },
         o = {

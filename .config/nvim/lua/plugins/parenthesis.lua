@@ -5,7 +5,7 @@ return {
     opts = {
       check_ts = true,
     },
-    -- enabled = false,
+    enabled = false,
   },
   { "kylechui/nvim-surround", version = "*", config = true, event = { "BufReadPre", "BufNewFile" } },
   {

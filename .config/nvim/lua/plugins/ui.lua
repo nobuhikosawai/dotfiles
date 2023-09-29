@@ -25,10 +25,8 @@ return {
     init = function()
       vim.keymap.set("n", "[b", ":bprevious<CR>", {})
       vim.keymap.set("n", "]b", ":bnext<CR>", {})
-      vim.keymap.set("n", "¬", ":bnext<CR>", {}) -- This is for alacritty. fix proper keymap
-      vim.keymap.set("n", "˙", ":bprev<CR>", {}) -- This is for alacritty. fix proper keymap
-      vim.keymap.set("n", "<A-l>", ":bnext<CR>", {}) -- This is for alacritty. fix proper keymap
-      vim.keymap.set("n", "<A-h>", ":bprev<CR>", {}) -- This is for alacritty. fix proper keymap
+      vim.keymap.set("n", "<A-l>", ":bnext<CR>", {})
+      vim.keymap.set("n", "<A-h>", ":bprev<CR>", {})
     end,
     config = true,
   },
