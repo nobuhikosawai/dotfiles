@@ -403,6 +403,11 @@ return {
       })
     end,
   },
+  {
+    'simrat39/symbols-outline.nvim',
+    cmd = {"SymbolsOutline", "SymbolsOutlineOpen"},
+    config = true,
+  },
 
   {
     "RRethy/vim-illuminate",

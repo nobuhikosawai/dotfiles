@@ -8,6 +8,7 @@ return {
       { "<space>fg", function() require("telescope.builtin").live_grep() end,  desc = "Telescope live_grep", },
       { "<space>ff", function() require("telescope.builtin").find_files() end, desc = "Telescope find_files", },
       { "<space>fb", function() require("telescope.builtin").buffers() end,    desc = "Telescope find_buffers", },
+      { "<space>fs", function() require("telescope.builtin").git_status({initial_mode = 'normal'}) end,    desc = "Telescope git_status", },
       -- Telescope plugin commands
       -- File browser
       {
@@ -35,7 +36,7 @@ return {
       -- recent_files
       { "<space>fr", "<cmd>lua require('telescope').extensions.recent_files.pick()<CR>", desc = "Telescope recent_files" },
       --harpoon
-      { "<space>fj", "<cmd>Telescope harpoon marks<cr>",                                 desc = "Telescope harpoon marks" },
+      { "<space>fh", "<cmd>Telescope harpoon marks<cr>",                                 desc = "Telescope harpoon marks" },
     },
     config = function()
       local fb_actions = require("telescope").extensions.file_browser.actions

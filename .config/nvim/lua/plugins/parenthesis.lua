@@ -17,10 +17,11 @@ return {
     enabled=false,
   },
   {
-    'HiPhish/rainbow-delimiters.nvim',
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require('rainbow-delimiters.setup')({})
-    end
+    'altermo/ultimate-autopair.nvim',
+    event={'InsertEnter','CmdlineEnter'},
+    branch='v0.6',
+    opts={
+        --Config goes here
+    },
   }
 }
