@@ -43,7 +43,14 @@ return {
     "folke/todo-comments.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = { "nvim-lua/plenary.nvim" },
-    config = true,
+    config = {
+      -- sign only
+      highlight = {
+        before = "",
+        keyword = "",
+        after = "",
+      },
+    },
   },
 
   -- copilot
