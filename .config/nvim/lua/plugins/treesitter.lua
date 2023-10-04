@@ -129,5 +129,5 @@ return {
 
   { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
 
-  { "nvim-treesitter/nvim-treesitter-context", event = { "BufReadPost", "BufNewFile" } },
+  { "nvim-treesitter/nvim-treesitter-context", event = { "BufReadPost", "BufNewFile" }, cmd = {'TSContextEnable', 'TSContextDisable', 'TSContextToggle' }, opts = { max_lines = 3 } },
 }

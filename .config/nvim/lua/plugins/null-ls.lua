@@ -4,18 +4,12 @@ return {
     "mfussenegger/nvim-lint",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
-      require("lint").linters_by_ft = {
-        -- python = {
-        --   "pylint"
-        -- },
-      }
-
       vim.api.nvim_create_autocmd({ "InsertLeave", "BufWritePost", "BufWinEnter" }, {
-          callback = function()
-            require("lint").try_lint()
-          end,
+        callback = function()
+          require("lint").try_lint()
+        end,
       })
-    end
+    end,
   },
   {
     "mhartington/formatter.nvim",
@@ -26,29 +20,29 @@ return {
       require("formatter").setup({
         filetype = {
           javascript = {
-            defaults.prettierd
+            defaults.prettierd,
           },
           javascriptreact = {
-            defaults.prettierd
+            defaults.prettierd,
           },
           typescript = {
-            defaults.prettierd
+            defaults.prettierd,
           },
           typescriptreact = {
-            defaults.prettierd
+            defaults.prettierd,
           },
           lua = {
-            defaults.stylua
+            filetypes.lua.stylua,
           },
           python = {
-            filetypes.python.black
-          }
-        }
+            filetypes.python.black,
+          },
+        },
       })
 
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-        command = 'FormatWrite'
+        command = "FormatWrite",
       })
-    end
-  }
+    end,
+  },
 }

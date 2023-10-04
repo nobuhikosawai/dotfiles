@@ -2,7 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
-    cmd = { 'Mason' },
+    cmd = { "Mason" },
     dependencies = {
       { "williamboman/mason.nvim", config = true },
       {
@@ -127,9 +127,9 @@ return {
       -- }
       require("typescript").setup({
         disable_commands = false, -- prevent the plugin from creating Vim commands
-        debug = false,            -- enable debug logging for commands
+        debug = false, -- enable debug logging for commands
         go_to_source_definition = {
-          fallback = true,        -- fall back to standard LSP definition on failure
+          fallback = true, -- fall back to standard LSP definition on failure
         },
         server = {
           -- pass options to lspconfig's setup method
@@ -172,7 +172,7 @@ return {
       })
 
       -- vue
-      nvim_lsp.volar.setup {}
+      nvim_lsp.volar.setup({})
 
       -- eslint
       nvim_lsp.eslint.setup({})
@@ -241,7 +241,6 @@ return {
           setup_diagnostics(client, buffer)
         end,
       })
-
 
       -- python
       nvim_lsp.pyright.setup({})
@@ -323,13 +322,13 @@ return {
           { name = "copilot" },
           { name = "buffer" },
           {
-              name = 'spell',
-              option = {
-                  keep_all_entries = false,
-                  enable_in_context = function()
-                      return true
-                  end,
-              },
+            name = "spell",
+            option = {
+              keep_all_entries = false,
+              enable_in_context = function()
+                return true
+              end,
+            },
           },
         }),
         formatting = {
@@ -391,11 +390,11 @@ return {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
-      { "<leader>xx", "<cmd>TroubleToggle<cr>",                       desc = "TroubleToggle" },
+      { "<leader>xx", "<cmd>TroubleToggle<cr>", desc = "TroubleToggle" },
       { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "TroubleToggle workspace_diagnostics" },
-      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",  desc = "TroubleToggle document_diagnostics" },
-      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>",               desc = "TroubleToggle loclist" },
-      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",              desc = "TroubleToggle quickfix" },
+      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "TroubleToggle document_diagnostics" },
+      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>", desc = "TroubleToggle loclist" },
+      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", desc = "TroubleToggle quickfix" },
     },
     config = true,
   },
@@ -415,8 +414,8 @@ return {
     end,
   },
   {
-    'simrat39/symbols-outline.nvim',
-    cmd = {"SymbolsOutline", "SymbolsOutlineOpen"},
+    "simrat39/symbols-outline.nvim",
+    cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
     config = true,
   },
 
