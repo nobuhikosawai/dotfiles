@@ -6,7 +6,6 @@ return {
       vim.o.timeout = true
       vim.o.timeoutlen = 300
     end,
-    -- event = "VeryLazy",
     keys = { "<leader>" },
     config = function()
       local wk = require("which-key")
@@ -26,6 +25,9 @@ return {
           name = "Aerial",
         },
         t = {
+          name = "Typescript",
+        },
+        T = {
           name = "Neotest",
         },
         m = {
@@ -47,7 +49,7 @@ return {
           name = "Harpoon",
         },
         o = {
-          name = 'Other',
+          name = "Other",
         },
       }, { prefix = "<leader>" })
     end,

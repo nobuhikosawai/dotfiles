@@ -6,27 +6,31 @@ return {
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
       "haydenmeade/neotest-jest",
-      'marilari88/neotest-vitest',
+      "marilari88/neotest-vitest",
       "olimorris/neotest-rspec",
     },
     keys = {
       {
-        "<leader>tt",
+        "<leader>Tr",
         function()
           require("neotest").run.run(vim.fn.expand("%"))
         end,
         desc = "Neotest run current file",
       },
       {
-        "<leader>to",
-        function() require('neotest').output_panel.toggle() end,
+        "<leader>To",
+        function()
+          require("neotest").output_panel.toggle()
+        end,
         desc = "Neotest output_panel toggle",
       },
       {
-        "<leader>ts",
-        function() require('neotest').summary.toggle() end,
+        "<leader>Ts",
+        function()
+          require("neotest").summary.toggle()
+        end,
         desc = "Neotest summary toggle",
-      }
+      },
     },
     config = function()
       require("neotest").setup({
@@ -40,7 +44,7 @@ return {
               return vim.fn.getcwd()
             end,
           }),
-          require "neotest-rspec" ({
+          require("neotest-rspec")({
             rspec_cmd = function()
               return vim.tbl_flatten({
                 "bundle",
@@ -49,7 +53,7 @@ return {
               })
             end,
           }),
-          require("neotest-vitest")
+          require("neotest-vitest"),
         },
       })
     end,

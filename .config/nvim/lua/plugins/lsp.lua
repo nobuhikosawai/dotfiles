@@ -131,6 +131,8 @@ return {
           capabilities = capabilities,
         },
       })
+      vim.api.nvim_set_keymap("n", "<leader>tr", ":TypescriptRemoveUnused<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("n", "<leader>ta", ":TypescriptAddMissingImports<CR>", { noremap = true, silent = true })
 
       -- tailwindcss
       nvim_lsp.tailwindcss.setup({
