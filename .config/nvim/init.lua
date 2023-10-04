@@ -44,8 +44,8 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.opt.termguicolors = true
--- vim.cmd.colorscheme("catppuccin")
-vim.cmd.colorscheme("monokai-pro")
+vim.cmd.colorscheme("catppuccin")
+-- vim.cmd.colorscheme("rose-pine")
 
 vim.filetype.add({
 	extension = {

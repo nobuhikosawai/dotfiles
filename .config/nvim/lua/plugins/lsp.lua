@@ -18,11 +18,20 @@ return {
             "prismals",
             "marksman",
             "eslint",
-            "pyright"
+            "pyright",
           },
         },
       },
-      { "j-hui/fidget.nvim",       tag = "legacy", config = true },
+      {
+        "j-hui/fidget.nvim",
+        tag = "legacy",
+        config = true,
+        opts = {
+          window = {
+            blend = 0,
+          },
+        },
+      },
       ----  Language specific plugins
       "jose-elias-alvarez/typescript.nvim",
     },

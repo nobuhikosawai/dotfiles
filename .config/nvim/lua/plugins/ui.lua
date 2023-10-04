@@ -16,8 +16,8 @@ return {
   -- bufferline
   {
     "akinsho/bufferline.nvim",
-    version = "v3.*",
-    dependencies = "nvim-tree/nvim-web-devicons",
+    version = "v4.*",
+    dependencies = { "nvim-tree/nvim-web-devicons", "catppuccin/nvim" },
     event = "VeryLazy",
     keys = {
       { "<leader>bb", "<cmd>BufferLinePick<cr>", desc = "BufferLinePick" },
@@ -28,7 +28,12 @@ return {
       vim.keymap.set("n", "<A-l>", ":bnext<CR>", {})
       vim.keymap.set("n", "<A-h>", ":bprev<CR>", {})
     end,
-    config = true,
+    config = function()
+      -- use catppuccin theme
+      require("bufferline").setup({
+        highlights = require("catppuccin.groups.integrations.bufferline").get(),
+      })
+    end,
   },
 
   -- window transparent
