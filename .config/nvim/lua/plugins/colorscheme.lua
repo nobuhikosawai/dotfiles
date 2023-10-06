@@ -1,6 +1,9 @@
 return {
-  { "catppuccin/nvim",
+  {
+    "catppuccin/nvim",
     name = "catppuccin",
+    lazy = false,
+    priority = 1000,
     opts = {
       integrations = {
         aerial = true,
@@ -11,20 +14,48 @@ return {
         neotree = true,
         treesitter_context = true,
         which_key = true,
-      }
-    }
+      },
+      color_overrides = {
+        mocha = {
+          rosewater = "#f4d9cd",
+          flamingo = "#f1c0b8",
+          pink = "#f3b8d0",
+          mauve = "#d39ae4",
+          red = "#f4688a",
+          maroon = "#e68588",
+          peach = "#f8a068",
+          yellow = "#fad78c",
+          green = "#9ac47a",
+          teal = "#82c9a0",
+          sky = "#78c69c",
+          sapphire = "#69b08c",
+          blue = "#7da0b5",
+          lavender = "#a9a4e1",
+          text = "#c1c4ce",
+          subtext1 = "#a7a9b4",
+          subtext0 = "#909297",
+          overlay2 = "#7e8088",
+          overlay1 = "#6b6c75",
+          overlay0 = "#57585f",
+          surface2 = "#46464e",
+          surface1 = "#36363d",
+          surface0 = "#25252b",
+          base = "#1a1a20",
+          mantle = "#141416",
+          crust = "#0c0c10",
+        },
+      },
+    },
   },
-  { "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-  },
+  { "folke/tokyonight.nvim", lazy = false, priority = 1000 },
   "cocopon/iceberg.vim",
-  { "loctvl842/monokai-pro.nvim",
+  {
+    "loctvl842/monokai-pro.nvim",
     lazy = false,
     priority = 1000,
     config = function()
       require("monokai-pro").setup()
-    end
+    end,
   },
-  { 'rose-pine/neovim', name = 'rose-pine', lazy = false, priority = 1000 },
+  { "rose-pine/neovim", name = "rose-pine", lazy = false, priority = 1000 },
 }
