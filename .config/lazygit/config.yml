@@ -8,5 +8,6 @@ keybinding:
     return: "q" # return to previous menu, will quit if there's nowhere to return
 quitOnTopLevelReturn: true
 os:
+  editPreset: 'nvim'
   edit: "nvr -l {{filename}}" # using neovim-remote. see: https://github.com/mhinz/neovim-remote
   open: "code -rg {{filename}}"
