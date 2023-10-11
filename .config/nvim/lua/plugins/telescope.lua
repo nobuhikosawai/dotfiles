@@ -1,14 +1,37 @@
 return {
   {
     "nvim-telescope/telescope.nvim",
-    version = "0.1.1",
     dependencies = { "nvim-lua/plenary.nvim" },
     -- stylua: ignore
     keys = {
-      { "<space>fg", function() require("telescope.builtin").live_grep() end,  desc = "Telescope live_grep", },
-      { "<space>ff", function() require("telescope.builtin").find_files() end, desc = "Telescope find_files", },
-      { "<space>fb", function() require("telescope.builtin").buffers() end,    desc = "Telescope find_buffers", },
-      { "<space>fs", function() require("telescope.builtin").git_status({initial_mode = 'normal'}) end,    desc = "Telescope git_status", },
+      {
+        "<space>fg",
+        function()
+          require("telescope.builtin").live_grep()
+        end,
+        desc = "Telescope live_grep",
+      },
+      {
+        "<space>ff",
+        function()
+          require("telescope.builtin").find_files()
+        end,
+        desc = "Telescope find_files",
+      },
+      {
+        "<space>fb",
+        function()
+          require("telescope.builtin").buffers()
+        end,
+        desc = "Telescope find_buffers",
+      },
+      {
+        "<space>fs",
+        function()
+          require("telescope.builtin").git_status({ initial_mode = "normal" })
+        end,
+        desc = "Telescope git_status",
+      },
       -- Telescope plugin commands
       -- File browser
       {
@@ -30,13 +53,21 @@ return {
         desc = "Telescope file_browser",
       },
       -- neoclip
-      { "<space>fy", "<cmd>Telescope neoclip<cr>",                                       desc = "Telescope neoclip" },
+      { "<space>fy", "<cmd>Telescope neoclip<cr>", desc = "Telescope neoclip" },
       -- frecency
-      { "<space>fR", "<cmd>Telescope frecency<cr>",                                      desc = "Telescope frecency" },
+      { "<space>fR", "<cmd>Telescope frecency<cr>", desc = "Telescope frecency" },
       -- recent_files
-      { "<space>fr", "<cmd>lua require('telescope').extensions.recent_files.pick()<CR>", desc = "Telescope recent_files" },
+      {
+        "<space>fr",
+        "<cmd>lua require('telescope').extensions.recent_files.pick()<CR>",
+        desc = "Telescope recent_files",
+      },
       --harpoon
-      { "<space>fh", "<cmd>Telescope harpoon marks<cr>",                                 desc = "Telescope harpoon marks" },
+      {
+        "<space>fh",
+        "<cmd>Telescope harpoon marks<cr>",
+        desc = "Telescope harpoon marks",
+      },
     },
     config = function()
       local fb_actions = require("telescope").extensions.file_browser.actions
