@@ -209,12 +209,13 @@ return {
               local err_msg = string.format("diagnostics error - %s", vim.inspect(err))
               vim.lsp.log.error(err_msg)
             end
-            if not result then
-              return
+            local diagnostic_items = {}
+            if result then
+              diagnostic_items = result.items
             end
             vim.lsp.diagnostic.on_publish_diagnostics(
               nil,
-              vim.tbl_extend("keep", params, { diagnostics = result.items }),
+              vim.tbl_extend("keep", params, { diagnostics = diagnostic_items }),
               { client_id = client.id }
             )
           end)
@@ -236,6 +237,7 @@ return {
           end,
         })
       end
+
       nvim_lsp.ruby_ls.setup({
         on_attach = function(client, buffer)
           setup_diagnostics(client, buffer)

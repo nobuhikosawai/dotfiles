@@ -76,6 +76,12 @@ return {
           cterm_color = "65",
           name = "StorybookTsx",
         },
+        ["stories.ts"] = {
+          icon = "",
+          color = "#ff4785",
+          cterm_color = "65",
+          name = "StorybookTsx",
+        },
       },
     },
   },

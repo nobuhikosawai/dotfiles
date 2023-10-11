@@ -31,6 +31,9 @@ return {
           typescriptreact = {
             defaults.prettierd,
           },
+          vue = {
+            defaults.prettierd,
+          },
           lua = {
             filetypes.lua.stylua,
           },
