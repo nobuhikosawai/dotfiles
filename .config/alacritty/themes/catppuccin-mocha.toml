@@ -73,27 +73,3 @@ text = "#1E1E2E"
 [colors.vi_mode_cursor]
 cursor = "#B4BEFE"
 text = "#1E1E2E"
-
-[font.bold]
-family = "JetBrains Mono Nerd Font"
-style = "Bold"
-
-[font.italic]
-family = "JetBrains Mono Nerd Font"
-style = "Italic"
-
-[font.normal]
-family = "JetBrains Mono Nerd Font"
-style = "Regular"
-
-[font]
-size = 15.0
-
-[env]
-TERM = "alacritty"
-
-[keyboard]
-bindings = [
-  { key="v", mods="SUPER", action="Paste" },
-  { key="c", mods="SUPER", action="Copy" },
-]
