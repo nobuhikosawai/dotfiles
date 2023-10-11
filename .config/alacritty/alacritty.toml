@@ -1,78 +1,78 @@
 [[colors.indexed_colors]]
-color = "#FAB387"
+color = "#f8a068"
 index = 16
 
 [[colors.indexed_colors]]
-color = "#F5E0DC"
+color = "#f4d9cd"
 index = 17
 
 [colors.bright]
-black = "#585B70"
-blue = "#89B4FA"
-cyan = "#94E2D5"
-green = "#A6E3A1"
-magenta = "#F5C2E7"
-red = "#F38BA8"
-white = "#A6ADC8"
-yellow = "#F9E2AF"
+black = "#46464e"
+blue = "#7da0b5"
+cyan = "#82c9a0"
+green = "#9ac47a"
+magenta = "#f3b8d0"
+red = "#f4688a"
+white = "#909297"
+yellow = "#fad78c"
 
 [colors.cursor]
-cursor = "#F5E0DC"
-text = "#1E1E2E"
+cursor = "#f4d9cd"
+text = "#0c0c10"
 
 [colors.dim]
-black = "#45475A"
-blue = "#89B4FA"
-cyan = "#94E2D5"
-green = "#A6E3A1"
-magenta = "#F5C2E7"
-red = "#F38BA8"
-white = "#BAC2DE"
-yellow = "#F9E2AF"
+black = "#36363d"
+blue = "#7da0b5"
+cyan = "#82c9a0"
+green = "#9ac47a"
+magenta = "#f3b8d0"
+red = "#f4688a"
+white = "#a7a9b4"
+yellow = "#fad78c"
 
 [colors.hints.end]
-background = "#A6ADC8"
-foreground = "#1E1E2E"
+background = "#909297"
+foreground = "#0c0c10"
 
 [colors.hints.start]
-background = "#F9E2AF"
-foreground = "#1E1E2E"
+background = "#fad78c"
+foreground = "#0c0c10"
 
 [colors.normal]
-black = "#45475A"
-blue = "#89B4FA"
-cyan = "#94E2D5"
-green = "#A6E3A1"
-magenta = "#F5C2E7"
-red = "#F38BA8"
-white = "#BAC2DE"
-yellow = "#F9E2AF"
+black = "#36363d"
+blue = "#7da0b5"
+cyan = "#82c9a0"
+green = "#9ac47a"
+magenta = "#f3b8d0"
+red = "#f4688a"
+white = "#a7a9b4"
+yellow = "#fad78c"
 
 [colors.primary]
-background = "#1E1E2E"
-bright_foreground = "#CDD6F4"
-dim_foreground = "#CDD6F4"
-foreground = "#CDD6F4"
+background = "#1a1a20"
+bright_foreground = "#c1c4ce"
+dim_foreground = "#c1c4ce"
+foreground = "#c1c4ce"
 
 [colors.search.focused_match]
-background = "#A6E3A1"
-foreground = "#1E1E2E"
+background = "#9ac47a"
+foreground = "#0c0c10"
 
 [colors.footer_bar]
-background = "#A6ADC8"
-foreground = "#1E1E2E"
+background = "#909297"
+foreground = "#0c0c10"
 
 [colors.search.matches]
-background = "#A6ADC8"
-foreground = "#1E1E2E"
+background = "#909297"
+foreground = "#0c0c10"
 
 [colors.selection]
-background = "#F5E0DC"
-text = "#1E1E2E"
+background = "#f4d9cd"
+text = "#0c0c10"
 
 [colors.vi_mode_cursor]
-cursor = "#B4BEFE"
-text = "#1E1E2E"
+cursor = "#a9a4e1"
+text = "#0c0c10"
 
 [font.bold]
 family = "JetBrains Mono Nerd Font"
@@ -97,5 +97,4 @@ bindings = [
   { key="v", mods="SUPER", action="Paste" },
   { key="c", mods="SUPER", action="Copy" },
 ]
-
 
