@@ -19,7 +19,7 @@ config.font = wezterm.font_with_fallback({
 	{
 		family = "JetBrainsMono Nerd Font",
 	},
-	"Ubuntu Mono",
+  "Noto Sans"
 })
 config.font_size = 15
 config.freetype_load_target = "Light"
