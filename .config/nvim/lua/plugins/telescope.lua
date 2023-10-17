@@ -134,7 +134,7 @@ return {
           },
           frecency = {
             show_unindexed = false,
-            default_workspace = ":CWD:",
+            default_workspace = "CWD",
           },
           recent_files = {
             only_cwd = true,
@@ -148,10 +148,7 @@ return {
   "nvim-telescope/telescope-file-browser.nvim",
 
   -- Frequency
-  {
-    "nvim-telescope/telescope-frecency.nvim",
-    dependencies = { "kkharji/sqlite.lua" },
-  },
+  "nvim-telescope/telescope-frecency.nvim",
 
-  { "smartpde/telescope-recent-files" },
+  "smartpde/telescope-recent-files",
 }

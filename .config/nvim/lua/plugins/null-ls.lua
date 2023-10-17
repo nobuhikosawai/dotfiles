@@ -40,6 +40,9 @@ return {
           python = {
             filetypes.python.black,
           },
+          rust = {
+            filetypes.rust.rustfmt,
+          },
         },
       })
 
