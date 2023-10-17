@@ -1,0 +1,31 @@
+/* Customized Catppuccin */
+@define-color base   #1a1a20;
+@define-color mantle #15151a;
+@define-color crust  #0f0f14;
+
+@define-color text     #c1c4ce;
+@define-color subtext0 #a4a7b2;
+@define-color subtext1 #b8bbca;
+
+@define-color surface0 #2d2d33;
+@define-color surface1 #3e3e48;
+@define-color surface2 #4f4f5c;
+
+@define-color overlay0 #646478;
+@define-color overlay1 #77778a;
+@define-color overlay2 #8a8a9d;
+
+@define-color blue      #7da0b5;
+@define-color lavender  #9db0c4;
+@define-color sapphire  #68b4c8;
+@define-color sky       #82b8d6;
+@define-color teal      #82c9a0;
+@define-color green     #9ac47a;
+@define-color yellow    #fad78c;
+@define-color peach     #f8a068;
+@define-color maroon    #f5768a;
+@define-color red       #f4688a;
+@define-color mauve     #f3b8d0;
+@define-color pink      #f4688a;
+@define-color flamingo  #f2ac9d;
+@define-color rosewater #f6d0c0;

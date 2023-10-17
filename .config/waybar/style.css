@@ -1,0 +1,176 @@
+@import "themes/theme.css";
+
+* {
+  border: none;
+  border-radius: 0px;
+  font-family: "Inter Nerd Font";
+  font-weight: bold;
+  font-size: 16px;
+}
+
+window#waybar {
+  background: transparent;
+}
+
+window#waybar.hidden {
+  opacity: 0.2;
+}
+
+button {
+  /* box-shadow: inset 0 -3px transparent; */
+  background: transparent;
+  border: none;
+}
+
+tooltip {
+  background: @crust;
+  color: @text;
+  border-radius: 7px; border-width: 0px;
+}
+
+#workspaces {
+  border-radius: 10px;
+}
+
+#workspaces button {
+  border-radius: 1rem;
+  padding: 4px;
+  color: @text;
+}
+
+#workspaces button.active {
+  color: @flamingo;
+}
+
+#workspaces button:hover {
+  color: @rosewater;
+}
+
+#workspaces button.urgent {
+  background-color: @red;
+}
+
+/* #taskbar button { */
+/*   border-radius: 9px; */
+/*   margin-top: 3px; */
+/*   margin-bottom: 3px; */
+/*   padding-left: 3px; */
+/*   padding-right: 3px; */
+/*   color: @wb-color; */
+/* } */
+/**/
+/* #taskbar button.active { */
+/*   background: @subtext0; */
+/*   margin-left: 3px; */
+/*   padding-left: 12px; */
+/*   padding-right: 12px; */
+/*   margin-right: 3px; */
+/* } */
+/**/
+/* #taskbar button:hover { */
+/*   background: @pink; */
+/*   padding-left: 3px; */
+/*   padding-right: 3px; */
+/* } */
+
+#window {
+  color: @text;
+}
+
+#battery,
+#backlight,
+#bluetooth,
+#clock,
+#cpu,
+#idle_inhibitor,
+#memory,
+#network,
+#pulseaudio,
+#taskbar,
+#temperature,
+#tray,
+#window {
+  opacity: 1;
+  background-color: @base;
+  /* padding: 10px 5px 10px 5px; */
+  padding: 4px;
+}
+
+#idle_inhibitor {
+  color: @text;
+}
+
+#pulseaudio {
+  color: @teal;
+}
+
+#pulseaudio.muted {
+  color: @red;
+}
+
+#bluetooth {
+  color: @blue;
+}
+
+#network {
+  color: @flamingo;
+}
+
+#network.disconnected {
+  background-color: @red;
+}
+
+#cpu {
+  color: @sky;
+}
+
+#memory {
+  color: @lavender;
+}
+
+#temperature {
+  color: @maroon;
+}
+
+#temperature.critical {
+  background-color: @red;
+  color: @text;
+}
+
+#backlight {
+  color: @yellow;
+}
+
+#battery {
+  color: @green;
+}
+
+#battery.charging, #battery.plugged {
+  color: @green;
+}
+
+@keyframes blink {
+  to {
+    background-color: #ffffff;
+    color: #000000;
+  }
+}
+
+#battery.critical:not(.charging) {
+  background-color: @red;
+  color: @surface0;
+  animation-name: blink;
+  animation-duration: 0.5s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+#clock {
+  color: @text;
+}
+
+#tray > .needs-attention {
+  -gtk-icon-effect: highlight;
+  background-color: @red;
+}
