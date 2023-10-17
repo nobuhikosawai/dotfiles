@@ -33,7 +33,7 @@ return {
         },
       },
       ----  Language specific plugins
-      "jose-elias-alvarez/typescript.nvim",
+      { "pmizio/typescript-tools.nvim", dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" } },
     },
     config = function()
       local nvim_lsp = require("lspconfig")
@@ -117,7 +117,7 @@ return {
       })
 
       -- typescript
-      -- typescript.nvim(https://github.com/jose-elias-alvarez/typescript.nvim) is used. if not, then use the following setup.
+      -- typescript-tools.nvim is used. if not, then use the following setup.
       -- nvim_lsp.tsserver.setup {
       --   on_attach = on_attach,
       --   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
@@ -125,23 +125,9 @@ return {
       --   flags = lsp_flags,
       --   capabilities = capabilities,
       -- }
-      require("typescript").setup({
-        disable_commands = false, -- prevent the plugin from creating Vim commands
-        debug = false, -- enable debug logging for commands
-        go_to_source_definition = {
-          fallback = true, -- fall back to standard LSP definition on failure
-        },
-        server = {
-          -- pass options to lspconfig's setup method
-          on_attach = on_attach,
-          filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-          cmd = { "typescript-language-server", "--stdio" },
-          flags = lsp_flags,
-          capabilities = capabilities,
-        },
-      })
-      vim.api.nvim_set_keymap("n", "<leader>tr", ":TypescriptRemoveUnused<CR>", { noremap = true, silent = true })
-      vim.api.nvim_set_keymap("n", "<leader>ta", ":TypescriptAddMissingImports<CR>", { noremap = true, silent = true })
+      require("typescript-tools").setup({})
+      vim.api.nvim_set_keymap("n", "<leader>tr", ":TSToolsRemoveUnusedImports<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("n", "<leader>ta", ":TSToolsAddMissingImports<CR>", { noremap = true, silent = true })
 
       -- tailwindcss
       nvim_lsp.tailwindcss.setup({
@@ -370,6 +356,17 @@ return {
           { name = "cmdline" },
         }),
       })
+    end,
+  },
+
+  ----  Language specific plugins
+  {
+    "pmizio/typescript-tools.nvim",
+    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+    opts = {},
+    config = function()
+      vim.api.nvim_set_keymap("n", "<leader>tr", ":TSToolsRemoveUnusedImports<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("n", "<leader>ta", ":TSToolsAddMissingImports<CR>", { noremap = true, silent = true })
     end,
   },
 
