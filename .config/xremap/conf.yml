@@ -46,3 +46,4 @@ keymap:
       only: [google-chrome, Chromium]
     remap:
       C-k: [Shift-end, C-x]
+      M-k: C-k
