@@ -83,4 +83,6 @@ return {
     cmd = "Copilot",
     enabled = false, -- in favor of zbirenbaum/copilot.lua
   },
+
+  { "ActivityWatch/aw-watcher-vim", event = { "BufReadPre", "BufNewFile" } },
 }
