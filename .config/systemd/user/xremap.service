@@ -1,0 +1,12 @@
+[Unit]
+Description=xremap
+After=default.target
+
+[Service]
+Restart=always
+ExecStart=/usr/bin/xremap --watch /home/nobuhikosawai/.config/xremap/conf.yml
+ReStartSec=60
+StartLimitInterval=30
+
+[Install]
+WantedBy=default.target
