@@ -36,21 +36,21 @@ vim.opt.cursorline = true
 -- highlight yank
 vim.api.nvim_create_augroup("highlight_yank", {})
 vim.api.nvim_create_autocmd("TextYankPost", {
-	group = "highlight_yank",
-	pattern = "*",
-	callback = function()
-		require("vim.highlight").on_yank()
-	end,
+  group = "highlight_yank",
+  pattern = "*",
+  callback = function()
+    require("vim.highlight").on_yank()
+  end,
 })
 
 vim.opt.termguicolors = true
-vim.cmd.colorscheme("catppuccin")
--- vim.cmd.colorscheme("rose-pine")
+-- vim.cmd.colorscheme("catppuccin")
+vim.cmd.colorscheme("night-owl")
 
 vim.filetype.add({
-	extension = {
-		mdx = 'mdx'
-	}
+  extension = {
+    mdx = "mdx",
+  },
 })
 
 -- switch window

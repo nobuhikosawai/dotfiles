@@ -16,7 +16,7 @@ return {
             "graphql",
             "astro",
             "prismals",
-            "marksman",
+            "mdx_analyzer",
             "eslint",
             "pyright",
           },
@@ -126,7 +126,7 @@ return {
       --   capabilities = capabilities,
       -- }
       require("typescript-tools").setup({})
-      vim.api.nvim_set_keymap("n", "<leader>tr", ":TSToolsRemoveUnusedImports<CR>", { noremap = true, silent = true })
+      vim.api.nvim_set_keymap("n", "<leader>tr", ":TSToolsRemoveUnused<CR>", { noremap = true, silent = true })
       vim.api.nvim_set_keymap("n", "<leader>ta", ":TSToolsAddMissingImports<CR>", { noremap = true, silent = true })
 
       -- tailwindcss
@@ -174,8 +174,8 @@ return {
         capabilities = capabilities,
       })
 
-      -- marksman(markdown)
-      nvim_lsp.marksman.setup({})
+      -- mdx
+      nvim_lsp.mdx_analyzer.setup({})
 
       -- ruby
       nvim_lsp.solargraph.setup({})

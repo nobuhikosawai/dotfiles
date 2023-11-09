@@ -58,4 +58,5 @@ return {
     end,
   },
   { "rose-pine/neovim", name = "rose-pine", lazy = false, priority = 1000 },
+  { "oxfist/night-owl.nvim", lazy = true, priority = 1000 },
 }
