@@ -1,0 +1,75 @@
+[[colors.indexed_colors]]
+color = "#f8a068"  # This could be a color specific to your previous config, consider adjusting if Night Owl has an equivalent
+index = 16
+
+[[colors.indexed_colors]]
+color = "#f4d9cd"  # This could be a color specific to your previous config, consider adjusting if Night Owl has an equivalent
+index = 17
+
+[colors.bright]
+black = "#011627"
+blue = "#82AAFF"
+cyan = "#7FDBCA"
+green = "#22DA6E"
+magenta = "#C792EA"
+red = "#EF5350"
+white = "#FFFFFF"
+yellow = "#FFEB95"
+
+[colors.cursor]
+cursor = "#c792ea"
+text = "#ffffff"
+
+[colors.dim]
+black = "#011627"
+blue = "#82AAFF"
+cyan = "#7FDBCA"
+green = "#22DA6E"
+magenta = "#C792EA"
+red = "#EF5350"
+white = "#FFFFFF"
+yellow = "#FFEB95"
+
+[colors.hints.end]
+background = "#7e57c2"
+foreground = "#edecee"
+
+[colors.hints.start]
+background = "#c792ea"
+foreground = "#edecee"
+
+[colors.normal]
+black = "#011627"
+blue = "#82AAFF"
+cyan = "#7FDBCA"
+green = "#22DA6E"
+magenta = "#C792EA"
+red = "#EF5350"
+white = "#FFFFFF"
+yellow = "#FFEB95"
+
+[colors.primary]
+background = "#011627"
+bright_foreground = "#d6deeb"
+dim_foreground = "#d6deeb"
+foreground = "#d6deeb"
+
+[colors.search.focused_match]
+background = "#addb67"
+foreground = "#011627"
+
+[colors.footer_bar]
+background = "#011627"
+foreground = "#ffffff"
+
+[colors.search.matches]
+background = "#7e57c2"
+foreground = "#edecee"
+
+[colors.selection]
+background = "#5f7e97"
+text = "#ffffff"
+
+[colors.vi_mode_cursor]
+cursor = "#c792ea"
+text = "#ffffff"

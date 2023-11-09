@@ -1,75 +1,90 @@
+# Night Owl Theme for Alacritty
+
+# Indexed Colors
 [[colors.indexed_colors]]
-color = "#f8a068"
+color = "#f8a068"  # Custom indexed color
 index = 16
 
 [[colors.indexed_colors]]
-color = "#f4d9cd"
+color = "#f4d9cd"  # Custom indexed color
 index = 17
 
+# Bright colors
 [colors.bright]
-black = "#46464e"
-blue = "#7da0b5"
-cyan = "#82c9a0"
-green = "#9ac47a"
-magenta = "#f3b8d0"
-red = "#f4688a"
-white = "#909297"
-yellow = "#fad78c"
+black = "#011627"
+red = "#EF5350"
+green = "#22DA6E"
+yellow = "#addb67" # Using the editor's selection color for bright yellow
+blue = "#82AAFF"
+magenta = "#C792EA"
+cyan = "#21c7a8" # Using the editor's string color for bright cyan
+white = "#ffffff"
 
+# Cursor color
 [colors.cursor]
-cursor = "#f4d9cd"
-text = "#0c0c10"
+text = "#ffffff"
+cursor = "#c792ea"
 
+# Dim colors (same as normal because Night Owl doesn't specify dim colors)
 [colors.dim]
-black = "#36363d"
-blue = "#7da0b5"
-cyan = "#82c9a0"
-green = "#9ac47a"
-magenta = "#f3b8d0"
-red = "#f4688a"
-white = "#a7a9b4"
-yellow = "#fad78c"
+black = "#011627"
+red = "#EF5350"
+green = "#22DA6E"
+yellow = "#addb67"
+blue = "#82AAFF"
+magenta = "#C792EA"
+cyan = "#21c7a8"
+white = "#ffffff"
 
+# Normal colors
+[colors.normal]
+black = "#011627"
+red = "#EF5350"
+green = "#22DA6E"
+yellow = "#addb67"
+blue = "#82AAFF"
+magenta = "#C792EA"
+cyan = "#21c7a8"
+white = "#ffffff"
+
+# Primary colors
+[colors.primary]
+background = "#011627"
+foreground = "#d6deeb"
+
+# Bright foreground for extra contrast against the dark background
+bright_foreground = "#d6deeb"
+dim_foreground = "#d6deeb"
+
+# Hints
 [colors.hints.end]
-background = "#909297"
-foreground = "#0c0c10"
+background = "#7e57c2"
+foreground = "#edecee"
 
 [colors.hints.start]
-background = "#fad78c"
-foreground = "#0c0c10"
+background = "#c792ea"
+foreground = "#edecee"
 
-[colors.normal]
-black = "#36363d"
-blue = "#7da0b5"
-cyan = "#82c9a0"
-green = "#9ac47a"
-magenta = "#f3b8d0"
-red = "#f4688a"
-white = "#a7a9b4"
-yellow = "#fad78c"
-
-[colors.primary]
-background = "#1a1a20"
-bright_foreground = "#c1c4ce"
-dim_foreground = "#c1c4ce"
-foreground = "#c1c4ce"
-
+# Search
 [colors.search.focused_match]
-background = "#9ac47a"
-foreground = "#0c0c10"
-
-[colors.footer_bar]
-background = "#909297"
-foreground = "#0c0c10"
+background = "#addb67"
+foreground = "#011627"
 
 [colors.search.matches]
-background = "#909297"
-foreground = "#0c0c10"
+background = "#7e57c2"
+foreground = "#edecee"
 
+# Footer bar
+[colors.footer_bar]
+background = "#011627"
+foreground = "#ffffff"
+
+# Selection
 [colors.selection]
-background = "#f4d9cd"
-text = "#0c0c10"
+background = "#5f7e97"
+text = "#ffffff"
 
+# Vi mode cursor
 [colors.vi_mode_cursor]
-cursor = "#a9a4e1"
-text = "#0c0c10"
+cursor = "#c792ea"
+text = "#ffffff"

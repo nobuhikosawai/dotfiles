@@ -1,16 +1,13 @@
-import = ['~/.config/alacritty/themes/custom-theme.toml']
+import = ['~/.config/alacritty/themes/night-owl.toml']
 
 [font.bold]
 family = "JetBrains Mono Nerd Font"
-style = "Bold"
 
 [font.italic]
 family = "JetBrains Mono Nerd Font"
-style = "Italic"
 
 [font.normal]
 family = "JetBrains Mono Nerd Font"
-style = "Regular"
 
 [font]
 size = 15.0
