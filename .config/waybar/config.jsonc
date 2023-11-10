@@ -68,8 +68,8 @@
   "idle_inhibitor": {
     "format": "{icon}",
     "format-icons": {
-      "activated": "",
-      "deactivated": ""
+      "activated": " ",
+      "deactivated": " "
     }
   },
   "tray": {
@@ -109,11 +109,11 @@
     },
 
   "cpu": {
-    "format": " {usage}%",
+    "format": "  {usage}%",
     "tooltip": false
   },
   "memory": {
-    "format": " {}%"
+    "format": "  {}%"
   },
   "temperature": {
       // "thermal-zone": 2,
@@ -135,8 +135,8 @@
           "critical": 15
     },
     "format": "{icon} {capacity}%",
-    "format-charging": " {capacity}%",
-    "format-plugged": " {capacity}%",
+    "format-charging": "  {capacity}%",
+    "format-plugged": "  {capacity}%",
     "format-alt": "{icon} {time}",
       // "format-good": "", // An empty format will hide the module
       // "format-full": "",
@@ -158,10 +158,10 @@
   },
   "network": {
       // "interface": "wlp2*", // (Optional) To force the use of this interface
-      "format-wifi": " {essid} ({signalStrength}%)",
-      "format-ethernet": " {ipaddr}/{cidr}",
-      "tooltip-format": " {ifname} via {gwaddr}",
-      "format-linked": " {ifname} (No IP)",
+      "format-wifi": "  {essid} ({signalStrength}%)",
+      "format-ethernet": "  {ipaddr}/{cidr}",
+      "tooltip-format": "  {ifname} via {gwaddr}",
+      "format-linked": "  {ifname} (No IP)",
       "format-disconnected": "⚠ Disconnected",
       "format-alt": "{ifname}: {ipaddr}/{cidr}"
   },
