@@ -1,9 +1,9 @@
 [Unit]
-Description=Run obsidian-backup daily and on boot
+Description=Run obsidian-backup hourly and on boot
 
-[Service]
+[Timer]
 OnBootSec=1m
-OnUnitActiveSec=1d
+OnUnitActiveSec=1h
 
 [Install]
 WantedBy=timers.target
