@@ -10,7 +10,7 @@ modmap:
 keymap:
   - name: MacOS-like
     application:
-      not: ["wezterm", "kitty", "Alacritty", "Code"] # terminal
+      not: ["wezterm", "kitty", "Alacritty", "foot", "Code", "firefox"] # terminal
     remap:
       # Cursor
       C-b: left
@@ -37,7 +37,7 @@ keymap:
       C-d: delete
   - name: Ctrl-f
     application:
-      not: ["wezterm", "kitty", "Alacritty", "jetbrains-rubymine", "Code", "obsidian"] # terminal + apps that support vim key binding
+      not: ["wezterm", "kitty", "Alacritty", "foot", "jetbrains-rubymine", "Code", "obsidian", "neovide", "firefox"] # terminal + apps that support vim key binding
     remap:
       C-f: right
       SUPER-f: C-f
