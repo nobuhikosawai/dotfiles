@@ -1,16 +1,19 @@
-import = ['~/.config/alacritty/themes/night-owl.toml']
+import = ['~/.config/alacritty/themes/rose-pine-moon.toml']
 
 [font.bold]
-family = "JetBrains Mono Nerd Font"
+# family = "JetBrains Mono Nerd Font"
+family = "MonaspiceNe NFM"
 
 [font.italic]
-family = "JetBrains Mono Nerd Font"
+# family = "JetBrains Mono Nerd Font"
+family = "MonaspiceNe NFM"
 
 [font.normal]
-family = "JetBrains Mono Nerd Font"
+# family = "JetBrains Mono Nerd Font"
+family = "MonaspiceNe NFM"
 
 [font]
-size = 15.0
+size = 17.0
 
 [env]
 TERM = "alacritty"
