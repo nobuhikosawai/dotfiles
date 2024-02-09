@@ -89,7 +89,8 @@ tooltip {
 #taskbar,
 #temperature,
 #tray,
-#window {
+#window,
+#custom-notification {
   opacity: 1;
   background-color: @base;
   /* padding: 10px 5px 10px 5px; */
