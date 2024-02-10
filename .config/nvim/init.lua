@@ -44,14 +44,17 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 vim.opt.termguicolors = true
--- vim.cmd.colorscheme("catppuccin")
-vim.cmd.colorscheme("night-owl")
+vim.cmd.colorscheme("rose-pine")
+-- vim.cmd.colorscheme("rose-pine-moon")
+-- vim.cmd.colorscheme("tokyonight-moon")
 
 vim.filetype.add({
   extension = {
     mdx = "mdx",
   },
 })
+
+-- vim.o.guicursor = "n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-blinkwait700-blinkoff400-blinkon250-Cursor2/lCursor2,r-cr:hor20,o:hor50"
 
 -- switch window
 vim.api.nvim_set_keymap("n", "<C-j>", "<C-w><C-j>", { noremap = true })

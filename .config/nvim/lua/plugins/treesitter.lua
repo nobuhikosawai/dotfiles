@@ -7,7 +7,6 @@ return {
       "nvim-treesitter/nvim-treesitter-textobjects",
       "windwp/nvim-ts-autotag",
       "andymass/vim-matchup",
-      "JoosepAlviste/nvim-ts-context-commentstring",
     },
     config = function()
       local ts = require("nvim-treesitter.configs")
@@ -25,7 +24,7 @@ return {
           disable = { "lua" },
         },
         autotag = {
-          enable = true,
+          enable = false, -- temporarily disable
         },
         matchup = {
           enable = true,
@@ -91,7 +90,7 @@ return {
         playground = {
           enable = true,
           disable = {},
-          updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
+          updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
           persist_queries = false, -- Whether the query persists across vim sessions
           keybindings = {
             toggle_query_editor = "o",
@@ -105,9 +104,6 @@ return {
             goto_node = "<cr>",
             show_help = "?",
           },
-        },
-        context_commentstring = {
-          enable = true,
         },
       })
 
@@ -123,11 +119,24 @@ return {
 
       -- mdx
       -- https://phelipetls.github.io/posts/mdx-syntax-highlight-treesitter-nvim/
-      vim.treesitter.language.register('markdown', 'mdx')
+      vim.treesitter.language.register("markdown", "mdx")
     end,
   },
 
   { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
 
-  { "nvim-treesitter/nvim-treesitter-context", event = { "BufReadPost", "BufNewFile" }, cmd = {'TSContextEnable', 'TSContextDisable', 'TSContextToggle' }, opts = { max_lines = 3 } },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    event = { "BufReadPost", "BufNewFile" },
+    cmd = { "TSContextEnable", "TSContextDisable", "TSContextToggle" },
+    opts = { max_lines = 3 },
+  },
+
+  {
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      vim.g.skip_ts_context_commentstring_module = true
+    end,
+  },
 }

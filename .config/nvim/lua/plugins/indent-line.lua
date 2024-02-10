@@ -1,6 +1,7 @@
 return {
   {
     "lukas-reineke/indent-blankline.nvim",
+    enabled = false,
     dependencies = {
       {
         "HiPhish/rainbow-delimiters.nvim",
@@ -15,5 +16,12 @@ return {
       indent = { char = "▏" },
     },
     event = { "BufReadPost", "BufNewFile" },
+  },
+  {
+    "shellRaining/hlchunk.nvim",
+    event = { "UIEnter" },
+    config = function()
+      require("hlchunk").setup({})
+    end,
   },
 }

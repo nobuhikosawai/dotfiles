@@ -47,6 +47,9 @@ return {
           rust = {
             filetypes.rust.rustfmt,
           },
+          latex = {
+            filetypes.latex.latexindent,
+          },
         },
       })
 

@@ -19,6 +19,7 @@ return {
             "mdx_analyzer",
             "eslint",
             "pyright",
+            "texlab",
           },
         },
       },
@@ -232,6 +233,9 @@ return {
 
       -- python
       nvim_lsp.pyright.setup({})
+
+      -- latex
+      nvim_lsp.texlab.setup({})
     end,
   },
 

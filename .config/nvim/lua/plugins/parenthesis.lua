@@ -12,16 +12,16 @@ return {
     "hrsh7th/nvim-insx",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-      require('insx.preset.standard').setup()
+      require("insx.preset.standard").setup()
     end,
-    enabled=false,
+    enabled = false,
   },
   {
-    'altermo/ultimate-autopair.nvim',
-    event={'InsertEnter','CmdlineEnter'},
-    branch='v0.6',
-    opts={
-        --Config goes here
+    "altermo/ultimate-autopair.nvim",
+    event = { "InsertEnter", "CmdlineEnter" },
+    branch = "v0.6",
+    opts = {
+      --Config goes here
     },
-  }
+  },
 }
