@@ -1,6 +1,7 @@
 # examples:
 # https://github.com/k0kubun/dotfiles/blob/master/config/.xremap
 # https://github.com/k0kubun/xremap/blob/dea580c599c5e3f1ced88a4997af98095cd7d7c9/example/config.yml
+keypress_delay_ms: 1 # workaround for --enable-wayland-ime option
 modmap:
   - name: Global
     remap:
