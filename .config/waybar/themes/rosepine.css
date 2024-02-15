@@ -1,0 +1,32 @@
+/* Customized Rosepine */
+@define-color base   #191724;
+/* @define-color mantle #15151a; */
+@define-color crust  #0f0f14;
+
+@define-color text     #e0def4;
+@define-color subtext0 #403d52;
+@define-color subtext1 #524f67;
+
+@define-color surface0 #1f1d2e;
+@define-color surface1 #6e6a86;
+@define-color surface2 #908caa;
+
+@define-color overlay0 #26233a;
+@define-color overlay1 #6e6a86;
+@define-color overlay2 #908caa;
+
+@define-color blue      #31748f;
+@define-color lavender  #c4a7e7;
+@define-color sapphire  #31748f;
+@define-color sky       #9ccfd8;
+@define-color teal      #9ccfd8;
+@define-color green     #82c9a0;
+@define-color yellow    #f6c177;
+@define-color peach     #ebbcba;
+@define-color maroon    #f4688a;
+@define-color red       #eb6f92;
+@define-color mauve     #c4a7e7;
+@define-color pink      #eb6f92;
+@define-color flamingo  #f6d0c0;
+@define-color rosewater #ebbcba;
+
