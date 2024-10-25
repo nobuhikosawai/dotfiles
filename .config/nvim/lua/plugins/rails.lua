@@ -11,20 +11,20 @@ return {
     config = function()
       local rails_controller_patterns = {
         { target = "/spec/controllers/%1_spec.rb", context = "spec" },
-        { target = "/spec/requests/%1_spec.rb",    context = "spec" },
-        { target = "/spec/factories/%1.rb",        context = "factories", transformer = "singularize" },
-        { target = "/app/models/%1.rb",            context = "models",    transformer = "singularize" },
-        { target = "/app/views/%1/**/*.html.*",    context = "view" },
+        { target = "/spec/requests/%1_spec.rb", context = "spec" },
+        { target = "/spec/factories/%1.rb", context = "factories", transformer = "singularize" },
+        { target = "/app/models/%1.rb", context = "models", transformer = "singularize" },
+        { target = "/app/views/%1/**/*.html.*", context = "view" },
       }
       require("other-nvim").setup({
         mappings = {
           {
             pattern = "/app/models/(.*).rb",
             target = {
-              { target = "/spec/models/%1_spec.rb",              context = "spec" },
-              { target = "/spec/factories/%1.rb",                context = "factories",  transformer = "pluralize" },
+              { target = "/spec/models/%1_spec.rb", context = "spec" },
+              { target = "/spec/factories/%1.rb", context = "factories", transformer = "pluralize" },
               { target = "/app/controllers/**/%1_controller.rb", context = "controller", transformer = "pluralize" },
-              { target = "/app/views/%1/**/*.html.*",            context = "view",       transformer = "pluralize" },
+              { target = "/app/views/%1/**/*.html.*", context = "view", transformer = "pluralize" },
             },
           },
           {
@@ -36,8 +36,8 @@ return {
           {
             pattern = "/spec/factories/(.*).rb",
             target = {
-              { target = "/app/models/%1.rb",       context = "models", transformer = "singularize" },
-              { target = "/spec/models/%1_spec.rb", context = "spec",   transformer = "singularize" },
+              { target = "/app/models/%1.rb", context = "models", transformer = "singularize" },
+              { target = "/spec/models/%1_spec.rb", context = "spec", transformer = "singularize" },
             },
           },
           {
@@ -63,17 +63,17 @@ return {
           {
             pattern = "/app/views/(.*)/.*.html.*",
             target = {
-              { target = "/spec/factories/%1.rb",                context = "factories",  transformer = "singularize" },
-              { target = "/app/models/%1.rb",                    context = "models",     transformer = "singularize" },
+              { target = "/spec/factories/%1.rb", context = "factories", transformer = "singularize" },
+              { target = "/app/models/%1.rb", context = "models", transformer = "singularize" },
               { target = "/app/controllers/**/%1_controller.rb", context = "controller", transformer = "pluralize" },
             },
           },
           {
             pattern = "/lib/(.*).rb",
             target = {
-              { target = "/spec/%1_spec.rb",     context = "spec" },
+              { target = "/spec/%1_spec.rb", context = "spec" },
               { target = "/spec/lib/%1_spec.rb", context = "spec" },
-              { target = "/sig/%1.rbs",          context = "sig" },
+              { target = "/sig/%1.rbs", context = "sig" },
             },
           },
           {
@@ -86,14 +86,14 @@ return {
           {
             pattern = "/spec/lib/(.*)_spec.rb",
             target = {
-              { target = "/lib/%1.rb",  context = "lib" },
+              { target = "/lib/%1.rb", context = "lib" },
               { target = "/sig/%1.rbs", context = "sig" },
             },
           },
           {
             pattern = "/spec/(.*)_spec.rb",
             target = {
-              { target = "/lib/%1.rb",  context = "lib" },
+              { target = "/lib/%1.rb", context = "lib" },
               { target = "/sig/%1.rbs", context = "sig" },
             },
           },
@@ -107,5 +107,5 @@ return {
       vim.keymap.set("n", "<leader>ov", "<cmd>OtherClear<CR><cmd>:OtherVSplit<CR>")
       vim.keymap.set("n", "<leader>oc", "<cmd>OtherClear<CR><cmd>:OtherClear<CR>")
     end,
-  }
+  },
 }

@@ -24,4 +24,8 @@ require("lazy").setup({
       },
     },
   },
+  checker = {
+    concurrency = 1,
+  },
+  concurency = 1,
 })

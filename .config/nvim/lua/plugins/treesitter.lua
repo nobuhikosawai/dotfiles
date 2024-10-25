@@ -18,6 +18,7 @@ return {
         modules = {},
         highlight = {
           enable = true,
+          disable = { "latex" },
         },
         indent = {
           enable = true,
