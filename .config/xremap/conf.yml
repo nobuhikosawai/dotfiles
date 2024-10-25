@@ -38,7 +38,7 @@ keymap:
       C-d: delete
   - name: Ctrl-f
     application:
-      not: ["wezterm", "kitty", "Alacritty", "foot", "jetbrains-rubymine", "Code", "obsidian", "neovide", "firefox"] # terminal + apps that support vim key binding
+      not: ["wezterm", "kitty", "Alacritty", "foot", "jetbrains-rubymine", "jetbrains-idea-ce", "Code", "obsidian", "neovide", "firefox"] # terminal + apps that support vim key binding
     remap:
       C-f: right
       SUPER-f: C-f
