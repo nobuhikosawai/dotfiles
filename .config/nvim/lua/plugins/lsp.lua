@@ -11,7 +11,7 @@ return {
           ensure_installed = {
             "lua_ls",
             "rust_analyzer",
-            "tsserver",
+            "ts_ls",
             "tailwindcss",
             "graphql",
             "astro",
@@ -20,6 +20,7 @@ return {
             "eslint",
             "pyright",
             "texlab",
+            "clangd",
           },
         },
       },
@@ -270,6 +271,15 @@ return {
 
       -- latex
       nvim_lsp.texlab.setup({})
+
+      -- cpp
+      nvim_lsp.clangd.setup({
+        on_attach = on_attach,
+        cmd = {
+          "clangd",
+          "--offset-encoding=utf-16",
+        },
+      })
     end,
   },
 

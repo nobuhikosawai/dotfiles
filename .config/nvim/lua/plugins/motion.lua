@@ -43,7 +43,7 @@ return {
           require("flash").jump({
             search = { mode = "search", max_length = 0 },
             label = { after = { 0, 0 } },
-            pattern = "^"
+            pattern = "^",
           })
         end,
         desc = "Line Search",
@@ -104,7 +104,7 @@ return {
             end,
           })
         end,
-      }
+      },
     },
-  }
+  },
 }

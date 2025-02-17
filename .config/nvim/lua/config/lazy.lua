@@ -26,6 +26,8 @@ require("lazy").setup({
   },
   checker = {
     concurrency = 1,
+    enabled = true,
+    notify = false,
   },
-  concurency = 1,
+  concurrency = 1,
 })

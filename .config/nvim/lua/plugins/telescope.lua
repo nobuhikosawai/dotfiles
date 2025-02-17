@@ -68,6 +68,8 @@ return {
         "<cmd>Telescope harpoon marks<cr>",
         desc = "Telescope harpoon marks",
       },
+      --smart_open
+      { "<space>fo", "<cmd>Telescope smart_open<cr>", desc = "Telescope smart_open" },
     },
     config = function()
       local fb_actions = require("telescope").extensions.file_browser.actions
@@ -77,6 +79,7 @@ return {
       require("telescope").load_extension("frecency")
       require("telescope").load_extension("recent_files")
       require("telescope").load_extension("harpoon")
+      require("telescope").load_extension("smart_open")
 
       local telescopeConfig = require("telescope.config")
       -- Clone the default Telescope configuration
@@ -151,4 +154,16 @@ return {
   "nvim-telescope/telescope-frecency.nvim",
 
   "smartpde/telescope-recent-files",
+
+  {
+    "danielfalk/smart-open.nvim",
+    branch = "0.2.x",
+    dependencies = {
+      "kkharji/sqlite.lua",
+      -- Only required if using match_algorithm fzf
+      -- { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+      -- Optional.  If installed, native fzy will be used when match_algorithm is fzy
+      -- { "nvim-telescope/telescope-fzy-native.nvim" },
+    },
+  },
 }

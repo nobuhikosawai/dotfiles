@@ -3,7 +3,7 @@ return {
   {
     "rmagatti/auto-session",
     event = "VeryLazy",
-    enabled = false,
+    -- enabled = false,
 
     opts = {
       log_level = "error",

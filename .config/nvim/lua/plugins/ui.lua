@@ -39,30 +39,6 @@ return {
     end,
   },
 
-  -- window transparent
-  {
-    "xiyaowong/nvim-transparent",
-    cmd = {
-      "TransparentEnable",
-      "TransparentDisable",
-      "TransparentToggle",
-    },
-    config = function()
-      require("transparent").setup({
-        extra_groups = {
-          -- In particular, when you set it to 'all', that means all available groups
-          -- example of akinsho/nvim-bufferline.lua
-          "BufferLineTabClose",
-          "BufferlineBufferSelected",
-          "BufferLineFill",
-          "BufferLineBackground",
-          "BufferLineSeparator",
-          "BufferLineIndicatorSelected",
-        },
-      })
-    end,
-  },
-
   -- icons
   {
     "nvim-tree/nvim-web-devicons",
