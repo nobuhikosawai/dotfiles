@@ -1,0 +1,6 @@
+font-family = MonaspiceNe NFM
+font-size = 13
+theme = starlight
+keybind = cmd+c=copy_to_clipboard
+keybind = cmd+v=paste_from_clipboard
+window-theme = ghostty
