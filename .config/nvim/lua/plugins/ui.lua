@@ -24,8 +24,8 @@ return {
     init = function()
       vim.keymap.set("n", "[b", ":bprevious<CR>", {})
       vim.keymap.set("n", "]b", ":bnext<CR>", {})
-      vim.keymap.set("n", "<A-l>", ":bnext<CR>", {})
-      vim.keymap.set("n", "<A-h>", ":bprev<CR>", {})
+      vim.keymap.set("n", "<C-S-l>", ":bnext<CR>", {})
+      vim.keymap.set("n", "<C-S-h>", ":bprev<CR>", {})
     end,
     config = function()
       -- use catppuccin theme

@@ -52,8 +52,6 @@ return {
         end,
         desc = "Telescope file_browser",
       },
-      -- neoclip
-      { "<space>fy", "<cmd>Telescope neoclip<cr>", desc = "Telescope neoclip" },
       -- frecency
       { "<space>fR", "<cmd>Telescope frecency<cr>", desc = "Telescope frecency" },
       -- recent_files
@@ -70,16 +68,18 @@ return {
       },
       --smart_open
       { "<space>fo", "<cmd>Telescope smart_open<cr>", desc = "Telescope smart_open" },
+      --yanky
+      { "<space>fy", "<cmd>Telescope yank_history<cr>", desc = "Telescope smart_open" },
     },
     config = function()
       local fb_actions = require("telescope").extensions.file_browser.actions
 
       require("telescope").load_extension("file_browser")
-      require("telescope").load_extension("neoclip")
       require("telescope").load_extension("frecency")
       require("telescope").load_extension("recent_files")
       require("telescope").load_extension("harpoon")
       require("telescope").load_extension("smart_open")
+      require("telescope").load_extension("yank_history")
 
       local telescopeConfig = require("telescope.config")
       -- Clone the default Telescope configuration
