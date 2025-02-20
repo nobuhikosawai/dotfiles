@@ -15,6 +15,7 @@ return {
       })
     end,
   },
+  -- maybe possible to switch to conform
   {
     "mhartington/formatter.nvim",
     event = { "BufReadPost", "BufNewFile" },
