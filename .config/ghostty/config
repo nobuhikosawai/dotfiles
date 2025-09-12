@@ -1,5 +1,5 @@
-font-family = MonaspiceNe NFM
-font-size = 13
+font-family = Monaspace Neon
+font-size = 14
 theme = starlight
 keybind = cmd+c=copy_to_clipboard
 keybind = cmd+v=paste_from_clipboard
