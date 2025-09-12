@@ -1,39 +1,32 @@
 {
   "layer": "top", // Waybar at top layer
   // "position": "bottom", // Waybar position (top|bottom|left|right)
-  "height": 32, // Waybar height (to be removed for auto height)
+  // "height": 24, // Waybar height (to be removed for auto height)
   // "width": 1280, // Waybar width
-  "spacing": 4, // Gaps between modules (4px)
+  "spacing": 2, // Gaps between modules (4px)
   // Choose the order of the modules
-  "modules-left": ["hyprland/workspaces"],
+  "modules-left": ["hyprland/workspaces", "wlr/taskbar"],
   "modules-center": ["hyprland/window"],
   "modules-right": ["idle_inhibitor", "pulseaudio", "bluetooth", "network", "cpu", "memory", "temperature", "backlight", "battery", "clock", "tray", "custom/notification"],
   // Modules configuration
   "hyprland/workspaces": {
     "disable-scroll": true,
-    "all-outputs": true,
+    "all-outputs": false,
     "on-click": "activate",
     "format": "{name}",
     "on-scroll-up": "hyprctl dispatch workspace e+1",
     "on-scroll-down": "hyprctl dispatch workspace e-1"
   },
-  "wlr/taskbar": { // hidden
+  "wlr/taskbar": {
     "format": "{icon}",
-    "icon-size": 14,
-    "icon-theme": "Numix-Circle",
+    "icon-size": {},
+    "icon-theme": "${i_theme}",
+    "spacing": 0,
     "tooltip-format": "{title}",
     "on-click": "activate",
     "on-click-middle": "close",
-    "ignore-list": [
-      "Alacritty"
-    ],
-    "app_ids-mapping": {
-      "firefoxdeveloperedition": "firefox-developer-edition"
-    },
-    "rewrite": {
-      "Firefox Web Browser": "Firefox",
-      "Foot Server": "Terminal"
-    }
+    "sort-by-app-id": true,
+    //"on-click-right": "fullscreen"
   },
   "hyprland/window": {
     "max-length": 200,
@@ -81,39 +74,39 @@
   //     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
   //     "format-alt": "{:%Y-%m-%d (%a)}"
   // },
-    "clock": {
-        "format": "  {:%a, %b %d (%R)}",
-        "format-alt": "  {:%H:%M}",
-        "tooltip-format": "<tt><small>{calendar}</small></tt>",
-        "calendar": {
-                    "mode"          : "month",
-                    "mode-mon-col"  : 3,
-                    "weeks-pos"     : "right",
-                    "on-scroll"     : 1,
-                    "on-click-right": "mode",
-                    "format": {
-                              "months":     "<span color='#ffead3'><b>{}</b></span>",
-                              "days":       "<span color='#ecc6d9'><b>{}</b></span>",
-                              "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
-                              "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
-                              "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
-                              }
-                    },
-        "actions":  {
-                    "on-click-right": "mode",
-                    "on-click-forward": "tz_up",
-                    "on-click-backward": "tz_down",
-                    "on-scroll-up": "shift_up",
-                    "on-scroll-down": "shift_down"
-                    }
+  "clock": {
+    "format": "󰃰 {:%a %b %d %R}",
+    "format-alt": " {:%H:%M}",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode"          : "month",
+      "mode-mon-col"  : 3,
+      "weeks-pos"     : "right",
+      "on-scroll"     : 1,
+      "on-click-right": "mode",
+      "format": {
+        "months":     "<span color='#ffead3'><b>{}</b></span>",
+        "days":       "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+        "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
     },
+    "actions":  {
+      "on-click-right": "mode",
+      "on-click-forward": "tz_up",
+      "on-click-backward": "tz_down",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
 
   "cpu": {
-    "format": "  {usage}%",
+    "format": " {usage}%",
     "tooltip": false
   },
   "memory": {
-    "format": "  {}%"
+    "format": " {}%"
   },
   "temperature": {
       // "thermal-zone": 2,
@@ -121,7 +114,7 @@
       "critical-threshold": 80,
       // "format-critical": "{temperatureC}°C {icon}",
       "format": "{icon} {temperatureC}°C",
-      "format-icons": ["", "", ""]
+      "format-icons": ["", "", ""]
   },
   "backlight": {
       // "device": "acpi_video1",
@@ -132,23 +125,24 @@
     "states": {
           // "good": 95,
           "warning": 30,
-          "critical": 15
+          "critical": 20
     },
     "format": "{icon} {capacity}%",
-    "format-charging": "  {capacity}%",
-    "format-plugged": "  {capacity}%",
+    //"format-charging": " {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-plugged": " {capacity}%",
     "format-alt": "{icon} {time}",
       // "format-good": "", // An empty format will hide the module
       // "format-full": "",
-      "format-icons": [" ", " ", " ", " ", " "]
+      "format-icons": ["", "", "", "", ""]
   },
   // "battery#bat2": {
   //     "bat": "BAT2"
   // },
   "bluetooth": {
-    "format": " {status}",
-    "format-connected": " {device_alias}",
-    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    "format": "󰂯 {status}",
+    "format-connected": "󰂯 {device_alias:.5}",
+    "format-connected-battery": "󰂯 {device_alias:.5} {device_battery_percentage}%",
       // "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
       "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
       "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
@@ -158,19 +152,19 @@
   },
   "network": {
       // "interface": "wlp2*", // (Optional) To force the use of this interface
-      "format-wifi": "  {essid} ({signalStrength}%)",
-      "format-ethernet": "  {ipaddr}/{cidr}",
-      "tooltip-format": "  {ifname} via {gwaddr}",
-      "format-linked": "  {ifname} (No IP)",
-      "format-disconnected": "⚠ Disconnected",
+      "format-wifi": " {essid:.10} ({signalStrength}%)",
+      "format-ethernet": "󰊗 {ipaddr}/{cidr}",
+      "tooltip-format": "󰊗 {ifname} via {gwaddr}",
+      "format-linked": "󰊗 {ifname} (No IP)",
+      "format-disconnected": " Disconnected",
       "format-alt": "{ifname}: {ipaddr}/{cidr}"
   },
   "pulseaudio": {
       // "scroll-step": 1, // %, can be a float
       "format": "{icon} {volume}% {format_source}",
       "format-bluetooth": "{icon} {volume}% {format_source}",
-      "format-bluetooth-muted": "{icon}  {format_source}",
-      "format-muted": " {format_source}",
+      "format-bluetooth-muted": "{icon}󰂯  {format_source}",
+      "format-muted": " {format_source}",
       "format-source": " {volume}%",
       "format-source-muted": "",
       "format-icons": {
@@ -201,13 +195,13 @@
     "format": "{icon}",
     "format-icons": {
       "notification": "<span foreground='red'><sup></sup></span>",
-      "none": " ",
+      "none": "",
       "dnd-notification": "<span foreground='red'><sup></sup></span>",
-      "dnd-none": " ",
+      "dnd-none": "",
       "inhibited-notification": "<span foreground='red'><sup></sup></span>",
-      "inhibited-none": " ",
+      "inhibited-none": "",
       "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
-      "dnd-inhibited-none": " "
+      "dnd-inhibited-none": ""
     },
     "return-type": "json",
     "exec-if": "which swaync-client",
