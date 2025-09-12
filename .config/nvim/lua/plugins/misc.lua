@@ -29,9 +29,14 @@ return {
       image = {},
       scratch = {},
       indent = {
+        -- enabled = false,
         animate = {
           enabled = false,
         },
+        filter = function(buf)
+          -- return vim.g.snacks_indent ~= false and vim.b[buf].snacks_indent ~= false and vim.bo[buf].buftype == ""
+          return vim.bo[buf].buftype ~= "tex" or vim.bo[buf].filetype == ""
+        end,
       },
     },
     keys = {
@@ -72,5 +77,13 @@ return {
     opt = {
       delay = 300,
     },
+  },
+
+  -- Typing
+  {
+    "nvzone/typr",
+    dependencies = "nvzone/volt",
+    opts = {},
+    cmd = { "Typr", "TyprStats" },
   },
 }

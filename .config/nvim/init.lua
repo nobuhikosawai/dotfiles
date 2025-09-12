@@ -39,16 +39,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   group = "highlight_yank",
   pattern = "*",
   callback = function()
-    require("vim.highlight").on_yank()
+    require("vim.hl").on_yank()
   end,
 })
 
 vim.opt.termguicolors = true
 -- vim.cmd.colorscheme("rose-pine")
 -- vim.cmd.colorscheme("rose-pine-moon")
--- vim.cmd.colorscheme("tokyonight-moon")
+vim.cmd.colorscheme("tokyonight-moon")
 -- vim.cmd.colorscheme("monokai-pro-classic")
-vim.cmd.colorscheme("monokai-pro-default")
+-- vim.cmd.colorscheme("monokai-pro-default")
 
 vim.filetype.add({
   extension = {
