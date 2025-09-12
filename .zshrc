@@ -124,8 +124,13 @@ case "$OSTYPE" in
 esac
 alias doco="docker-compose"
 alias lz="lazygit"
-alias nvim="OPENAI_API_KEY=$OPENAI_API_KEY nvim --listen /tmp/nvimsocket" # Using neovim-remote. see: https://github.com/mhinz/neovim-remote
-
+alias nvim="OPENAI_API_KEY=$OPENAI_API_KEY nvim"
+case "$OSTYPE" in
+  linux*)
+    function open() {
+      xdg-open $1 &
+    }
+esac
 # include ~/.local/bin
 export PATH="/home/nobuhikosawai/.local/bin:$PATH"
 
