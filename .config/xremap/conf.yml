@@ -6,12 +6,17 @@ modmap:
   - name: Global
     remap:
       CapsLock: Control_L
-      # Alt_L: Win_L
-      # Win_L: Alt_L
 keymap:
   - name: MacOS-like
     application:
-      not: ["wezterm", "kitty", "Alacritty", "foot", "com.mitchellh.ghostty", "Code", "firefox"] # terminal
+      not: [
+          "wezterm",
+          "kitty",
+          "Alacritty",
+          "foot",
+          "com.mitchellh.ghostty",
+          "Code",
+        ] # terminal
     remap:
       # Cursor
       C-b: left
@@ -38,13 +43,35 @@ keymap:
       C-d: delete
   - name: Ctrl-f
     application:
-      not: ["wezterm", "kitty", "Alacritty", "foot", "com.mitchellh.ghostty", "jetbrains-rubymine", "jetbrains-idea-ce", "Code", "obsidian", "neovide", "firefox"] # terminal + apps that support vim key binding
+      not: [
+          "wezterm",
+          "kitty",
+          "Alacritty",
+          "foot",
+          "com.mitchellh.ghostty",
+          "jetbrains-rubymine",
+          "jetbrains-idea-ce",
+          "Code",
+          "obsidian",
+          "neovide",
+        ] # terminal + apps that support vim key binding
     remap:
       C-f: right
       SUPER-f: C-f
-  - name: Google Chrome
+  - name: VSCode
     application:
-      only: [google-chrome, Chromium]
+      only: ["Code"]
     remap:
-      C-k: [Shift-end, C-x]
-      M-k: C-k
+      # Super
+      SUPER-c: C-c
+      SUPER-x: C-x
+      SUPER-v: C-v
+      SUPER-t: C-t
+      SUPER-r: C-r
+      SUPER-s: C-s
+      SUPER-a: C-a
+      SUPER-w: C-w
+      SUPER-p: C-p
+      SUPER-o: C-o
+      SUPER-n: C-n
+      SUPER-z: C-z
