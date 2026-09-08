@@ -347,6 +347,9 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# miniconda3 for linux
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+
 # pnpm
 export PNPM_HOME="/home/nobuhikosawai/.local/share/pnpm"
 case ":$PATH:" in
