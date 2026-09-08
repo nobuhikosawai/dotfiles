@@ -4,9 +4,9 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     cmd = { "Mason" },
     dependencies = {
-      { "williamboman/mason.nvim", config = true },
+      { "mason-org/mason.nvim", opts = {} },
       {
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
         opts = {
           ensure_installed = {
             "lua_ls",
@@ -22,95 +22,104 @@ return {
             "texlab",
             "clangd",
           },
+          -- Servers are enabled explicitly below.
+          -- Avoid starting ts_ls alongside typescript-tools.
+          automatic_enable = false,
         },
       },
+      "hrsh7th/cmp-nvim-lsp",
       {
         "j-hui/fidget.nvim",
-        tag = "legacy",
-        config = true,
         opts = {
-          window = {
-            blend = 0,
+          notification = {
+            window = {
+              winblend = 0,
+            },
           },
         },
       },
-      ----  Language specific plugins
-      { "pmizio/typescript-tools.nvim", dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" } },
+      {
+        "pmizio/typescript-tools.nvim",
+        dependencies = { "nvim-lua/plenary.nvim" },
+      },
     },
     config = function()
-      local nvim_lsp = require("lspconfig")
-      -- Mappings.
-      -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-      local opts = { noremap = true, silent = true }
+      local opts = { silent = true }
+
       vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
-      vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-      vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+      vim.keymap.set("n", "[d", function()
+        vim.diagnostic.jump({ count = -1, float = true })
+      end, opts)
+      vim.keymap.set("n", "]d", function()
+        vim.diagnostic.jump({ count = 1, float = true })
+      end, opts)
       vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
 
-      -- Use an on_attach function to only map the following keys
-      -- after the language server attaches to the current buffer
-      local on_attach = function(client, bufnr)
-        -- Enable completion triggered by <c-x><c-o>
-        vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+      -- Common mappings for all attached LSP clients.
+      vim.api.nvim_create_autocmd("LspAttach", {
+        group = vim.api.nvim_create_augroup("UserLspConfig", {
+          clear = true,
+        }),
+        callback = function(event)
+          local bufnr = event.buf
+          local bufopts = { silent = true, buffer = bufnr }
 
-        -- Mappings.
-        -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local bufopts = { noremap = true, silent = true, buffer = bufnr }
-        -- vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-        -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-        vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
-        -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-        -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-        -- vim.keymap.set('n', '<space>wl', function()
-        --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-        -- end, bufopts)
-        -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-        vim.keymap.set("n", ",lr", vim.lsp.buf.rename, bufopts) -- suggested keymap is <leader>rn
-        -- vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-        vim.keymap.set("n", ",gr", vim.lsp.buf.references, bufopts)
-        vim.keymap.set("n", ",lf", function()
-          vim.lsp.buf.format({ async = true })
-        end, bufopts) -- suggested keymap is <leader>f
-      end
+          vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-      local lsp_flags = {
-        -- This is the default in Nvim 0.7+
-        debounce_text_changes = 150,
-      }
+          -- Available actions: :help vim.lsp.buf
+          vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
+          vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
+          vim.keymap.set("n", "<C-k>", vim.lsp.buf.signature_help, bufopts)
+          vim.keymap.set("n", ",lr", vim.lsp.buf.rename, bufopts)
+          vim.keymap.set("n", ",gr", vim.lsp.buf.references, bufopts)
+          vim.keymap.set("n", ",lf", function()
+            vim.lsp.buf.format({ bufnr = bufnr, async = true })
+          end, bufopts)
 
-      -- for nvim-ufo
-      -- https://github.com/kevinhwang91/nvim-ufo
-      local _capabilities = vim.lsp.protocol.make_client_capabilities()
-      _capabilities.textDocument.foldingRange = {
+          -- Optional mappings:
+          -- vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
+          -- vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
+          -- vim.keymap.set("n", "<space>D", vim.lsp.buf.type_definition, bufopts)
+          -- vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, bufopts)
+          -- vim.keymap.set("n", "<space>wa", vim.lsp.buf.add_workspace_folder, bufopts)
+          -- vim.keymap.set("n", "<space>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
+          -- vim.keymap.set("n", "<space>wl", function()
+          --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+          -- end, bufopts)
+        end,
+      })
+
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+      -- Folding support for nvim-ufo.
+      capabilities.textDocument.foldingRange = {
         dynamicRegistration = false,
         lineFoldingOnly = true,
       }
 
-      local capabilities = require("cmp_nvim_lsp").default_capabilities(_capabilities)
+      local lsp_flags = {
+        debounce_text_changes = 150,
+      }
 
-      -- lua_ls
-      nvim_lsp.lua_ls.setup({
-        on_attach = on_attach,
-        flags = lsp_flags,
+      -- Shared defaults for servers enabled through vim.lsp.enable().
+      vim.lsp.config("*", {
         capabilities = capabilities,
+        flags = lsp_flags,
+      })
+
+      vim.lsp.config("lua_ls", {
         settings = {
           Lua = {
             runtime = {
-              -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
               version = "LuaJIT",
             },
             diagnostics = {
-              -- Get the language server to recognize the `vim` global
               globals = { "vim" },
             },
             workspace = {
-              -- Make the server aware of Neovim runtime files
               library = vim.api.nvim_get_runtime_file("", true),
               checkThirdParty = false,
             },
-            -- Do not send telemetry data containing a randomized but unique identifier
             telemetry = {
               enable = false,
             },
@@ -118,191 +127,111 @@ return {
         },
       })
 
-      -- typescript
-      -- typescript-tools.nvim is used. if not, then use the following setup.
-      -- nvim_lsp.tsserver.setup {
-      --   on_attach = on_attach,
-      --   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-      --   cmd = { "typescript-language-server", "--stdio" },
-      --   flags = lsp_flags,
-      --   capabilities = capabilities,
-      -- }
-      require("typescript-tools").setup({})
-      vim.api.nvim_set_keymap("n", "<leader>tr", ":TSToolsRemoveUnused<CR>", { noremap = true, silent = true })
-      vim.api.nvim_set_keymap("n", "<leader>ta", ":TSToolsAddMissingImports<CR>", { noremap = true, silent = true })
-
-      -- tailwindcss
-      nvim_lsp.tailwindcss.setup({
-        on_attach = on_attach,
-        flags = lsp_flags,
-        capabilities = capabilities,
-      })
-
-      -- graphql
-      nvim_lsp.graphql.setup({
-        on_attach = on_attach,
-        flags = lsp_flags,
-        capabilities = capabilities,
-      })
-
-      -- prisma
-      nvim_lsp.prismals.setup({
-        on_attach = on_attach,
-        flags = lsp_flags,
-        capabilities = capabilities,
-      })
-
-      -- astro
-      nvim_lsp.astro.setup({
-        on_attach = on_attach,
-        flags = lsp_flags,
-        capabilities = capabilities,
-      })
-
-      -- vue
-      nvim_lsp.volar.setup({})
-
-      -- eslint
-      nvim_lsp.eslint.setup({})
-
-      -- rust
-      nvim_lsp.rust_analyzer.setup({
-        on_attach = on_attach,
-        flags = lsp_flags,
-        -- Server-specific settings...
+      vim.lsp.config("rust_analyzer", {
         settings = {
           ["rust-analyzer"] = {},
         },
-        capabilities = capabilities,
       })
 
-      -- mdx
-      nvim_lsp.mdx_analyzer.setup({})
-
-      -- ruby
-      -- textDocument/diagnostic support until 0.10.0 is released
-      _timers = {}
-      local function setup_diagnostics(client, buffer)
-        if require("vim.lsp.diagnostic")._enable then
-          return
-        end
-
-        local diagnostic_handler = function()
-          local params = vim.lsp.util.make_text_document_params(buffer)
-          client.request("textDocument/diagnostic", { textDocument = params }, function(err, result)
-            if err then
-              local err_msg = string.format("diagnostics error - %s", vim.inspect(err))
-              vim.lsp.log.error(err_msg)
-            end
-            local diagnostic_items = {}
-            if result then
-              diagnostic_items = result.items
-            end
-            vim.lsp.diagnostic.on_publish_diagnostics(
-              nil,
-              vim.tbl_extend("keep", params, { diagnostics = diagnostic_items }),
-              { client_id = client.id }
-            )
-          end)
-        end
-
-        diagnostic_handler() -- to request diagnostics on buffer when first attaching
-
-        vim.api.nvim_buf_attach(buffer, false, {
-          on_lines = function()
-            if _timers[buffer] then
-              vim.fn.timer_stop(_timers[buffer])
-            end
-            _timers[buffer] = vim.fn.timer_start(200, diagnostic_handler)
-          end,
-          on_detach = function()
-            if _timers[buffer] then
-              vim.fn.timer_stop(_timers[buffer])
-            end
-          end,
-        })
-      end
-
-      -- adds ShowRubyDeps command to show dependencies in the quickfix list.
-      -- add the `all` argument to show indirect dependencies as well
-      local function add_ruby_deps_command(client, bufnr)
-        vim.api.nvim_buf_create_user_command(bufnr, "ShowRubyDeps", function(opts)
-          local params = vim.lsp.util.make_text_document_params()
-
-          local showAll = opts.args == "all"
-
-          client.request("rubyLsp/workspace/dependencies", params, function(error, result)
-            if error then
-              print("Error showing deps: " .. error)
-              return
-            end
-
-            local qf_list = {}
-            for _, item in ipairs(result) do
-              if showAll or item.dependency then
-                table.insert(qf_list, {
-                  text = string.format("%s (%s) - %s", item.name, item.version, item.dependency),
-
-                  filename = item.path,
-                })
-              end
-            end
-
-            vim.fn.setqflist(qf_list)
-            vim.cmd("copen")
-          end, bufnr)
-        end, {
-          nargs = "?",
-          complete = function()
-            return { "all" }
-          end,
-        })
-      end
-
-      nvim_lsp.ruby_lsp.setup({
-        on_attach = function(client, buffer)
-          setup_diagnostics(client, buffer)
-          add_ruby_deps_command(client, buffer)
-        end,
-      })
-
-      -- python
-      nvim_lsp.pyright.setup({})
-
-      -- latex
-      nvim_lsp.texlab.setup({})
-
-      -- cpp
-      nvim_lsp.clangd.setup({
-        on_attach = on_attach,
+      vim.lsp.config("clangd", {
         cmd = {
           "clangd",
           "--offset-encoding=utf-16",
         },
+      })
+
+      -- Native pull diagnostics replace the old Ruby polling workaround.
+      vim.lsp.config("ruby_lsp", {
+        on_attach = function(client, bufnr)
+          vim.api.nvim_buf_create_user_command(bufnr, "ShowRubyDeps", function(command_opts)
+            local params = {
+              textDocument = {
+                uri = vim.uri_from_bufnr(bufnr),
+              },
+            }
+
+            client:request("rubyLsp/workspace/dependencies", params, function(err, result)
+              if err then
+                vim.notify("Error showing Ruby dependencies: " .. vim.inspect(err), vim.log.levels.ERROR)
+                return
+              end
+
+              local items = {}
+              for _, item in ipairs(result or {}) do
+                if command_opts.args == "all" or item.dependency then
+                  items[#items + 1] = {
+                    text = string.format("%s (%s) - %s", item.name, item.version, tostring(item.dependency)),
+                    filename = item.path,
+                  }
+                end
+              end
+
+              vim.fn.setqflist({}, " ", {
+                title = "Ruby dependencies",
+                items = items,
+              })
+              vim.cmd("copen")
+            end, bufnr)
+          end, {
+            nargs = "?",
+            force = true,
+            complete = function()
+              return { "all" }
+            end,
+          })
+        end,
+      })
+
+      -- TypeScript Tools is configured once.
+      -- Pass capabilities explicitly because it manages its own client.
+      require("typescript-tools").setup({
+        capabilities = capabilities,
+        flags = lsp_flags,
+      })
+
+      vim.keymap.set("n", "<leader>tr", "<cmd>TSToolsRemoveUnusedImports<CR>", opts)
+      vim.keymap.set("n", "<leader>ta", "<cmd>TSToolsAddMissingImports<CR>", opts)
+
+      -- These inherit the shared configuration and nvim-lspconfig defaults.
+      vim.lsp.enable({
+        "lua_ls",
+        "rust_analyzer",
+        "tailwindcss",
+        "graphql",
+        "astro",
+        "prismals",
+        "mdx_analyzer",
+        "eslint",
+        "pyright",
+        "texlab",
+        "clangd",
+        "ruby_lsp",
+        "vue_ls", -- Previously named volar; see Vue note below.
       })
     end,
   },
 
   {
     "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
     dependencies = {
       "L3MON4D3/LuaSnip",
       "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lsp-signature-help",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
-      "onsails/lspkind-nvim",
+      "onsails/lspkind.nvim",
       {
         "zbirenbaum/copilot-cmp",
-        dependencies = "zbirenbaum/copilot.lua",
+        dependencies = { "zbirenbaum/copilot.lua" },
         config = function()
           require("copilot_cmp").setup()
         end,
-      }, -- copilot
+      },
       "f3fora/cmp-spell",
     },
-    event = "InsertEnter",
     config = function()
       local cmp = require("cmp")
       local lspkind = require("lspkind")
@@ -316,7 +245,7 @@ return {
       cmp.setup({
         snippet = {
           expand = function(args)
-            require("luasnip").lsp_expand(args.body)
+            luasnip.lsp_expand(args.body)
           end,
         },
         window = {
@@ -329,7 +258,7 @@ return {
           ["<C-Space>"] = cmp.mapping.complete(),
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }),
-          -- https://github.com/hrsh7th/nvim-cmp/wiki/Example-mappings
+
           ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
@@ -341,6 +270,7 @@ return {
               fallback()
             end
           end, { "i", "s" }),
+
           ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
               cmp.select_prev_item()
@@ -373,10 +303,9 @@ return {
             menu = {
               buffer = "[Buffer]",
               nvim_lsp = "[LSP]",
+              nvim_lsp_signature_help = "[Signature]",
               luasnip = "[LuaSnip]",
-              nvim_lua = "[Lua]",
-              latex_symbols = "[Latex]",
-              Copilot = "",
+              copilot = "",
             },
           }),
         },
@@ -387,15 +316,14 @@ return {
         },
       })
 
-      -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-      -- cmp.setup.cmdline('/', {
+      -- Optional buffer completion for search:
+      -- cmp.setup.cmdline("/", {
       --   mapping = cmp.mapping.preset.cmdline(),
       --   sources = {
-      --     { name = 'buffer' }
-      --   }
+      --     { name = "buffer" },
+      --   },
       -- })
 
-      -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
       cmp.setup.cmdline(":", {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources({
@@ -407,24 +335,17 @@ return {
     end,
   },
 
-  ----  Language specific plugins
-  {
-    "pmizio/typescript-tools.nvim",
-    dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-    opts = {},
-    config = function()
-      vim.api.nvim_set_keymap("n", "<leader>tr", ":TSToolsRemoveUnusedImports<CR>", { noremap = true, silent = true })
-      vim.api.nvim_set_keymap("n", "<leader>ta", ":TSToolsAddMissingImports<CR>", { noremap = true, silent = true })
-    end,
-  },
-
-  -- Additional LSP related plugins
   {
     "glepnir/lspsaga.nvim",
     branch = "main",
     event = { "BufReadPre", "BufNewFile" },
     keys = {
-      { ",ca", "<cmd>Lspsaga code_action<CR>", desc = "code action", mode = { "n", "v" } },
+      {
+        ",ca",
+        "<cmd>Lspsaga code_action<CR>",
+        desc = "Code action",
+        mode = { "n", "v" },
+      },
     },
     opts = {
       symbol_in_winbar = {
@@ -436,30 +357,55 @@ return {
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = "Trouble",
+    opts = {},
     keys = {
-      { "<leader>xx", "<cmd>TroubleToggle<cr>", desc = "TroubleToggle" },
-      { "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "TroubleToggle workspace_diagnostics" },
-      { "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "TroubleToggle document_diagnostics" },
-      { "<leader>xl", "<cmd>TroubleToggle loclist<cr>", desc = "TroubleToggle loclist" },
-      { "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", desc = "TroubleToggle quickfix" },
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<CR>",
+        desc = "Diagnostics",
+      },
+      {
+        "<leader>xw",
+        "<cmd>Trouble diagnostics toggle<CR>",
+        desc = "Workspace diagnostics",
+      },
+      {
+        "<leader>xd",
+        "<cmd>Trouble diagnostics toggle filter.buf=0<CR>",
+        desc = "Buffer diagnostics",
+      },
+      {
+        "<leader>xl",
+        "<cmd>Trouble loclist toggle<CR>",
+        desc = "Location list",
+      },
+      {
+        "<leader>xq",
+        "<cmd>Trouble qflist toggle<CR>",
+        desc = "Quickfix list",
+      },
     },
-    config = true,
   },
 
   {
     "stevearc/aerial.nvim",
     keys = {
-      { "<leader>aa", "<cmd>AerialToggle!<CR>", desc = "AerialToggle" },
+      {
+        "<leader>aa",
+        "<cmd>AerialToggle!<CR>",
+        desc = "AerialToggle",
+      },
     },
-    config = function()
-      require("aerial").setup({
-        on_attach = function(bufnr)
-          vim.api.nvim_buf_set_keymap(bufnr, "n", "[[", "<cmd>AerialPrev<CR>", {})
-          vim.api.nvim_buf_set_keymap(bufnr, "n", "]]", "<cmd>AerialNext<CR>", {})
-        end,
-      })
-    end,
+    opts = {
+      on_attach = function(bufnr)
+        local opts = { buffer = bufnr }
+        vim.keymap.set("n", "[[", "<cmd>AerialPrev<CR>", opts)
+        vim.keymap.set("n", "]]", "<cmd>AerialNext<CR>", opts)
+      end,
+    },
   },
+
   {
     "simrat39/symbols-outline.nvim",
     cmd = { "SymbolsOutline", "SymbolsOutlineOpen" },
@@ -474,17 +420,15 @@ return {
     end,
   },
 
-  -- better folding
   {
     "kevinhwang91/nvim-ufo",
-    dependencies = "kevinhwang91/promise-async",
+    dependencies = { "kevinhwang91/promise-async" },
     event = "BufReadPost",
     init = function()
-      vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+      vim.o.foldlevel = 99
       vim.o.foldlevelstart = 99
       vim.o.foldenable = true
 
-      -- Using ufo provider need remap `zR` and `zM`. If Neovim is 0.6.1, remap yourself
       vim.keymap.set("n", "zR", function()
         require("ufo").openAllFolds()
       end)
