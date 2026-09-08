@@ -25,6 +25,7 @@
 	editor = vim
 	excludesfile = ~/.gitignore_global
   pager = delta # using delta
+	autocrlf = false
 [filter "lfs"]
 	required = true
 	clean = git-lfs clean -- %f
