@@ -710,8 +710,3 @@ binds {
 environment {
     ELECTRON_OZONE_PLATFORM_HINT "auto"
 }
-
-// DMS Include Configs
-include "dms/layout.kdl"
-include "dms/cursor.kdl"
-include "dms/windowrules.kdl"
