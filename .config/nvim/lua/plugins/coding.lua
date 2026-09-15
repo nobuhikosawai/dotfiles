@@ -1,7 +1,4 @@
 return {
-  -- comment
-  -- { "numToStr/Comment.nvim", config = true, event = { "BufReadPost", "BufNewFile" } },
-
   -- parentheses
   {
     "windwp/nvim-autopairs",

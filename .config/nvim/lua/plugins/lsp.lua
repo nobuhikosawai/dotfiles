@@ -206,7 +206,8 @@ return {
         "texlab",
         "clangd",
         "ruby_lsp",
-        "vue_ls", -- Previously named volar; see Vue note below.
+        "vue_ls",
+        "glsl_analyzer",
       })
     end,
   },
