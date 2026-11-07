@@ -4,24 +4,39 @@
 hl.config({
 	general = {
 		col = {
-			active_border = "rgb(1976d2)",
-			inactive_border = "rgb(72777f)",
+			active_border = "rgb(42a5f5)",
+			inactive_border = "rgb(8c9199)",
 		},
 	},
 	group = {
 		col = {
-			border_active = "rgb(1976d2)",
-			border_inactive = "rgb(72777f)",
-			border_locked_active = "rgb(b3261e)",
-			border_locked_inactive = "rgb(72777f)",
+			border_active = "rgb(42a5f5)",
+			border_inactive = "rgb(8c9199)",
+			border_locked_active = "rgb(f2b8b5)",
+			border_locked_inactive = "rgb(8c9199)",
 		},
 		groupbar = {
 			col = {
-				active = "rgb(1976d2)",
-				inactive = "rgb(72777f)",
-				locked_active = "rgb(b3261e)",
-				locked_inactive = "rgb(72777f)",
+				active = "rgb(42a5f5)",
+				inactive = "rgb(8c9199)",
+				locked_active = "rgb(f2b8b5)",
+				locked_inactive = "rgb(8c9199)",
 			},
 		},
 	},
 })
+
+-- Effect colors exist only on newer Hyprland; skip them elsewhere instead of raising config errors
+local function themed(key, value)
+	local ok, current = pcall(hl.get_config, key)
+	if ok and current ~= nil then
+		hl.config({ [key] = value })
+	end
+end
+
+themed("decoration.glow.color", "rgba(42a5f5ee)")
+themed("decoration.glow.color_inactive", "rgba(8c9199ee)")
+themed("decoration.blur.acrylic.tint", "rgba(42a5f514)")
+themed("decoration.blur.aurora.color1", "rgba(42a5f529)")
+themed("decoration.blur.aurora.color2", "rgba(8ab4f87a)")
+themed("decoration.blur.fluid_jar.color", "rgba(42a5f5cc)")
