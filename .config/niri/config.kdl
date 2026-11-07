@@ -376,6 +376,12 @@ window-rule {
     clip-to-geometry true
 }
 
+// Make inactive windows semitransparent.
+window-rule {
+    match is-active=false
+    opacity 0.95
+}
+
 binds {
     // DMS spotflight
     // Mod+Space hotkey-overlay-title="Application Launcher" {
@@ -705,6 +711,16 @@ binds {
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
     Mod+Shift+P { power-off-monitors; }
+
+    // Example using playerctl for custom shortcuts
+    Ctrl+F10 { spawn "playerctl" "play-pause"; }
+    Mod+F10 { spawn "playerctl" "play-pause"; }
+    Ctrl+F9 { spawn "playerctl" "position" "10-"; }
+    Mod+F9 { spawn "playerctl" "position" "10-"; }
+    Ctrl+F11 { spawn "playerctl" "position" "10+"; }
+    Mod+F11 { spawn "playerctl" "position" "10+"; }
+    // Mod+F10 { spawn "playerctl" "next"; }
+    // Mod+F11 { spawn "playerctl" "previous"; }
 }
 
 environment {
