@@ -21,6 +21,9 @@ spawn-at-startup "niriswitcher"
 // Starts vicinae launcher
 spawn-at-startup "vicinae" "server"
 
+// Monitor layout manager
+spawn-at-startup "kanshi"
+
 // If using niri newer than 271534e115e5915231c99df287bbfe396185924d (~aug 17 2025)
 // you can add this to disable built in config load errors since dank shell provides this
 config-notification {
