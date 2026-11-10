@@ -158,7 +158,8 @@ radius = 3
 # [input]
 #
 [input.keyboard]
-numlock_toggle = true
+numlock_toggle = false
+options = "ctrl:nocaps"
 
 [input.touchpad]
 natural_scroll = true
